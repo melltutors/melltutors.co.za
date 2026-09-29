@@ -1424,6 +1424,6 @@ inset 0 0 36px rgba(255,255,255,.06),
 }
 
 /* Offers page: lead with the complete comparison. */
-.offers-stage .offers-heading{max-width:920px;margin:0 auto 32px;text-align:center;color:#fff;font-size:clamp(34px,4vw,56px);line-height:1.08;letter-spacing:-.025em;}
+.offers-stage .offers-heading{margin:0 0 32px;text-align:left;color:#fff;font-size:clamp(30px,3.2vw,40px);font-weight:400;font-style:italic;line-height:1.15;letter-spacing:-.025em;white-space:nowrap;}
 section.dark.offers-stage{padding-top:112px;}
-@media (max-width:900px){section.dark.offers-stage{padding-top:96px;}.offers-stage .offers-heading{font-size:clamp(32px,6vw,44px);margin-bottom:26px;}}
+@media (max-width:900px){section.dark.offers-stage{padding-top:96px;}.offers-stage .offers-heading{font-size:clamp(30px,5vw,40px);margin-bottom:26px;white-space:normal;}}
