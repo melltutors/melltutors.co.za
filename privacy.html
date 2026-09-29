@@ -43,6 +43,7 @@
   ]
 }
 </script>
+<link rel="preload" as="image" href="images/hero_image5.webp">
 <link rel="icon" type="image/png" href="images/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -52,40 +53,47 @@
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
 
-<header>
-  <nav class="nav">
-    <a href="index.html" class="nav-brand">
-      <img class="logo" src="images/logo.webp" alt="MELL Tutors">
-    </a>
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="study-guides.html">Study Guides</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="careers.html">Careers</a></li>
-    </ul>
-    <a href="offers.html" class="nav-cta">Offers</a>
-    <button class="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">☰</button>
-  </nav>
-  <div class="mobile-menu" id="mobile-menu">
-    <a href="index.html">Home</a>
-    <a href="study-guides.html">Study Guides</a>
-    <a href="about.html">About</a>
-    <a href="careers.html">Careers</a>
-    <a href="offers.html" class="mobile-cta">Offers</a>
-  </div>
-</header>
+<div class="mell-landing mell-nav-wrap">
+  <nav>
+      <a class="brand" href="index.html">
+        <img src="images/logo.webp" alt="MELL Tutors">
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="study-guides.html">STUDY GUIDES</a></li>
+        <li><a href="about.html">ABOUT</a></li>
+        <li><a href="careers.html">CAREERS</a></li>
+      </ul>
+      <a href="offers.html" class="nav-links-single">OFFERS</a>
+    </nav>
+</div>
 
 <main id="main">
 
-<section class="hero" id="top">
-  <div class="hero-inner">
-    <p class="eyebrow">Privacy notice</p>
-    <h1 class="hero-title">Your information, handled with care.</h1>
-    <h2 class="hero-sub">How MELL Tutors collects, uses and protects personal information under South Africa's Protection of Personal Information Act (POPIA). Last updated 29 September 2026.</h2>
+<div class="mell-landing">
+  <div class="page">
+    <div class="hero-bg active" style="background-image:url('images/hero_image5.webp')"></div>
+    <div class="hero-bg" style="background-image:url('images/hero_image2.webp')"></div>
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Your information,<br>handled with care.</h1>
+        <p class="lede">POPIA privacy notice.</p>
+        <div class="rule"></div>
+        <div class="reviews">
+          <span class="label">Last updated 29 September 2026</span>
+        </div>
+        <div class="cta-row">
+          <a href="#privacy" class="cta-link cta-primary">READ THE NOTICE</a>
+          <a href="#applicants" class="cta-link">TUTOR APPLICANTS</a>
+        </div>
+      </div>
+    </section>
   </div>
-</section>
+</div>
 <section id="privacy">
   <div class="prose">
+    <p>This notice explains how MELL Tutors collects, uses and protects personal information under South Africa's Protection of Personal Information Act (POPIA). Last updated 29 September 2026.</p>
+
     <h2>Who we are</h2>
     <p>MELL Tutors (Pty) Ltd, Reg. 2026/714649/07, is the responsible party for the personal information described here. We tutor Wits first-year engineering students in Engineering Mathematics 1 and publish study guides. Building OB, John Moffat, Yale Rd, Braamfontein, Johannesburg, 2017. Email: <a href="mailto:melltutors.w@gmail.com">melltutors.w@gmail.com</a>.</p>
 

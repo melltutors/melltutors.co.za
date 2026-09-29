@@ -1272,3 +1272,306 @@ header.on-dark .nav-cta[aria-current="page"]{color:#5eead4; border-color:#5eead4
 /* ===== Landing nav sits in its own wrapper so <main> can hold the hero + sections ===== */
 .mell-landing.mell-nav-wrap{background:transparent; padding-top:0; height:0; overflow:visible;}
 main{display:block;}
+
+
+  /* ================= Home reviews: MELL glass on a dark floor ================= */
+  /* scoped to <section id="reviews" class="dark reviews-glass"> so other pages keep their current look */
+  #reviews.reviews-glass{
+    position:relative; overflow:hidden; padding-top:110px; padding-bottom:150px;
+    background-color:#0a0f0e;
+    background-image:
+      radial-gradient(640px 430px at 13% 52%, rgba(79,191,174,.30), transparent 70%),
+      radial-gradient(660px 450px at 89% 58%, rgba(201,161,90,.24), transparent 70%),
+      radial-gradient(900px 260px at 50% 100%, rgba(79,191,174,.10), transparent 72%),
+      linear-gradient(180deg, #0d1413 0%, #090d0c 100%);
+    font-family:"Montserrat", sans-serif;
+  }
+  #reviews.reviews-glass .reviews-head,
+  #reviews.reviews-glass .g-carousel{position:relative; z-index:1;}
+  #reviews.reviews-glass .reviews-head{margin-bottom:64px;}
+  #reviews.reviews-glass .reviews-head h2{
+    font-family:"Times New Roman", Times, serif; font-style:italic; font-weight:500;
+    letter-spacing:-.035em; color:#f3efe8;
+  }
+  #reviews.reviews-glass .rating-num{font-family:"Times New Roman", Times, serif; font-weight:700; font-size:60px; color:#f3efe8;}
+  #reviews.reviews-glass .rating-meta{font-family:"Montserrat", sans-serif; color:rgba(243,239,232,.7);}
+  #reviews.reviews-glass .rating-meta .stars{font-size:34px; letter-spacing:4px; color:#c9a15a;}
+  #reviews.reviews-glass .rating-meta .g-reviews{font-size:15px; font-weight:500; color:rgba(243,239,232,.85); margin-top:8px;}
+  #reviews.reviews-glass .g-word i{color:inherit;}
+  #reviews.reviews-glass .g-word{font-weight:600;}
+
+  /* --- the glass --- */
+  #reviews.reviews-glass .g-card{
+    position:relative; isolation:isolate; overflow:hidden;
+    border-radius:24px; padding:28px 28px 26px;
+    font-family:"Jost", "Montserrat", sans-serif; color:#f3efe8;
+    background:linear-gradient(135deg, rgba(255,255,255,.15) 0%, rgba(255,255,255,.05) 36%, rgba(255,255,255,.025) 64%, rgba(255,255,255,.09) 100%);
+    -webkit-backdrop-filter:blur(22px) saturate(185%) brightness(1.08);
+    backdrop-filter:blur(22px) saturate(185%) brightness(1.08);
+    border:1px solid rgba(255,255,255,.2);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.6),
+      inset 1px 0 0 rgba(255,255,255,.2),
+      inset 0 -1px 0 rgba(255,255,255,.1),
+      inset 0 0 32px rgba(255,255,255,.04),
+      0 28px 38px -20px rgba(0,0,0,.75),
+      0 2px 6px rgba(0,0,0,.35);
+    transition:transform .35s ease, box-shadow .35s ease, border-color .35s ease, background .35s ease;
+  }
+  /* light catching the pane: a diagonal sheen plus a glow on the top-left corner */
+  #reviews.reviews-glass .g-card::before{
+    content:""; position:absolute; inset:0; z-index:-1; pointer-events:none; border-radius:inherit;
+    background:
+      radial-gradient(130% 70% at 0% 0%, rgba(255,255,255,.22), rgba(255,255,255,0) 55%),
+      linear-gradient(115deg, rgba(255,255,255,0) 30%, rgba(255,255,255,.10) 41%, rgba(255,255,255,.025) 50%, rgba(255,255,255,0) 58%);
+  }
+  /* the pane's lower edge: a thin bright line, like the thickness of the glass */
+  #reviews.reviews-glass .g-card::after{
+    content:""; position:absolute; left:14px; right:14px; bottom:0; height:1px; z-index:-1; pointer-events:none;
+    background:linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.45), rgba(255,255,255,0));
+  }
+  #reviews.reviews-glass .g-card:hover,
+  #reviews.reviews-glass .g-card:focus-visible{
+    transform:translateY(-6px);
+    border-color:rgba(255,255,255,.34);
+    background:linear-gradient(135deg, rgba(255,255,255,.19) 0%, rgba(255,255,255,.07) 36%, rgba(255,255,255,.035) 64%, rgba(255,255,255,.11) 100%);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.75),
+      inset 1px 0 0 rgba(255,255,255,.28),
+      inset 0 -1px 0 rgba(255,255,255,.14),
+      inset 0 0 36px rgba(255,255,255,.06),
+      0 38px 46px -22px rgba(0,0,0,.8),
+      0 2px 6px rgba(0,0,0,.35);
+  }
+  #reviews.reviews-glass .g-card:focus-visible{outline:3px solid #5eead4; outline-offset:3px;}
+
+  #reviews.reviews-glass .g-avatar{
+    font-family:"Jost", sans-serif; font-weight:500;
+    color:#eafffb;
+    background:linear-gradient(145deg, rgba(79,191,174,.55), rgba(79,191,174,.14));
+    border:1px solid rgba(255,255,255,.35);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.5), 0 6px 12px -6px rgba(0,0,0,.6);
+    line-height:42px;
+  }
+  #reviews.reviews-glass .g-name{font-family:"Jost", sans-serif; font-weight:500; font-size:17px; color:#f6f3ed;}
+  #reviews.reviews-glass .g-course-tag{color:rgba(243,239,232,.62);}
+  #reviews.reviews-glass .g-stars{color:#c9a15a;}
+  #reviews.reviews-glass .g-text{font-size:15px; line-height:1.65; color:rgba(243,239,232,.88);}
+  #reviews.reviews-glass .g-logo{opacity:.95;}
+
+  /* --- controls, in glass too --- */
+  #reviews.reviews-glass .g-nav{
+    background:rgba(255,255,255,.08); color:#f3efe8;
+    border:1px solid rgba(255,255,255,.28);
+    -webkit-backdrop-filter:blur(14px) saturate(160%); backdrop-filter:blur(14px) saturate(160%);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.45), 0 12px 20px -10px rgba(0,0,0,.7);
+  }
+  #reviews.reviews-glass .g-nav:hover{background:rgba(255,255,255,.15); box-shadow:inset 0 1px 0 rgba(255,255,255,.6), 0 16px 24px -10px rgba(0,0,0,.75);}
+  #reviews.reviews-glass .g-nav:focus-visible{outline:3px solid #5eead4;}
+  #reviews.reviews-glass .g-dot{background:rgba(255,255,255,.28);}
+  #reviews.reviews-glass .g-dot.on{background:#c9a15a;}
+
+  /* --- water drops on the floor: quiet, a mix of sizes, some sitting behind the glass --- */
+  .floor-drops{position:absolute; inset:0; z-index:0; pointer-events:none;}
+  .floor-drops .drop{
+    position:absolute; width:var(--s); height:calc(var(--s) * .93);
+    border-radius:52% 48% 50% 50% / 58% 56% 44% 42%;
+    background:
+      radial-gradient(circle at 30% 25%, rgba(255,255,255,.6) 0 6%, rgba(255,255,255,0) 8.5%),
+      radial-gradient(ellipse at 68% 76%, rgba(255,255,255,.2) 0, rgba(255,255,255,.05) 38%, rgba(255,255,255,0) 62%),
+      radial-gradient(circle at 50% 50%, rgba(255,255,255,.015) 54%, rgba(255,255,255,.09) 100%);
+    -webkit-backdrop-filter:blur(1.5px) brightness(1.18) saturate(1.3);
+    backdrop-filter:blur(1.5px) brightness(1.18) saturate(1.3);
+    box-shadow:
+      inset 1.5px 1.5px 2px rgba(255,255,255,.3),
+      inset -1.5px -2px 3px rgba(255,255,255,.11),
+      inset 0 0 0 1px rgba(255,255,255,.07),
+      calc(var(--s) * .12) calc(var(--s) * .22) calc(var(--s) * .32) rgba(0,0,0,.42),
+      0 0 calc(var(--s) * .6) rgba(79,191,174,.06);
+  }
+  /* on the open floor: margins, header band, below the controls */
+  .floor-drops .d1{--s:58px; left:5%;    top:77%;}
+  .floor-drops .d2{--s:20px; left:12.5%; top:86%;}
+  .floor-drops .d3{--s:12px; left:3%;    top:68%;}
+  .floor-drops .d4{--s:18px; left:54%;   top:12%;}
+  .floor-drops .d5{--s:26px; left:93.5%; top:28%;}
+  .floor-drops .d6{--s:46px; left:71%;   top:91%;}
+  .floor-drops .d7{--s:11px; left:66%;   top:95.5%;}
+  .floor-drops .d8{--s:34px; left:2.5%;  top:30%;}
+  .floor-drops .d9{--s:15px; left:31%;   top:91%;}
+  /* behind the glass: they show through the cards as soft lenses */
+  .floor-drops .d10{--s:84px; left:22%;  top:46%;}
+  .floor-drops .d11{--s:64px; left:57%;  top:63%;}
+  .floor-drops .d12{--s:42px; left:81%;  top:38%;}
+
+  @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+    #reviews.reviews-glass .g-card{background:rgba(24,34,32,.88);}
+    #reviews.reviews-glass .g-nav{background:rgba(24,34,32,.88);}
+  }
+  @media (max-width: 900px){
+    #reviews.reviews-glass{padding-top:84px; padding-bottom:110px;}
+    #reviews.reviews-glass .rating-num{font-size:52px;}
+    #reviews.reviews-glass .rating-meta .stars{font-size:30px;}
+  }
+  @media (max-width: 680px){
+    .floor-drops .d3, .floor-drops .d5, .floor-drops .d7, .floor-drops .d9, .floor-drops .d12{display:none;}
+    .floor-drops .d1{--s:40px; left:5%;} .floor-drops .d2{--s:16px; left:16%;} .floor-drops .d4{left:78%; top:20%;}
+    .floor-drops .d6{--s:34px; left:66%; top:95.5%;} .floor-drops .d8{--s:24px; left:4%; top:24%;}
+    .floor-drops .d10{--s:60px; left:16%; top:45%;} .floor-drops .d11{--s:48px; left:64%; top:62%;}
+  }
+  @media (max-width: 520px){
+    #reviews.reviews-glass .rating-num{font-size:44px;}
+    #reviews.reviews-glass .rating-meta .stars{font-size:26px; letter-spacing:3px;}
+    #reviews.reviews-glass .rating-meta .g-reviews{font-size:13px;}
+    #reviews.reviews-glass .g-card{padding:24px 22px 22px;}
+  }
+
+
+/* ===== Offers: the two offers sit in their own dark section under the shared hero ===== */
+section.dark.offers-stage{
+  padding:120px 32px 130px;
+  background:
+    radial-gradient(640px 460px at 22% 55%, rgba(13,148,136,.42), transparent 70%),
+    radial-gradient(640px 460px at 80% 55%, rgba(201,162,75,.30), transparent 70%),
+    var(--ink);
+}
+.offers-stage .offers-inner{max-width:1140px; margin:0 auto; width:100%;}
+.offers-stage .offer-duo{margin-top:0;}
+@media (max-width:900px){ .offers-stage{padding:84px 20px 96px;} }
+
+
+/* ================= Home "Two ways in": whitish glass =================
+   Glass reads as glass because of what is BEHIND it and what its edges do. On the dark
+   reviews, white highlights pop on their own. On a light floor they vanish, so this version:
+   1) puts crisp coloured orbs behind the cards, so the pane visibly blurs what it covers,
+   2) tints the pane a little, so white reflections show up against it,
+   3) outlines the pane with a darker hairline and shades its rim, like glass thickness,
+   4) casts a coloured shadow, as light passing through coloured glass would. */
+#hub{
+  position:relative; overflow:hidden;
+  background-color:#f1efe9;
+  background-image:
+    radial-gradient(660px 440px at 14% 64%, rgba(13,148,136,.24), transparent 70%),
+    radial-gradient(660px 440px at 88% 66%, rgba(122,31,52,.18), transparent 70%),
+    linear-gradient(180deg, #f8f7f3 0%, #ebe9e2 100%);
+}
+#hub > *{position:relative; z-index:1;}
+#hub::before{
+  content:""; position:absolute; inset:0; z-index:0; pointer-events:none;
+  --lx:max(32px, calc(50% - 570px));   /* left edge of the cards */
+  --rx:min(calc(100% - 32px), calc(50% + 570px)); /* right edge of the cards */
+  background:
+    /* teal orb across the left card's left edge, near the bottom */
+    radial-gradient(circle 30px at calc(var(--lx) - 34px) calc(100% - 318px), rgba(255,255,255,.55), rgba(255,255,255,0)),
+    radial-gradient(circle 98px at var(--lx) calc(100% - 262px), #3fd6c4 0%, #0d9488 58%, #0a6b63 98%, rgba(10,107,99,0) 100%),
+    /* maroon orb across the right card's right edge, near the top */
+    radial-gradient(circle 28px at calc(var(--rx) - 30px) calc(100% - 512px), rgba(255,255,255,.5), rgba(255,255,255,0)),
+    radial-gradient(circle 84px at var(--rx) calc(100% - 470px), #c4526b 0%, #8d2a43 58%, #641a2e 98%, rgba(100,26,46,0) 100%),
+    /* small gold orb in the gap, under both cards' lower corners */
+    radial-gradient(circle 58px at 50% calc(100% - 168px), #f6e3ac 0%, #c9a24b 64%, #9a7a2c 98%, rgba(154,122,44,0) 100%);
+}
+#hub .tone-teal{--body:rgba(126,200,191,.30); --tint:rgba(13,148,136,.24); --rim:rgba(15,118,110,.34); --cast:rgba(13,148,136,.50);}
+#hub .tone-maroon{--body:rgba(196,118,137,.24); --tint:rgba(122,31,52,.18); --rim:rgba(122,31,52,.30); --cast:rgba(122,31,52,.44);}
+#hub .program-card.tone-card{
+  position:relative; isolation:isolate; overflow:hidden; border-radius:24px;
+  background:
+    radial-gradient(120% 95% at 100% 100%, var(--tint), rgba(255,255,255,0) 62%),
+    linear-gradient(150deg, rgba(255,255,255,.58) 0%, var(--body) 42%, var(--body) 64%, rgba(255,255,255,.34) 100%);
+  -webkit-backdrop-filter:blur(26px) saturate(210%) brightness(.98);
+  backdrop-filter:blur(26px) saturate(210%) brightness(.98);
+  border:1px solid rgba(255,255,255,.85);
+  box-shadow:
+    0 0 0 1px var(--rim),
+    inset 0 1.5px 0 #fff,
+    inset 1.5px 0 0 rgba(255,255,255,.75),
+    inset -1px -1px 0 rgba(255,255,255,.7),
+    inset 0 0 28px var(--tint),
+    inset 0 -20px 30px -20px var(--rim),
+    0 38px 46px -22px var(--cast),
+    0 2px 8px rgba(10,10,10,.08);
+  transition:transform .35s ease, box-shadow .35s ease, border-color .35s ease, background .35s ease;
+}
+/* reflections: a bright corner plus two crisp diagonal streaks (replaces the coloured top bar) */
+#hub .tone-card::before{
+  content:""; position:absolute; inset:0; height:auto; z-index:-1; pointer-events:none; border-radius:inherit;
+  background:
+    radial-gradient(120% 60% at 0% 0%, rgba(255,255,255,.9), rgba(255,255,255,0) 52%),
+    linear-gradient(112deg, rgba(255,255,255,0) 26%, rgba(255,255,255,.62) 33%, rgba(255,255,255,.62) 37%, rgba(255,255,255,0) 44%, rgba(255,255,255,0) 52%, rgba(255,255,255,.34) 56%, rgba(255,255,255,0) 60%);
+}
+/* lower edge of the pane, catching the tone colour */
+#hub .tone-card::after{
+  content:""; position:absolute; left:16px; right:16px; bottom:0; height:1px; z-index:-1; pointer-events:none;
+  background:linear-gradient(90deg, rgba(255,255,255,0), var(--tone), rgba(255,255,255,0)); opacity:.6;
+}
+#hub .program-card.tone-card:hover{
+  transform:translateY(-6px); border-color:#fff;
+  box-shadow:
+    0 0 0 1px var(--rim),
+    inset 0 1.5px 0 #fff,
+    inset 1.5px 0 0 rgba(255,255,255,.85),
+    inset -1px -1px 0 rgba(255,255,255,.8),
+    inset 0 0 34px var(--tint),
+    inset 0 -20px 30px -20px var(--rim),
+    0 50px 56px -24px var(--cast),
+    0 2px 8px rgba(10,10,10,.08);
+}
+#hub .tone-card .program-desc{color:#2f3a38;}
+#hub .tone-card .btn{box-shadow:inset 0 1px 0 rgba(255,255,255,.3), 0 10px 18px -10px var(--tone);}
+#hub .tone-card .btn:hover{background:rgba(255,255,255,.6); color:var(--tone); border-color:var(--tone);}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  #hub .program-card.tone-card{background:rgba(250,249,246,.95);}
+}
+@media (max-width:900px){
+  /* cards stack: orbs move to sit across the stacked cards' edges */
+  #hub::before{
+    --lx:32px; --rx:calc(100% - 32px);
+    background:
+      radial-gradient(circle 20px at calc(var(--lx) - 16px) calc(100% - 828px), rgba(255,255,255,.55), rgba(255,255,255,0)),
+      radial-gradient(circle 66px at var(--lx) calc(100% - 800px), #3fd6c4 0%, #0d9488 58%, #0a6b63 98%, rgba(10,107,99,0) 100%),
+      radial-gradient(circle 20px at calc(var(--rx) - 14px) calc(100% - 350px), rgba(255,255,255,.5), rgba(255,255,255,0)),
+      radial-gradient(circle 62px at var(--rx) calc(100% - 330px), #c4526b 0%, #8d2a43 58%, #641a2e 98%, rgba(100,26,46,0) 100%),
+      radial-gradient(circle 46px at 50% calc(100% - 447px), #f6e3ac 0%, #c9a24b 64%, #9a7a2c 98%, rgba(154,122,44,0) 100%);
+  }
+}
+
+
+/* ================= Coming soon: same glass as the reviews, design untouched ================= */
+#coming-soon .soon-card{
+  position:relative; isolation:isolate; overflow:hidden;
+  background:linear-gradient(135deg, rgba(255,255,255,.15) 0%, rgba(255,255,255,.05) 36%, rgba(255,255,255,.025) 64%, rgba(255,255,255,.09) 100%);
+  -webkit-backdrop-filter:blur(22px) saturate(185%) brightness(1.08);
+  backdrop-filter:blur(22px) saturate(185%) brightness(1.08);
+  border:1px solid rgba(255,255,255,.22);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.6),
+    inset 1px 0 0 rgba(255,255,255,.2),
+    inset 0 -1px 0 rgba(255,255,255,.1),
+    inset 0 0 32px rgba(255,255,255,.04),
+    0 28px 38px -20px rgba(0,0,0,.75),
+    0 2px 6px rgba(0,0,0,.35);
+  transition:transform .35s ease, box-shadow .35s ease, border-color .35s ease, background .35s ease;
+}
+#coming-soon .soon-card::before{
+  content:""; position:absolute; inset:0; z-index:-1; pointer-events:none; border-radius:inherit;
+  background:
+    radial-gradient(130% 70% at 0% 0%, rgba(255,255,255,.22), rgba(255,255,255,0) 55%),
+    linear-gradient(115deg, rgba(255,255,255,0) 30%, rgba(255,255,255,.10) 41%, rgba(255,255,255,.025) 50%, rgba(255,255,255,0) 58%);
+}
+#coming-soon .soon-card::after{
+  content:""; position:absolute; left:14px; right:14px; bottom:0; height:1px; z-index:-1; pointer-events:none;
+  background:linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.45), rgba(255,255,255,0));
+}
+#coming-soon .soon-card:hover{
+  transform:translateY(-6px); border-color:rgba(255,255,255,.34);
+  background:linear-gradient(135deg, rgba(255,255,255,.19) 0%, rgba(255,255,255,.07) 36%, rgba(255,255,255,.035) 64%, rgba(255,255,255,.11) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.75),
+    inset 1px 0 0 rgba(255,255,255,.28),
+    inset 0 -1px 0 rgba(255,255,255,.14),
+    inset 0 0 36px rgba(255,255,255,.06),
+    0 38px 46px -22px rgba(0,0,0,.8),
+    0 2px 6px rgba(0,0,0,.35);
+}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  #coming-soon .soon-card{background:rgba(24,34,32,.88);}
+}

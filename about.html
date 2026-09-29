@@ -61,6 +61,7 @@
   }
 }
 </script>
+<link rel="preload" as="image" href="images/hero_image2.webp">
 <link rel="icon" type="image/png" href="images/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -70,38 +71,43 @@
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
 
-<header>
-  <nav class="nav">
-    <a href="index.html" class="nav-brand">
-      <img class="logo" src="images/logo.webp" alt="MELL Tutors">
-    </a>
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="study-guides.html">Study Guides</a></li>
-      <li><a href="about.html" class="active" aria-current="page">About</a></li>
-      <li><a href="careers.html">Careers</a></li>
-    </ul>
-    <a href="offers.html" class="nav-cta">Offers</a>
-    <button class="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">☰</button>
-  </nav>
-  <div class="mobile-menu" id="mobile-menu">
-    <a href="index.html">Home</a>
-    <a href="study-guides.html">Study Guides</a>
-    <a href="about.html" aria-current="page">About</a>
-    <a href="careers.html">Careers</a>
-    <a href="offers.html" class="mobile-cta">Offers</a>
-  </div>
-</header>
+<div class="mell-landing mell-nav-wrap">
+  <nav>
+      <a class="brand" href="index.html">
+        <img src="images/logo.webp" alt="MELL Tutors">
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="study-guides.html">STUDY GUIDES</a></li>
+        <li><a href="about.html" class="active" aria-current="page">ABOUT</a></li>
+        <li><a href="careers.html">CAREERS</a></li>
+      </ul>
+      <a href="offers.html" class="nav-links-single">OFFERS</a>
+    </nav>
+</div>
 
 <main id="main">
 
-<section class="hero" id="top">
-  <div class="hero-inner">
-    <p class="eyebrow">About MELL Tutors</p>
-    <h1 class="hero-title">About MELL Tutors.</h1>
-    <h2 class="hero-sub">The falcon behind the name, the mark behind the logo, how a Wits Engineering Mathematics 1 session runs, and who is teaching.</h2>
+<div class="mell-landing">
+  <div class="page">
+    <div class="hero-bg active" style="background-image:url('images/hero_image2.webp')"></div>
+    <div class="hero-bg" style="background-image:url('images/hero_image3.webp')"></div>
+    <section class="hero">
+      <div class="hero-content">
+        <h1>About<br>MELL Tutors.</h1>
+        <p class="lede">The falcon, the method and the team.</p>
+        <div class="rule"></div>
+        <div class="reviews">
+          <span class="label">Wits Engineering Mathematics 1 tutoring</span>
+        </div>
+        <div class="cta-row">
+          <a href="https://wa.me/27660136689?text=Hi%20MELL%20Tutors%2C%20I%20would%20like%20to%20book%20a%20consultation." class="cta-link cta-primary">BOOK CONSULTATION</a>
+          <a href="study-guides.html" class="cta-link">FREE STUDY GUIDES</a>
+        </div>
+      </div>
+    </section>
   </div>
-</section>
+</div>
 <section id="about">
   <div class="about-grid">
     <div>

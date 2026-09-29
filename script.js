@@ -117,7 +117,7 @@
         }
         return m;
       }
-      function dwell(){ return Math.min(11000, Math.max(6000, 3000 + words() * 110)); }
+      function dwell(){ return Math.min(4800, Math.max(3200, 1800 + words() * 35)); }
 
       /* auto-rotate: runs whenever the pointer is NOT over the widget */
       function stopAuto(){ clearTimeout(timer); timer = null; }
