@@ -58,6 +58,21 @@
   (function(){
     var layers = document.querySelectorAll('.mell-landing .hero-bg');
     var current = 0;
+    // Fetch hidden slides once the visible page has loaded, before the first transition.
+    function loadHiddenSlides(){
+      layers.forEach(function(layer){
+        var url = layer.getAttribute('data-bg');
+        if (!url) return;
+        var image = new Image();
+        image.onload = function(){
+          layer.style.backgroundImage = 'url("' + url + '")';
+          layer.removeAttribute('data-bg');
+        };
+        image.src = url;
+      });
+    }
+    if (document.readyState === 'complete') loadHiddenSlides();
+    else window.addEventListener('load', loadHiddenSlides, {once:true});
     if (layers.length > 1) {
       setInterval(function(){
         var prev = layers[current];
