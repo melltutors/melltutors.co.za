@@ -42,6 +42,28 @@ jobs:
                   with open(summary, "a", encoding="utf-8") as handle:
                       handle.write(text + "\n")
 
+          def codes_note(payload):
+              # Log only bounded numeric codes, never API messages or response data.
+              if not isinstance(payload, dict) or not isinstance(payload.get("errors"), list):
+                  return ""
+              pending = list(payload["errors"][:20])
+              codes = set()
+              for _ in range(100):
+                  if not pending:
+                      break
+                  item = pending.pop(0)
+                  if not isinstance(item, dict):
+                      continue
+                  code = item.get("code")
+                  if type(code) is int and 0 <= code <= 999999:
+                      codes.add(code)
+                  chain = item.get("error_chain")
+                  if isinstance(chain, list):
+                      pending.extend(chain[:20])
+              if not codes:
+                  return ""
+              return " Cloudflare codes: " + ", ".join(str(code) for code in sorted(codes)[:12]) + "."
+
           def main():
               token = os.environ.get("CLOUDFLARE_API_TOKEN", "").strip()
               account_id = os.environ.get("CLOUDFLARE_ACCOUNT_ID", "").strip()
@@ -82,13 +104,18 @@ jobs:
                       with opener.open(request, timeout=20) as response:
                           payload = json.load(response)
                       if payload.get("success") is not True or not isinstance(payload.get("result"), list):
-                          lines.append(f"- {label}: **failed** — Cloudflare did not confirm a successful read.")
+                          lines.append(f"- {label}: **failed** — Cloudflare did not confirm a successful read."
+                                       + codes_note(payload))
                           passed = False
                       else:
                           lines.append(f"- {label}: **verified** — authenticated read succeeded.")
                   except urllib.error.HTTPError as error:
-                      lines.append(f"- {label}: **failed** — HTTP {error.code}. "
-                                   "Check token validity, the selected account and product permissions.")
+                      try:
+                          note = codes_note(json.loads(error.read(32768)))
+                      except (ValueError, OSError, AttributeError):
+                          note = ""
+                      lines.append(f"- {label}: **failed** — HTTP {error.code}." + note +
+                                   " Check token validity, the selected account and product permissions.")
                       passed = False
                   except (urllib.error.URLError, TimeoutError, OSError, ValueError, AttributeError):
                       lines.append(f"- {label}: **failed** — the API request did not return a valid response.")
