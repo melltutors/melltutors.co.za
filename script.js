@@ -37,7 +37,7 @@
   const animate=time=>{
    if(!running()){frame=0;last=0;return;}
    const seconds=last?Math.min((time-last)/1000,.05):0;last=time;
-   carry+=(inside?direction*135:48)*seconds;
+   carry+=(inside?direction*225:48)*seconds;
    const pixels=Math.trunc(carry);if(pixels){viewport.scrollLeft+=pixels;carry-=pixels;normalise();}
    frame=requestAnimationFrame(animate);
   };
