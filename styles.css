@@ -436,7 +436,7 @@
  .method-intro { font-size:13px; }
  .photo-signoff { font-size:22px; margin-top:20px; }
  .falcon-band { height:250px; }
- .falcon-band img { object-position:72% center; }
+ .falcon-band img { object-position:right center; }
  .falcon-band p { font-size:34px; max-width:5ch; line-height:1.15; }
  .upcoming-grid { grid-template-columns:minmax(0,1fr); gap:20px; }
  .upcoming-grid article { min-height:112px; padding:27px; }
@@ -477,7 +477,7 @@
  .founder-portrait { max-width:350px; max-height:420px; }
  .story-grid h2 { font-size:38px; }
  .falcon-story { min-height:420px; padding-block:44px; align-items:start; }
- .falcon-story img { object-position:70% center; }
+ .falcon-story img { object-position:right center; }
  .falcon-story:after { background:linear-gradient(90deg,#112524eb,#11252490 60%,transparent); }
  .falcon-story .container>div { max-width:65%; }
  .falcon-story h2 { font-size:38px; }
