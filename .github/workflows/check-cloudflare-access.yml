@@ -1,0 +1,107 @@
+name: Check Cloudflare access
+
+'on':
+  push:
+    branches:
+      - codex/cloudflare-access-20261001
+    paths:
+      - .github/workflows/check-cloudflare-access.yml
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  verify-access:
+    name: Verify Cloudflare Workers and D1 access
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID || 'd3c113c80190cffee44661ab2b27c12e' }}
+    steps:
+      - name: Check authenticated Cloudflare API access
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+          import re
+          import sys
+          import urllib.error
+          import urllib.request
+
+          class NoRedirect(urllib.request.HTTPRedirectHandler):
+              def redirect_request(self, req, fp, code, msg, headers, newurl):
+                  return None
+
+          def report(lines):
+              text = "\n".join(lines)
+              print(text)
+              summary = os.environ.get("GITHUB_STEP_SUMMARY")
+              if summary:
+                  with open(summary, "a", encoding="utf-8") as handle:
+                      handle.write(text + "\n")
+
+          def main():
+              token = os.environ.get("CLOUDFLARE_API_TOKEN", "").strip()
+              account_id = os.environ.get("CLOUDFLARE_ACCOUNT_ID", "").strip()
+              lines = ["## Cloudflare access check", ""]
+
+              if not token:
+                  lines += [
+                      "**Configuration required:** add the repository Actions secret "
+                      "`CLOUDFLARE_API_TOKEN`.",
+                      "The Cloudflare account ID was recovered from the project handover. "
+                      "Set `CLOUDFLARE_ACCOUNT_ID` as a repository Actions secret only if "
+                      "the intended account has changed.",
+                      "", "After saving the token, re-run this workflow.",
+                  ]
+                  report(lines)
+                  return 1
+
+              if not re.fullmatch(r"[a-fA-F0-9]{32}", account_id):
+                  lines += ["**Configuration required:** `CLOUDFLARE_ACCOUNT_ID` "
+                            "must be a 32-character hexadecimal account ID."]
+                  report(lines)
+                  return 1
+
+              checks = [
+                  ("Workers", "workers/scripts"),
+                  ("D1 databases", "d1/database?per_page=100"),
+              ]
+              opener = urllib.request.build_opener(NoRedirect())
+              passed = True
+              for label, endpoint in checks:
+                  request = urllib.request.Request(
+                      f"https://api.cloudflare.com/client/v4/accounts/{account_id}/{endpoint}",
+                      headers={"Authorization": f"Bearer {token}",
+                               "Accept": "application/json"},
+                      method="GET",
+                  )
+                  try:
+                      with opener.open(request, timeout=20) as response:
+                          payload = json.load(response)
+                      if payload.get("success") is not True or not isinstance(payload.get("result"), list):
+                          lines.append(f"- {label}: **failed** — Cloudflare did not confirm a successful read.")
+                          passed = False
+                      else:
+                          lines.append(f"- {label}: **verified** — authenticated read succeeded.")
+                  except urllib.error.HTTPError as error:
+                      lines.append(f"- {label}: **failed** — HTTP {error.code}. "
+                                   "Check token validity, the selected account and product permissions.")
+                      passed = False
+                  except (urllib.error.URLError, TimeoutError, OSError, ValueError, AttributeError):
+                      lines.append(f"- {label}: **failed** — the API request did not return a valid response.")
+                      passed = False
+
+              lines += ["", "Only GET requests were made. Resource names, database contents "
+                        "and credential values are excluded from this report."]
+              if passed:
+                  lines += ["", "**Cloudflare API access verified.** Deployment permission "
+                            "must still be confirmed when the download preview is deployed."]
+              report(lines)
+              return 0 if passed else 1
+
+          if __name__ == "__main__":
+              sys.exit(main())
+          PY
