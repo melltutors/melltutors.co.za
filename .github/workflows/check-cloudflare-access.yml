@@ -43,11 +43,21 @@ jobs:
                       handle.write(text + "\n")
 
           def codes_note(payload):
-              # Log only bounded numeric codes, never API messages or response data.
+              # Log numeric codes and fixed diagnoses; never echo arbitrary API text.
               if not isinstance(payload, dict) or not isinstance(payload.get("errors"), list):
                   return ""
               pending = list(payload["errors"][:20])
               codes = set()
+              reasons = set()
+              known_messages = {
+                  "Missing X-Auth-Key, X-Auth-Email or Authorization headers": "authentication headers missing",
+                  "Authentication failed": "authentication failed",
+                  "Authentication error": "authentication error",
+                  "Invalid API Token": "API token rejected",
+                  "Invalid API token": "API token rejected",
+                  "Invalid format for Authorization header": "authentication header format rejected",
+                  "Invalid request headers": "request headers rejected",
+              }
               for _ in range(100):
                   if not pending:
                       break
@@ -57,12 +67,49 @@ jobs:
                   code = item.get("code")
                   if type(code) is int and 0 <= code <= 999999:
                       codes.add(code)
+                  message = item.get("message")
+                  if isinstance(message, str) and message in known_messages:
+                      reasons.add(known_messages[message])
                   chain = item.get("error_chain")
                   if isinstance(chain, list):
                       pending.extend(chain[:20])
-              if not codes:
-                  return ""
-              return " Cloudflare codes: " + ", ".join(str(code) for code in sorted(codes)[:12]) + "."
+              note = " Cloudflare codes: " + ", ".join(str(code) for code in sorted(codes)[:12]) + "." if codes else ""
+              if reasons:
+                  note += " Reported reason: " + "; ".join(sorted(reasons)) + "."
+              return note
+
+          def verify_token(opener, token, account_id, lines):
+              # User-owned and account-owned tokens have separate verification endpoints.
+              endpoints = [
+                  ("user token", "user/tokens/verify"),
+                  ("account token", f"accounts/{account_id}/tokens/verify"),
+              ]
+              for label, endpoint in endpoints:
+                  request = urllib.request.Request(
+                      f"https://api.cloudflare.com/client/v4/{endpoint}",
+                      headers={"Authorization": f"Bearer {token}", "Accept": "application/json"},
+                      method="GET",
+                  )
+                  try:
+                      with opener.open(request, timeout=20) as response:
+                          payload = json.load(response)
+                      result = payload.get("result")
+                      status = result.get("status") if isinstance(result, dict) else None
+                      if payload.get("success") is True and status in ("active", "disabled", "expired"):
+                          lines.append(f"- Token verification ({label}): **{status}**.")
+                          if status == "active":
+                              return True
+                      else:
+                          lines.append(f"- Token verification ({label}): **not confirmed**." + codes_note(payload))
+                  except urllib.error.HTTPError as error:
+                      try:
+                          note = codes_note(json.loads(error.read(32768)))
+                      except (ValueError, OSError, AttributeError):
+                          note = ""
+                      lines.append(f"- Token verification ({label}): **not confirmed** — HTTP {error.code}." + note)
+                  except (urllib.error.URLError, TimeoutError, OSError, ValueError, AttributeError):
+                      lines.append(f"- Token verification ({label}): **not confirmed** — no valid API response.")
+              return False
 
           def main():
               token = os.environ.get("CLOUDFLARE_API_TOKEN", "").strip()
@@ -92,6 +139,7 @@ jobs:
                   ("D1 databases", "d1/database?per_page=100"),
               ]
               opener = urllib.request.build_opener(NoRedirect())
+              verify_token(opener, token, account_id, lines)
               passed = True
               for label, endpoint in checks:
                   request = urllib.request.Request(
