@@ -259,8 +259,12 @@
 .narrow { max-width:780px; }
 .small-note,.coming-note { font-size:12px; color:var(--muted); margin-top:25px; }
 .home main { margin-top:-89px; }
+.hero-inner { min-height:900px; padding-top:245px; padding-bottom:120px; }
+.home-hero h1 { max-width:1060px; font-size:clamp(70px,9.5vw,136px); line-height:1.02; }
 .icon-arrow { display:inline-block; width:18px; height:18px; flex-shrink:0; vertical-align:middle; }
-.hero-rating { display:inline-flex; align-items:center; gap:8px; max-width:100%; margin-top:30px; min-height:36px; font-family:var(--label); font-size:13px; line-height:1.6; color:#e7eee8; text-decoration:none; }
+.hero-rating { display:inline-flex; flex-wrap:wrap; align-items:center; gap:8px; max-width:100%; margin-top:30px; min-height:36px; font-family:var(--label); font-size:13px; line-height:1.6; color:#e7eee8; text-decoration:none; }
+.hero-stars { display:inline-flex; gap:2px; color:#e9cf91; opacity:.9; }
+.hero-stars svg { display:block; width:16px; height:16px; }
 .hero-rating strong { font-weight:600; }
 .hero-rating:hover { text-decoration:underline; text-underline-offset:4px; }
 .hero-rating .icon-arrow { width:15px; height:15px; }
@@ -417,7 +421,6 @@
 /* Champagne highlights give Apex a distinct, quieter premium finish. */
 .apex-card { position:relative; isolation:isolate; overflow:hidden; border-color:#d8bf81; background:radial-gradient(ellipse at 85% -10%,#a9935755,transparent 55%),linear-gradient(125deg,#29281e 0%,#171d17 44%,#323024 100%); box-shadow:inset 0 1px 0 #f9eacb,0 18px 50px -25px #67512f78,0 0 0 4px #dfcb9826; }
 .apex-card::before { content:''; position:absolute; inset:0; z-index:-1; pointer-events:none; background:linear-gradient(115deg,transparent 22%,#f4e2af08 37%,#fff1c722 43%,transparent 50%); }
-.apex-card::after { content:''; position:absolute; inset:8px; border:1px solid #e6cf8a2b; border-radius:8px; pointer-events:none; }
 .apex-card h2,.apex-card .offer-price { color:#f0dfb5; }
 .apex-card .eyebrow { color:#e9cf91; letter-spacing:.13em; }
 .apex-button { border-color:#dfc488; background:linear-gradient(120deg,#c5a66a,#fff0c9 44%,#dcc083 68%,#ecd8a7); box-shadow:inset 0 1px 0 #fff6de,0 3px 18px #d8b96a24; color:#252316; }
@@ -524,6 +527,8 @@
  .footer-links h3 { grid-column:1/-1; }
 }
 @media(max-width:760px) {
+ .hero-inner { min-height:850px; padding-top:184px; padding-bottom:90px; }
+ .home-hero h1 { font-size:clamp(56px,10.4vw,80px); }
  .hero-rating { font-size:12px; }
  #site-nav { left:-20px; right:-20px; padding-inline:20px; }
  .method-grid,.story-grid { grid-template-columns:1fr; gap:42px; }
@@ -594,6 +599,9 @@
  .prose h2 { font-size:29px; }
 }
 @media(max-width:500px) {
+ .hero-inner { min-height:810px; padding-top:176px; padding-bottom:86px; }
+ .home-hero h1 { font-size:clamp(44px,14vw,66px); }
+ .hero-stars svg { width:14px; height:14px; }
  .guide-intro-grid { grid-template-columns:1fr; }
  .guide-intro h1 { font-size:49px; }
  .book-exhibit { display:flex; min-height:235px; max-width:285px; margin:0 auto; padding:15px; }
