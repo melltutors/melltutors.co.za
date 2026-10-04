@@ -351,6 +351,93 @@
 .apex-card .guarantee p { color:#f0ecdf; }
 .apex-button { background:#ded0ac; border-color:#ded0ac; color:#1c231c; }
 .apex-button:hover { background:#f0e4c6; }
+
+/* Playbooks: one free pair per course, physical Block 4 editions only. */
+.course-directory { background:#f0f2ee; }
+.course-directory-grid { display:grid; grid-template-columns:1fr 1fr; gap:clamp(32px,8vw,110px); }
+.course-directory-grid article { border-top:1px solid #bec8c0; padding:35px 0 0; }
+.course-directory-grid h3 { font-size:clamp(30px,3vw,42px); margin:14px 0; }
+.course-directory-grid p { max-width:430px; }
+.course-directory-grid .button { margin:18px 0 6px; }
+.back-link { display:inline-block; font-size:13px; margin-bottom:32px; text-underline-offset:5px; }
+.course-intro .eyebrow { margin:0 0 18px; }
+.course-intro .hero-actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:26px; }
+.request-layout { display:grid; grid-template-columns:1fr 1fr; gap:clamp(40px,8vw,120px); align-items:start; }
+.request-layout>div>p { max-width:445px; }
+.request-layout h2 { margin-top:16px; }
+.scope-note { font-size:14px; color:#52615b; padding-top:12px; }
+.request-panel { padding:clamp(24px,4vw,44px); border-radius:12px; }
+.request-panel h3 { font-size:30px; margin:0 0 28px; }
+.form-fields { display:grid; gap:18px; }
+.guide-form label { font-size:14px; }
+.form-fields label { display:grid; gap:8px; }
+.form-fields input { width:100%; min-height:49px; border:1px solid #aebdb4; background:#ffffffb3; border-radius:5px; padding:12px 14px; color:#1e3028; font:inherit; font-size:16px; }
+.form-fields input:focus { outline:2px solid #1f6f64; outline-offset:2px; }
+.form-trap { position:absolute; left:-10000px; width:1px; height:1px; overflow:hidden; }
+.guide-form .consent { display:flex; align-items:flex-start; flex-wrap:wrap; gap:5px; margin:22px 0 14px; font-size:12px; line-height:1.7; }
+.consent input { margin:4px 4px 0 0; accent-color:#1d655a; width:15px; height:15px; }
+.consent span { color:#53625a; }
+.form-privacy { font-size:12px; line-height:1.75; color:#526057; margin:0 0 22px; }
+.guide-form .button { max-width:100%; }
+.guide-form button:disabled { opacity:.6; cursor:wait; }
+.form-status { font-size:14px; color:#7c3424; margin:14px 0 0; }
+.form-status:empty { display:none; }
+.form-result { border-top:1px solid #bbc9bf; padding-top:24px; margin-top:25px; outline-offset:5px; }
+.form-result h4 { font:italic 29px 'Times New Roman',serif; margin:0 0 12px; }
+.form-result p { font-size:14px; }
+.download-actions { display:grid; gap:10px; margin:20px 0; }
+.download-upsell { border-top:1px solid #bbc9bf; padding-top:18px; }
+.download-upsell a { display:inline; font-size:inherit; }
+.hardcopy-section { background:linear-gradient(135deg,#edeae3,#f8f7f1 52%,#edf0e9); }
+.hardcopy-section .section-heading { align-items:end; }
+.hardcopy-section .section-heading>p { max-width:350px; }
+.hardcopy-layout { display:grid; grid-template-columns:1fr 1fr; gap:clamp(35px,7vw,95px); align-items:start; margin-top:52px; }
+.hardcopy-books { display:flex; align-items:center; justify-content:center; min-height:450px; padding:35px 20px; }
+.hardcopy-books img { width:53%; max-width:255px; height:auto; box-shadow:12px 22px 25px -17px #192b2866; }
+.hardcopy-books img:first-child { transform:rotate(-9deg); }
+.hardcopy-books img:last-child { transform:rotate(8deg); margin-left:-13%; margin-top:48px; }
+.hardcopy-layout>div>.small-note { text-align:center; margin-top:28px; }
+.hardcopy-choice fieldset { margin:0 0 26px; padding:0; border:0; }
+.hardcopy-choice legend { font-size:14px; margin-bottom:16px; }
+.product-option { display:flex; align-items:center; gap:14px; padding:19px 0; border-bottom:1px solid #c6cbc2; cursor:pointer; }
+.product-option input { width:18px; height:18px; accent-color:#246a5d; flex-shrink:0; }
+.product-option>span { flex:1; font-size:18px; }
+.product-option small { display:block; font-size:12px; margin-top:4px; }
+.product-option strong { font-size:20px; white-space:nowrap; }
+.product-option strong s { font-size:13px; font-weight:400; margin-right:4px; }
+.bundle-option { padding:22px 15px; border:1px solid #9ea990; margin:20px -15px 0; border-radius:7px; background:linear-gradient(115deg,#fefcf3c9,#ffffff88); }
+.bundle-option em { display:block; font:italic 26px 'Times New Roman',serif; margin-top:4px; }
+.bundle-option:has(input:checked) { border-color:#4b7866; box-shadow:0 2px 18px -12px #1b3e2b; }
+.bundle-nudge { font-size:14px; color:#27584b; margin:-2px 0 24px; }
+.bundle-nudge button { display:block; border:0; background:none; padding:8px 0; color:inherit; font:inherit; text-decoration:underline; text-underline-offset:4px; cursor:pointer; text-align:left; }
+.course-note { background:#f0f2ee; }
+.course-note .text-link { margin-top:20px; }
+[hidden] { display:none!important; }
+
+/* Champagne highlights give Apex a distinct, quieter premium finish. */
+.apex-card { position:relative; isolation:isolate; overflow:hidden; border-color:#d8bf81; background:radial-gradient(ellipse at 85% -10%,#a9935755,transparent 55%),linear-gradient(125deg,#29281e 0%,#171d17 44%,#323024 100%); box-shadow:inset 0 1px 0 #f9eacb,0 18px 50px -25px #67512f78,0 0 0 4px #dfcb9826; }
+.apex-card::before { content:''; position:absolute; inset:0; z-index:-1; pointer-events:none; background:linear-gradient(115deg,transparent 22%,#f4e2af08 37%,#fff1c722 43%,transparent 50%); }
+.apex-card::after { content:''; position:absolute; inset:8px; border:1px solid #e6cf8a2b; border-radius:8px; pointer-events:none; }
+.apex-card h2,.apex-card .offer-price { color:#f0dfb5; }
+.apex-card .eyebrow { color:#e9cf91; letter-spacing:.13em; }
+.apex-button { border-color:#dfc488; background:linear-gradient(120deg,#c5a66a,#fff0c9 44%,#dcc083 68%,#ecd8a7); box-shadow:inset 0 1px 0 #fff6de,0 3px 18px #d8b96a24; color:#252316; }
+.apex-button:hover { background:linear-gradient(120deg,#d8bd80,#fff5dd 45%,#edcf8e); box-shadow:0 5px 23px #dec18040; }
+@media(max-width:760px){
+ .course-directory-grid,.request-layout,.hardcopy-layout { grid-template-columns:1fr; }
+ .request-layout { gap:30px; }
+ .course-directory-grid { gap:45px; }
+ .hardcopy-layout { gap:32px; margin-top:25px; }
+ .hardcopy-books { min-height:300px; padding:25px; }
+ .hardcopy-books img { max-width:195px; }
+ .hardcopy-choice { max-width:550px; width:100%; margin:auto; }
+ .bundle-option { margin-left:0; margin-right:0; padding:18px 12px; }
+ .product-option { gap:10px; }
+ .product-option>span { font-size:16px; }
+ .product-option strong { font-size:18px; }
+ .product-option strong s { display:block; text-align:right; }
+ .course-intro .hero-actions { gap:10px; }
+ .course-intro .button { font-size:13px; }
+}
 .offer-context { padding-block:78px; }
 .offer-context h2 { font-size:44px; }
 .offer-context p { margin-top:23px; font-size:14px; color:var(--muted); }

@@ -1,0 +1,12 @@
+{
+  "name": "mell-downloads",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/service.test.mjs",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "4.145.0"
+  }
+}

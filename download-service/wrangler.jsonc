@@ -1,0 +1,29 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "mell-downloads",
+  "main": "src/worker.mjs",
+  "compatibility_date": "2026-10-01",
+  "account_id": "d3c113c80190cffee44661ab2b27c12e",
+  "workers_dev": true,
+  "observability": {
+    "enabled": false
+  },
+  "vars": {
+    "MODE": "api",
+    "PRIVACY_VERSION": "2026-10-04",
+    "ALLOWED_ORIGINS": "https://melltutors.co.za,https://www.melltutors.co.za"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "mell-downloads",
+      "database_id": "27437437-fc8c-4c8d-bbdc-16992a412daf"
+    }
+  ],
+  "triggers": {
+    "crons": [
+      "17 2 * * *"
+    ]
+  },
+  "preview_urls": false
+}
