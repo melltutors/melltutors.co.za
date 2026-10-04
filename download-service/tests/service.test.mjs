@@ -83,3 +83,17 @@ test('GitHub forms use only approved origins, and tokens cannot cross between or
  assert.equal((await send('/api/requests',{method:'POST',headers:{Origin:'https://www.melltutors.co.za','Content-Type':'application/json'},body})).status,403);
  assert.equal((await send('/')).status,404);assert.equal((await send('/api/admin/contacts.csv',{headers:{Origin:origin}})).status,401);
 });
+
+test('private PDF assets require a signed grant; raw and encoded asset paths stay blocked',async()=>{
+ const e=env();e.PDF_STORAGE='assets';delete e.GOOGLE_SERVICE_ACCOUNT;delete e.FILES;const paths=[];
+ e.ASSETS={fetch:async req=>{paths.push(new URL(req.url).pathname);return new Response(req.method==='HEAD'?null:'%PDF-1.7 approved copy',{headers:{'Content-Type':'application/pdf'}});}};
+ const data=await(await request(e,{})).json();assert.equal(data.downloads.length,2);assert.equal(paths.length,2);
+ for(const item of data.downloads){const res=await worker.fetch(new Request('https://mell.example'+item.url),e);assert.equal(res.status,200);assert.match(await res.text(),/^%PDF-/);}
+ assert.deepEqual(paths.slice(2),['/_playbooks/MATH1049A-algebra.pdf','/_playbooks/MATH1049A-calculus.pdf']);
+ for(const path of ['/_playbooks/MATH1049A-algebra.pdf','/%5fplaybooks/MATH1049A-algebra.pdf','/_playbooks/MATH1049A-algebra%2epdf','/any.pdf'])assert.equal((await worker.fetch(new Request('https://mell.example'+path),e)).status,404);
+});
+
+test('missing private PDF prevents contact capture and download grants',async()=>{
+ const e=env();e.PDF_STORAGE='assets';e.ASSETS={fetch:async()=>new Response('missing',{status:404})};
+ assert.equal((await request(e,{})).status,503);assert.equal(e.DB.raw.prepare('SELECT count(*) AS n FROM leads').get().n,0);assert.equal(e.DB.raw.prepare('SELECT count(*) AS n FROM grants').get().n,0);
+});

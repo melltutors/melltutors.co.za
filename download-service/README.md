@@ -10,12 +10,15 @@ Use Node 22.13+ or 24 and install the pinned Wrangler version from `package.json
 
 The configuration points to the existing production D1 database. The schema is in `migrations/0001_contacts.sql`; apply migrations through Wrangler before first use. The daily trigger deletes expired grants and abuse-prevention buckets.
 
+Production uses `PDF_STORAGE=assets`. Put the four approved PDFs in the ignored `private-assets/_playbooks/` directory, named `MATH1048A-algebra.pdf`, `MATH1048A-calculus.pdf`, `MATH1049A-algebra.pdf` and `MATH1049A-calculus.pdf`. Never commit these files to this public repository. Assets run through the Worker first; raw PDF paths are always denied, even in a private review. Signed grants are the only delivery route. The service checks both PDFs exist before capturing a free request.
+
+Updating a guide in Drive does not update this deployed copy. Replace the corresponding private copy, verify its course and scope, test all four downloads and redeploy the service. Assets must stay below Cloudflare's 25 MiB per-file limit. No extra storage subscription is needed.
+
 The following values must remain Cloudflare secrets and must never be committed:
 
 - `TOKEN_SECRET`: at least 32 random bytes, used for signed form/download/session tokens and hashed abuse-prevention identifiers.
 - `ADMIN_SECRET`: separate private owner access key.
-- `GOOGLE_SERVICE_ACCOUNT`: JSON credentials for the dedicated reader account, shared as Viewer with only the four free PDFs.
-- `FILES`: server-only JSON mapping each supported course to its Algebra and Calculus file identifiers.
+- `GOOGLE_SERVICE_ACCOUNT` and `FILES` are only needed if switching back to the optional Drive reader. Current delivery works without Google sharing or these secrets.
 
 Production does not use the preview key. Use `MODE=preview`, assets, a separate preview database and `PREVIEW_KEY` only for an isolated private review deployment. The preview gate runs before static assets and form routes; owner contact access is separate.
 
@@ -23,7 +26,7 @@ Production does not use the preview key. Use `MODE=preview`, assets, a separate 
 
 - `GET /api/form`: short-lived signed token bound to the calling website origin.
 - `POST /api/requests`: validates and stores the request, then returns two signed PDF links or the allowlisted catalogue URL.
-- `GET /api/download/:course/:subject`: validates the expiring grant and streams the approved Google PDF as an attachment. Google identifiers and links never enter the response.
+- `GET /api/download/:course/:subject`: validates the expiring grant and streams the approved private PDF as an attachment. Storage paths and Drive links never enter the response.
 - `/admin`: protected owner dashboard. Its private owner link starts a one-hour HttpOnly session and removes the access key from the displayed URL.
 - `GET /api/admin/contacts.csv`: protected, paginated contact export; includes separate email-update consent and escapes spreadsheet formulas.
 

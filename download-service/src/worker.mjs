@@ -6,6 +6,13 @@ const fail=(message,status=400)=>json({error:message},status);
 const allowedOrigins=env=>(env.ALLOWED_ORIGINS||'').split(',').filter(Boolean);
 const formOrigin=(request,env,url)=>env.MODE==='api'&&allowedOrigins(env).includes(request.headers.get('Origin'))?request.headers.get('Origin'):url.origin;
 const cookieValue=(request,name)=>(request.headers.get('Cookie')||'').split(';').map(c=>c.trim()).find(c=>c.startsWith(name+'='))?.slice(name.length+1);
+const assetPath=(course,subject)=>`/_playbooks/${course}-${subject}.pdf`;
+async function privatePdf(request,env,course,subject,method='GET'){
+  const url=new URL(request.url);url.pathname=assetPath(course,subject);url.search='';
+  const file=await env.ASSETS.fetch(new Request(url,{method}));
+  if(!file.ok||!file.headers.get('Content-Type')?.includes('application/pdf'))throw Error('Private PDF unavailable.');
+  return file;
+}
 async function adminAllowed(request,env){return await secretMatches(request.headers.get('Authorization')?.replace(/^Bearer /,''),env.ADMIN_SECRET)||!!await verify(cookieValue(request,'mell_admin'),env.TOKEN_SECRET,'admin');}
 function secured(response,env,request){
   const r=new Response(response.body,response);r.headers.set('X-Content-Type-Options','nosniff');r.headers.set('Referrer-Policy','no-referrer');r.headers.set('X-Frame-Options','DENY');
@@ -46,6 +53,9 @@ async function preview(request,env,url){
 }
 export async function handle(request,env,ctx={},services={}){
   const url=new URL(request.url),now=seconds();
+  // Assets always run through this Worker. Only the signed download handler may read PDFs.
+  const decodedPath=decodeURIComponent(url.pathname);
+  if(decodedPath.toLowerCase().startsWith('/_playbooks')||/\.pdf(?:\/|$)/i.test(decodedPath))return fail('Not found.',404);
   if(env.MODE==='api'&&['/api/form','/api/requests'].includes(url.pathname)){
     if(!allowedOrigins(env).includes(request.headers.get('Origin')))return fail('Please use the MELL form.',403);
     if(request.method==='OPTIONS')return new Response(null,{status:204});
@@ -88,8 +98,13 @@ export async function handle(request,env,ctx={},services={}){
     const ipKey=await privateHash('ip:'+ip,env.TOKEN_SECRET),mailKey=await privateHash('email:'+input.email,env.TOKEN_SECRET);
     if(!await rate(env.DB,'ip:'+ipKey,15,now)||!await rate(env.DB,'email:'+mailKey,5,now))return fail('Too many requests. Please try again in an hour.',429);
     if(input.intent==='free'){
-      const files=JSON.parse(env.FILES||'{}');
-      if(!files[input.course]?.algebra||!files[input.course]?.calculus||!env.GOOGLE_SERVICE_ACCOUNT)return fail('Downloads are being prepared. Please try again shortly.',503);
+      if(env.PDF_STORAGE==='assets'){
+        try{await Promise.all(COURSES[input.course].subjects.map(subject=>privatePdf(request,env,input.course,subject,'HEAD')));}
+        catch{return fail('Downloads are being prepared. Please try again shortly.',503);}
+      }else{
+        const files=JSON.parse(env.FILES||'{}');
+        if(!files[input.course]?.algebra||!files[input.course]?.calculus||!env.GOOGLE_SERVICE_ACCOUNT)return fail('Downloads are being prepared. Please try again shortly.',503);
+      }
     }
     const lead=await env.DB.prepare('INSERT INTO leads(id,email,phone,course,intent,product,marketing_opt_in,privacy_version,created_at,updated_at) VALUES(?,?,?,?,?,?,?,?,?,?) ON CONFLICT(email,course,intent,product) DO UPDATE SET phone=excluded.phone,marketing_opt_in=excluded.marketing_opt_in,privacy_version=excluded.privacy_version,updated_at=excluded.updated_at,request_count=request_count+1 RETURNING id').bind(crypto.randomUUID(),input.email,input.phone,input.course,input.intent,input.product,input.marketing,env.PRIVACY_VERSION,now,now).first();
     if(input.intent==='hardcopy')return json({intent:'hardcopy',url:CATALOGUE[input.product],product:input.product});
@@ -103,11 +118,11 @@ export async function handle(request,env,ctx={},services={}){
     if(request.method!=='GET')return fail('Method not allowed.',405);
     const [,course,subject]=match,token=await verify(url.searchParams.get('t'),env.TOKEN_SECRET,'download',now);
     if(!token||token.course!==course||typeof token.id!=='string')return fail('This download link has expired. Request your free pair again.',403);
-    const fileId=JSON.parse(env.FILES||'{}')[course]?.[subject];if(!fileId)return fail('This guide is temporarily unavailable.',503);
+    const fileId=env.PDF_STORAGE==='assets'?null:JSON.parse(env.FILES||'{}')[course]?.[subject];if(env.PDF_STORAGE!=='assets'&&!fileId)return fail('This guide is temporarily unavailable.',503);
     const grant=await env.DB.prepare('UPDATE grants SET uses=uses+1 WHERE id=? AND course=? AND expires_at>? AND uses<12 RETURNING id').bind(token.id,course,now).first();
     if(!grant)return fail('This download link has expired. Request your free pair again.',403);
     try{
-      const file=await (services.driveFile||driveFile)(fileId,env.GOOGLE_SERVICE_ACCOUNT);
+      const file=env.PDF_STORAGE==='assets'?await privatePdf(request,env,course,subject):await (services.driveFile||driveFile)(fileId,env.GOOGLE_SERVICE_ACCOUNT);
       const headers={'Content-Type':'application/pdf','Content-Disposition':`attachment; filename="${downloadName(course,subject)}"`,'Cache-Control':'private, no-store'};
       const length=file.headers.get('Content-Length');if(length)headers['Content-Length']=length;
       return new Response(file.body,{headers});

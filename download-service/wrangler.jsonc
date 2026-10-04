@@ -5,11 +5,18 @@
   "compatibility_date": "2026-10-01",
   "account_id": "d3c113c80190cffee44661ab2b27c12e",
   "workers_dev": true,
+  "assets": {
+    "directory": "private-assets",
+    "binding": "ASSETS",
+    "run_worker_first": true,
+    "html_handling": "none"
+  },
   "observability": {
     "enabled": false
   },
   "vars": {
     "MODE": "api",
+    "PDF_STORAGE": "assets",
     "PRIVACY_VERSION": "2026-10-04",
     "ALLOWED_ORIGINS": "https://melltutors.co.za,https://www.melltutors.co.za"
   },
