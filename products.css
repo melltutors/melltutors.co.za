@@ -1,0 +1,26 @@
+.product-stage{padding:55px 0 80px;background:linear-gradient(125deg,#faf9f6,#fff 60%,#f3f5ef)}
+.product-stage .back-link{display:inline-block;margin-bottom:35px;font-size:12px}
+.product-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,7vw,100px);align-items:center}
+.product-art{display:flex;justify-content:center;align-items:center;min-width:0;padding:35px 20px}
+.product-art img{display:block;width:69%;max-width:335px;height:auto;filter:drop-shadow(9px 15px 11px #1e332724)}
+.product-pair img{width:52%;max-width:265px;transform:rotate(-7deg)}
+.product-pair img+img{margin-left:-17%;transform:rotate(7deg) translateY(13px)}
+.product-details h1{font-style:italic;font-size:clamp(43px,5vw,67px);line-height:1.02;margin:18px 0}
+.product-summary{font-size:18px;line-height:1.6;margin:0}
+.product-details .scope-note{max-width:470px;font-size:13px;line-height:1.7;padding:10px 0 0;margin:0}
+.product-form{margin-top:26px}.product-form h2{font:italic 25px 'Times New Roman',serif;margin-bottom:20px}
+.product-form .form-fields{gap:13px}.product-form .consent{margin-top:18px}.product-form .form-privacy{font-size:11px;margin-bottom:18px}
+.product-form .guide-form>.button{width:100%;justify-content:space-between}
+.product-form .bundle-option{margin:12px 0 0;padding:15px}.product-form .product-option{padding-top:13px;padding-bottom:13px}
+.product-form fieldset{margin-bottom:15px}.product-form .bundle-nudge{font-size:12px;margin-bottom:17px}.product-form .bundle-nudge button{display:inline;margin-left:5px;padding:0}
+.product-form .small-note{font-size:11px;margin-top:16px}.product-other{font-size:12px;margin-top:25px;line-height:1.8}
+.product-page .reviews-section{background:#eef1eb}.product-page .section-heading>p{max-width:280px;font-size:14px}
+.playbook-catalogue{padding-top:65px;background:#faf9f6}.playbook-catalogue h1{font-style:italic}.catalog-label{font:italic 38px 'Times New Roman',serif;margin:55px 0 10px}
+.catalog-scope{font-size:14px;color:var(--muted)}.catalog-free,.catalog-paid{display:grid;gap:45px}.catalog-free{grid-template-columns:repeat(2,minmax(0,1fr))}.catalog-paid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.catalog-product{display:flex;flex-direction:column;align-items:center;text-align:center;text-decoration:none;padding:25px 0}.product-tag{font:500 11px var(--label);background:#e6ece4;padding:7px 12px;border-radius:3px}
+.catalog-product .product-art{height:300px;width:100%;max-width:370px;padding:35px 20px}.catalog-product .product-art img{height:auto;max-height:230px;width:auto;max-width:65%;object-fit:contain}
+.catalog-product .product-pair img{width:52%;max-height:none;max-width:155px}.catalog-product h3{font:italic 32px 'Times New Roman',serif;margin:14px 0 24px}.catalog-product .text-link{margin-top:auto;font-size:13px}
+@media(hover:hover) and (pointer:fine){.catalog-product .product-art{transition:transform .2s}.catalog-product:hover .product-art{transform:translateY(-6px)}}
+@media(prefers-reduced-motion:reduce){.catalog-product .product-art{transition:none}.catalog-product:hover .product-art{transform:none}}
+@media(max-width:760px){.product-stage{padding:30px 0 55px}.product-stage .back-link{margin-bottom:12px}.product-grid{grid-template-columns:1fr;gap:22px}.product-grid>.product-art{padding:15px 25px;max-width:350px;width:100%;margin:auto}.product-grid>.product-art img{max-height:280px;width:auto;max-width:65%}.product-grid>.product-pair img{width:52%;max-height:none}.product-details{max-width:520px;margin:auto;width:100%}.product-details h1{font-size:45px}.product-details .eyebrow{font-size:10px}.catalog-free,.catalog-paid{grid-template-columns:repeat(2,minmax(0,1fr));gap:30px 18px}.catalog-paid>.catalog-product:last-child{grid-column:1/-1}.playbook-catalogue{padding-top:40px}.catalog-product .product-art{height:220px;padding:25px 5px}.catalog-product .product-art img{max-height:175px;max-width:80%}.catalog-product .product-pair img{width:58%;max-width:125px}.catalog-product .eyebrow{font-size:9px}.catalog-product h3{font-size:27px}.catalog-label{font-size:32px}.catalog-free .product-pair img+img{margin-left:-23%}}
+@media(max-width:360px){.product-details h1{font-size:40px}.product-grid>.product-art{max-width:280px}.catalog-product h3{font-size:24px}.catalog-product .product-art{height:190px}.catalog-product .product-art img{max-height:150px}}

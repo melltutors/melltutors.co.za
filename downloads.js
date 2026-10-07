@@ -1,5 +1,8 @@
 (() => {
  'use strict';
+ if(location.pathname.endsWith('/math1049a.html')&&['#algebra','#calculus','#bundle','#hardcopies'].includes(location.hash)){
+  location.replace('math1049a-'+(location.hash==='#hardcopies'?'bundle':location.hash.slice(1))+'.html');return;
+ }
  const forms=[...document.querySelectorAll('[data-request-form]')];
  if(!forms.length)return;
  const api=['melltutors.co.za','www.melltutors.co.za'].includes(location.hostname)?'https://mell-downloads.melltutors-w.workers.dev':location.origin;
@@ -23,7 +26,7 @@
      const text=document.createElement('p');text.textContent='Save both PDFs. These links work for two hours.';result.append(text);
      const actions=document.createElement('div');actions.className='download-actions';
      for(const item of data.downloads){const a=makeLink('Download '+item.subject[0].toUpperCase()+item.subject.slice(1),new URL(item.url,api).href);a.download=item.name;actions.append(a);}result.append(actions);
-     if(data.course==='MATH1049A'){const upsell=document.createElement('p');upsell.className='download-upsell';upsell.textContent='Want every solution for Block 4? ';upsell.append(makeLink('Both hardcopies · R600. Save R200.','#bundle','text-link'));result.append(upsell);}
+     if(data.course==='MATH1049A'){const upsell=document.createElement('p');upsell.className='download-upsell';upsell.textContent='Want every solution for Block 4? ';upsell.append(makeLink('Both hardcopies · R600. Save R200.','math1049a-bundle.html','text-link'));result.append(upsell);}
     }else{
      const p=document.createElement('p');p.textContent='Your email is saved. Open your chosen hardcopy in WhatsApp to arrange EFT payment and delivery.';result.append(p);
      const a=makeLink('Open '+(data.product==='bundle'?'the R600 bundle':data.product+' · R400')+' on WhatsApp',data.url);a.target='_blank';a.rel='noopener noreferrer';result.append(a);
@@ -36,9 +39,9 @@
  const productForm=forms.find(f=>f.dataset.intent==='hardcopy');
  if(productForm){
   const radios=[...document.querySelectorAll('[name="hardcopy-choice"]')],nudge=document.querySelector('[data-bundle-nudge]');
-  const choose=value=>{if(!['algebra','calculus','bundle'].includes(value))return;radios.forEach(r=>r.checked=r.value===value);productForm.querySelector('[name="product"]').value=value;nudge.hidden=value==='bundle';productForm.querySelector('.form-result').hidden=true;};
+  const choose=value=>{if(!radios.some(r=>r.value===value))return;radios.forEach(r=>r.checked=r.value===value);productForm.querySelector('[name="product"]').value=value;if(nudge)nudge.hidden=value==='bundle';productForm.querySelector('.form-result').hidden=true;};
   radios.forEach(r=>r.addEventListener('change',()=>choose(r.value)));
-  document.querySelector('[data-select-bundle]').addEventListener('click',()=>choose('bundle'));
+  document.querySelector('[data-select-bundle]')?.addEventListener('click',()=>choose('bundle'));
   const fromHash=()=>choose(location.hash.slice(1));fromHash();addEventListener('hashchange',fromHash);
  }
 })();
