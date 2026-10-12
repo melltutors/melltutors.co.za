@@ -16,6 +16,7 @@
   },
   "vars": {
     "MODE": "api",
+    "INTEREST_ENABLED": "true",
     "PDF_STORAGE": "assets",
     "PRIVACY_VERSION": "2026-10-04",
     "ALLOWED_ORIGINS": "https://melltutors.co.za,https://www.melltutors.co.za"

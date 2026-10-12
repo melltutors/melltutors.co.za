@@ -1,3 +1,4 @@
+import {interestRoute} from './interest.mjs';
 import {CATALOGUE,COURSES,cleanInput,sign,verify,privateHash,secretMatches,csvCell,downloadName} from './core.mjs';
 import {driveFile} from './drive.mjs';
 const seconds=()=>Math.floor(Date.now()/1000);
@@ -56,9 +57,13 @@ export async function handle(request,env,ctx={},services={}){
   // Assets always run through this Worker. Only the signed download handler may read PDFs.
   const decodedPath=decodeURIComponent(url.pathname);
   if(decodedPath.toLowerCase().startsWith('/_playbooks')||/\.pdf(?:\/|$)/i.test(decodedPath))return fail('Not found.',404);
-  if(env.MODE==='api'&&['/api/form','/api/requests'].includes(url.pathname)){
+  if(env.MODE==='api'&&['/api/form','/api/requests','/api/interest/form','/api/interest'].includes(url.pathname)){
     if(!allowedOrigins(env).includes(request.headers.get('Origin')))return fail('Please use the MELL form.',403);
     if(request.method==='OPTIONS')return new Response(null,{status:204});
+  }
+  if(url.pathname.startsWith('/api/interest')||url.pathname==='/api/admin/interest-2027.csv'){
+    const gate=await preview(request,env,url);if(gate && url.pathname!=='/api/admin/interest-2027.csv')return gate;
+    const response=await interestRoute(request,env,url,now,{json,fail,adminAllowed,smallBody,rate,formOrigin});if(response)return response;
   }
   if(url.pathname==='/admin'){
     if(request.method!=='GET')return fail('Method not allowed.',405);
@@ -68,7 +73,7 @@ export async function handle(request,env,ctx={},services={}){
     }
     if(!await adminAllowed(request,env))return fail('Open your private owner link to view contacts.',401);
     const counts=await env.DB.prepare("SELECT COUNT(*) AS total,SUM(intent='free') AS free,SUM(intent='hardcopy') AS hardcopy,SUM(marketing_opt_in=1) AS opted FROM leads").first();
-    return new Response(`<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>MELL · Your requests</title><style>body{font:16px/1.7 system-ui;background:#f6f6f2;color:#182421;max-width:740px;margin:8vh auto;padding:24px}h1{font:italic 48px Georgia}a{display:inline-block;padding:14px 22px;background:#1b665b;color:white;text-decoration:none;border-radius:4px}small{color:#536258}dl{display:flex;flex-wrap:wrap;gap:35px;margin:35px 0}dt{font-size:13px}dd{font-size:30px;margin:0}</style><p>MELL TUTORS · PRIVATE</p><h1>Your playbook requests.</h1><dl><div><dt>All requests</dt><dd>${counts.total||0}</dd></div><div><dt>Free pairs</dt><dd>${counts.free||0}</dd></div><div><dt>Hardcopy enquiries</dt><dd>${counts.hardcopy||0}</dd></div><div><dt>Email updates opted in</dt><dd>${counts.opted||0}</dd></div></dl><a href="/api/admin/contacts.csv">Download all contacts (CSV)</a><p>Includes email, phone where supplied, course, product, request dates and email-update preference. Repeat requests are combined.</p><small>Keep this page and exported contacts private. This owner session lasts one hour. Use only opted-in contacts for marketing emails.</small></html>`,{headers:{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store','X-Robots-Tag':'noindex, nofollow'}});
+    return new Response(`<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>MELL · Your requests</title><style>body{font:16px/1.7 system-ui;background:#f6f6f2;color:#182421;max-width:740px;margin:8vh auto;padding:24px}h1{font:italic 48px Georgia}a{display:inline-block;padding:14px 22px;background:#1b665b;color:white;text-decoration:none;border-radius:4px}small{color:#536258}dl{display:flex;flex-wrap:wrap;gap:35px;margin:35px 0}dt{font-size:13px}dd{font-size:30px;margin:0}</style><p>MELL TUTORS · PRIVATE</p><h1>Your playbook requests.</h1><dl><div><dt>All requests</dt><dd>${counts.total||0}</dd></div><div><dt>Free pairs</dt><dd>${counts.free||0}</dd></div><div><dt>Hardcopy enquiries</dt><dd>${counts.hardcopy||0}</dd></div><div><dt>Email updates opted in</dt><dd>${counts.opted||0}</dd></div></dl><a href="/api/admin/contacts.csv">Download all contacts (CSV)</a><p>Includes email, phone where supplied, course, product, request dates and email-update preference. Repeat requests are combined.</p><p><a href="/api/admin/interest-2027.csv">Export February 2027 interest (CSV)</a></p><small>Keep this page and exported contacts private. This owner session lasts one hour. Use only opted-in contacts for marketing emails.</small></html>`,{headers:{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store','X-Robots-Tag':'noindex, nofollow'}});
   }
   if(url.pathname==='/api/admin/contacts.csv'){
     if(request.method!=='GET')return fail('Method not allowed.',405);
