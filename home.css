@@ -1,6 +1,6 @@
 /* Homepage copy layout; shared sections retain their existing styles. */
-.home .hero-inner { padding-top:clamp(140px,20svh,220px); }
-.home .home-hero h1 { max-width:1060px; font-size:clamp(72px,9vw,124px); line-height:1; margin-top:0; }
+.home .hero-inner { padding-top:clamp(164px,23svh,244px); }
+.home .home-hero h1 { max-width:700px; font-size:clamp(68px,6.2vw,90px); line-height:1; margin-top:0; }
 .home .hero-lede { max-width:55ch; margin-top:26px; }
 .stuck-section { background:#faf9f6; }
 .stuck-grid { display:grid; grid-template-columns:1.08fr .92fr; gap:clamp(48px,7vw,110px); align-items:center; }
@@ -73,7 +73,7 @@
  .community-grid>img { height:340px; }
 }
 @media(max-width:760px) {
- .home .hero-inner { padding-top:clamp(110px,16svh,150px); padding-bottom:32px; }
+ .home .hero-inner { padding-top:clamp(118px,18svh,160px); padding-bottom:32px; }
  .home .home-hero h1 { max-width:680px; font-size:clamp(48px,9.5vw,72px); line-height:1.02; }
  .home .hero-lede { margin-top:22px; max-width:43ch; }
  .stuck-grid,.community-grid { grid-template-columns:1fr; gap:42px; }
@@ -86,11 +86,11 @@
  .community-grid p { margin-top:20px; max-width:50ch; }
 }
 @media(max-width:500px) {
- .home .home-hero h1 { font-size:clamp(44px,13.6vw,64px); }
+ .home .home-hero h1 { font-size:clamp(48px,9.5vw,72px); }
 }
 @media(max-width:760px) and (max-height:680px) {
- .home .hero-inner { padding-top:100px; padding-bottom:24px; }
- .home .home-hero h1 { font-size:clamp(38px,10.5vw,52px); }
+ .home .hero-inner { padding-top:clamp(118px,18svh,160px); padding-bottom:24px; }
+ .home .home-hero h1 { font-size:clamp(48px,9.5vw,72px); }
  .home .hero-lede { margin-top:16px; font-size:13px; line-height:1.7; }
  .home .hero-rating { margin-top:10px; }
  .home .hero-actions { margin-top:14px; }
@@ -106,3 +106,15 @@
  .home .hero-lede { margin-top:12px; }
 }
 
+
+/* Shared tutoring photograph: full desktop scene, bottom-anchored phone crop. */
+.home .hero-rating strong { font-weight:500; }
+.home-hero .hero-photo { object-position:center center; }
+@media(max-width:760px) {
+ .home-hero { background:#22201d; }
+ .home-hero .hero-photo { top:auto; bottom:0; height:48%; object-position:100% 50%; }
+ .home-hero:after { background:linear-gradient(180deg,#22201d 0%,#22201d 41%,#22201de8 51%,#22201d1a 72%,#22201d00); }
+}
+@media(max-width:350px) {
+ .home-hero .hero-photo { height:36%; }
+}
