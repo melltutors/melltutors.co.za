@@ -8,7 +8,7 @@ import {cleanInterest} from '../src/interest.mjs';
 const secret='local-testing-secret-with-more-than-32-characters';
 const origin='https://melltutors.co.za',base='https://worker.example';
 const valid={name:'Test Student',email:'test@example.com',phone:'0661234567',year:'First year',modules:['Engineering Mathematics 1'],times:['Weekday afternoons'],notes:'',campaign:'first-year-2027',contactConsent:true};
-function env(){const db=new DatabaseSync(':memory:');for(const migration of ['0001_contacts.sql','0002_interest.sql'])db.exec(readFileSync(new URL('../migrations/'+migration,import.meta.url),'utf8'));
+function env(){const db=new DatabaseSync(':memory:');for(const migration of ['0001_contacts.sql','0002_interest.sql','0003_programme_interest.sql'])db.exec(readFileSync(new URL('../migrations/'+migration,import.meta.url),'utf8'));
  return{MODE:'api',ALLOWED_ORIGINS:origin,INTEREST_ENABLED:'true',TOKEN_SECRET:secret,ADMIN_SECRET:'test-admin',DB:{raw:db,prepare(sql){return{bind(...args){return{first:async()=>db.prepare(sql).get(...args),run:async()=>db.prepare(sql).run(...args),all:async()=>({results:db.prepare(sql).all(...args)})}}}}}};
 }
 async function send(e,changes={},headers={}){const now=Math.floor(Date.now()/1000);const token=await sign({kind:'interest',origin,iat:now-2,exp:now+300},secret);return worker.fetch(new Request(base+'/api/interest',{method:'POST',headers:{Origin:origin,'Content-Type':'application/json',...headers},body:JSON.stringify({token,...valid,...changes})}),e);}
@@ -20,3 +20,21 @@ test('tokens are short-lived, origin bound and CORS only permits approved site',
 test('CSV requires owner authentication, supports campaign filter and neutralises formulas',async()=>{const e=env();await send(e,{name:'=DANGEROUS()',notes:'+formula'});const url=base+'/api/admin/interest-2027.csv';assert.equal((await worker.fetch(new Request(url),e)).status,401);const headers={Authorization:'Bearer test-admin'};const res=await worker.fetch(new Request(url,{headers}),e);assert.equal(res.status,200);assert.equal(res.headers.get('Cache-Control'),'no-store');const csv=await res.text();assert.match(csv,/'=DANGEROUS/);assert.match(csv,/'\+formula/);assert.match(csv,/first-year-2027/);const other=await(await worker.fetch(new Request(url+'?campaign=second-year-2027',{headers}),e)).text();assert.equal(other.trim().split('\r\n').length,1);assert.equal((await worker.fetch(new Request(url+'?campaign=invalid',{headers}),e)).status,400);});
 test('rate limiting caps repeat submissions without keeping raw IP or email in rate keys',async()=>{const e=env();for(let i=0;i<5;i++)assert.equal((await send(e)).status,200);assert.equal((await send(e)).status,429);assert.ok(e.DB.raw.prepare('SELECT key FROM rate_windows').all().every(r=>!r.key.includes('test@example.com')));assert.equal(count(e),1);});
 test('database errors return generic message, never details or false success',async()=>{const e=env();e.DB.prepare=()=>{throw Error('private infrastructure details');};const res=await send(e);assert.equal(res.status,503);assert.ok(!(await res.text()).includes('private infrastructure'));});
+
+test('each programme survives submission and private CSV export alongside campaign tracking',async()=>{
+ const e=env();for(const programme of ['premium','apex','prime','focus'])assert.equal((await send(e,{email:programme+'@example.com',programme,campaign:'second-year-2027'})).status,200);
+ const rows=e.DB.raw.prepare('SELECT programme,first_campaign,latest_campaign FROM interest_leads ORDER BY programme').all();assert.deepEqual(rows.map(r=>r.programme),['apex','focus','premium','prime']);assert.ok(rows.every(r=>r.first_campaign==='second-year-2027'&&r.latest_campaign==='second-year-2027'));
+ assert.equal((await worker.fetch(new Request(base+'/api/admin/interest-2027.csv'),e)).status,401);
+ const res=await worker.fetch(new Request(base+'/api/admin/interest-2027.csv',{headers:{Authorization:'Bearer test-admin'}}),e);assert.equal(res.status,200);const csv=await res.text();assert.match(csv,/year,programme,modules/);for(const label of ['MELL Premium','MELL Apex','MELL Prime','MELL Focus'])assert.ok(csv.includes(label));
+});
+test('programme can be changed or cleared; legacy clients remain accepted; invalid choices are rejected',async()=>{
+ const e=env();assert.equal((await send(e)).status,200);assert.equal(e.DB.raw.prepare('SELECT programme FROM interest_leads').get().programme,'');
+ assert.equal((await send(e,{programme:'apex'})).status,200);assert.equal((await send(e,{programme:'focus'})).status,200);assert.equal(e.DB.raw.prepare('SELECT programme FROM interest_leads').get().programme,'focus');
+ assert.equal((await send(e,{programme:''})).status,200);assert.equal(e.DB.raw.prepare('SELECT programme FROM interest_leads').get().programme,'');
+ for(const programme of ['unknown','APEX',{},['apex'],'<script>']){const other=env();assert.equal((await send(other,{programme})).status,400);assert.equal(count(other),0);}
+});
+test('programme migration retains existing enquiry details with an empty programme',()=>{
+ const db=new DatabaseSync(':memory:');db.exec(readFileSync(new URL('../migrations/0002_interest.sql',import.meta.url),'utf8'));
+ db.prepare("INSERT INTO interest_leads(id,name,email,phone,year,modules,times,first_campaign,latest_campaign,contact_consent,privacy_version,created_at,updated_at) VALUES('legacy','Existing enquiry','existing@example.com','+27000000000','First year','[]','[]','direct','direct',1,'interest-2027-v1',1,1)").run();
+ db.exec(readFileSync(new URL('../migrations/0003_programme_interest.sql',import.meta.url),'utf8'));const row=db.prepare('SELECT * FROM interest_leads').get();assert.equal(row.name,'Existing enquiry');assert.equal(row.programme,'');assert.equal(row.email,'existing@example.com');assert.equal(row.request_count,1);
+});

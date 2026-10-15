@@ -3,7 +3,11 @@
   const button=form.querySelector('button[type=submit]'),status=document.querySelector('#form-status');
   const local=['127.0.0.1','localhost'].includes(location.hostname);
   const api=local?location.origin:'https://mell-downloads.melltutors-w.workers.dev';
-  const incoming=new URLSearchParams(location.search).get('campaign');
+  const params=new URLSearchParams(location.search);
+  const incoming=params.get('campaign');
+  const incomingProgramme=(params.get('programme')||'').toLowerCase();
+  const programme=form.elements.namedItem('programme');
+  if(['premium','apex','prime','focus'].includes(incomingProgramme))programme.value=incomingProgramme;
   const campaign=['first-year-2027','second-year-2027'].includes(incoming)?incoming:'direct';
   let token='',busy=false;
   if(local){const banner=document.createElement('div');banner.className='preview-banner';banner.textContent='Private local preview · Use fictional details only. Nothing is sent to MELL’s live database.';document.body.prepend(banner);}
@@ -23,7 +27,7 @@
     if(!modules.length||!times.length){message('Choose your intended modules and timetable preferences, or select “Not sure yet”.',true);form.querySelector(`input[name="${!modules.length?'modules':'times'}"]`).focus();return;}
     busy=true;button.disabled=true;button.textContent='Registering…';form.setAttribute('aria-busy','true');message('');
     try{
-      const res=await fetch(api+'/api/interest',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({token,name:data.get('name'),email:data.get('email'),phone:data.get('phone'),year:data.get('year'),modules,times,notes:data.get('notes'),website:data.get('website'),contactConsent:data.has('contactConsent'),marketing:data.has('marketing'),campaign})});
+      const res=await fetch(api+'/api/interest',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({token,name:data.get('name'),email:data.get('email'),phone:data.get('phone'),year:data.get('year'),programme:data.get('programme'),modules,times,notes:data.get('notes'),website:data.get('website'),contactConsent:data.has('contactConsent'),marketing:data.has('marketing'),campaign})});
       const result=await res.json();if(!res.ok){if(res.status===403)await loadToken();throw Error(result.error||'Please try again shortly.');}
       form.reset();message(result.message);button.textContent='Interest registered';button.disabled=true;
       status.tabIndex=-1;status.focus();
