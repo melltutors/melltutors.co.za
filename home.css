@@ -130,3 +130,18 @@
  .home .hero-text-link { font-size:11px; }
  .home .hero-text-link span { margin-left:4px; }
 }
+
+/* A clear entrance for current students. */
+.home-login { background:linear-gradient(115deg,#eef2eb,#dfeae2); border-block:1px solid #cbd6ca; }
+.home-login-inner { display:grid; grid-template-columns:minmax(0,1fr) auto; align-items:center; gap:40px; }
+.home-login h2 { margin-top:14px; font-size:clamp(42px,4.2vw,60px); }
+.home-login-copy { margin-top:20px; color:var(--muted); font-size:14px; }
+.home-login .home-login-action { width:300px; max-width:100%; min-height:68px; padding:20px 30px; font-size:17px; letter-spacing:.035em; justify-content:space-between; gap:44px; }
+.home-login-action .icon-arrow { width:24px; height:24px; }
+@media(max-width:760px) {
+ .home-login { padding-block:56px; }
+ .home-login-inner { grid-template-columns:1fr; gap:30px; }
+ .home-login h2 { font-size:44px; line-height:1.08; }
+ .home-login-copy { margin-top:18px; max-width:33ch; font-size:13px; line-height:1.8; }
+ .home-login .home-login-action { width:100%; max-width:360px; }
+}
