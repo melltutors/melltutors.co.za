@@ -55,17 +55,17 @@
  .home-playbook h3 { font-size:30px; margin-top:15px; }
  .home-playbook-course { font-size:11px; letter-spacing:0; }
  .home-playbook-scope { font-size:10px; }
- .home-playbook-art { height:220px; padding:24px 4px; }
+ .home-playbook-art { height:260px; padding:22px 4px; }
  .home-playbook-art.is-pair { margin-bottom:12px; }
- .home-playbook-art.is-pair img { width:64%; max-height:calc(100% - 28px); }
+ .home-playbook-art.is-pair img { width:72%; max-width:195px; max-height:calc(100% - 24px); }
  .home-playbook-art.is-pair img+img { margin-left:-32%; }
  .home-playbook>.button { padding:14px 12px; font-size:13px; gap:10px; }
  .home-playbook>.button .icon-arrow { width:15px; height:15px; }
 }
 @media(max-width:360px) {
  .home-playbook-grid { column-gap:18px; }
- .home-playbook-art { height:185px; padding-block:22px; }
- .home-playbook-art.is-pair img { max-height:calc(100% - 24px); }
+ .home-playbook-art { height:235px; padding-block:20px; }
+ .home-playbook-art.is-pair img { max-width:180px; max-height:calc(100% - 22px); }
  .home-playbook h3 { font-size:27px; }
  .home-playbook-tag { font-size:10px; padding-inline:10px; }
 }
