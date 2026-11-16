@@ -182,6 +182,8 @@
 .home-rating a:hover { text-decoration:underline; text-underline-offset:4px; }
 .home-rating a>span { color:#846a2a; }
 .home .reviews-section { padding-top:56px; background:transparent; }
+.post-reviews-cta { display:flex; justify-content:center; padding-bottom:72px; }
+.post-reviews-cta .button { min-height:54px; padding:16px 26px; border-radius:999px; font-size:14px; letter-spacing:.025em; gap:28px; }
 @media(max-width:760px) {
  .home main { margin-top:-73px; }
  .home .home-hero { min-height:560px; }
@@ -195,4 +197,6 @@
  .home-subjects:after { display:none; }
  .home-rating { min-height:64px; }
  .home .reviews-section { padding-top:42px; }
+ .post-reviews-cta { padding-bottom:56px; }
+ .post-reviews-cta .button { width:100%; max-width:360px; }
 }
