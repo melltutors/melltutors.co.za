@@ -182,8 +182,11 @@
 .home-rating a:hover { text-decoration:underline; text-underline-offset:4px; }
 .home-rating a>span { color:#846a2a; }
 .home .reviews-section { padding-top:56px; background:transparent; }
-.post-reviews-cta { display:flex; justify-content:center; padding-bottom:72px; }
-.post-reviews-cta .button { min-height:54px; padding:16px 26px; border-radius:999px; font-size:14px; letter-spacing:.025em; gap:28px; }
+.post-reviews-cta { padding:64px 0; background:#faf9f6; border-bottom:1px solid var(--line); }
+.post-reviews-cta>.container { display:flex; align-items:center; justify-content:space-between; gap:64px; }
+.post-reviews-cta h2 { font-size:clamp(38px,3.7vw,52px); }
+.post-reviews-cta p { max-width:58ch; margin-top:14px; color:var(--muted); font-size:14px; line-height:1.8; }
+.post-reviews-cta .button { flex-shrink:0; min-height:54px; padding:16px 26px; border-radius:999px; font-size:14px; letter-spacing:.025em; gap:28px; }
 @media(max-width:760px) {
  .home main { margin-top:-73px; }
  .home .home-hero { min-height:560px; }
@@ -197,6 +200,7 @@
  .home-subjects:after { display:none; }
  .home-rating { min-height:64px; }
  .home .reviews-section { padding-top:42px; }
- .post-reviews-cta { padding-bottom:56px; }
+ .post-reviews-cta { padding:48px 0; }
+ .post-reviews-cta>.container { align-items:flex-start; flex-direction:column; gap:28px; }
  .post-reviews-cta .button { width:100%; max-width:360px; }
 }
