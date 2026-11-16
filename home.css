@@ -152,10 +152,7 @@
 /* Approved homepage composition: image-led hero, module index and continuous review band. */
 @media(min-width:761px) {
  .home .site-header { height:76px; border-bottom:1px solid #ffffff66; }
- .home .header-inner { width:calc(100% - 108px); max-width:none; min-height:76px; display:grid; grid-template-columns:1fr auto 1fr; }
- .home .header-inner>.brand { justify-self:start; }
- .home .header-inner>.nav-contact { justify-self:end; }
- .home .hero-inner,.home-subject-grid { width:calc(100% - 108px); max-width:none; }
+ .home .header-inner { min-height:76px; }
  .home .site-header:not(.is-scrolled):not(.menu-open) #site-nav { height:76px; gap:0; }
  .home .site-header:not(.is-scrolled):not(.menu-open) #site-nav>a { display:flex; align-items:center; height:100%; padding-inline:19px; font-size:14px; letter-spacing:0; }
  .home .site-header:not(.is-scrolled):not(.menu-open) #site-nav>a[aria-current=page]:after { display:none; }
@@ -163,8 +160,8 @@
  .home .site-header:not(.is-scrolled):not(.menu-open) .nav-contact { min-height:0; padding:10px 17px; border-radius:999px; font-size:14px; letter-spacing:0; background:transparent; }
 }
 .home main { margin-top:-76px; }
-.home .home-hero { min-height:475px; }
-.home .hero-inner { min-height:475px; padding-top:124px; padding-bottom:59px; justify-content:center; }
+.home .home-hero { min-height:calc(100svh - 175px); }
+.home .hero-inner { min-height:calc(100svh - 175px); padding-top:124px; padding-bottom:59px; justify-content:center; }
 .home .home-hero h1 { max-width:760px; font-size:clamp(64px,6.8vw,82px); line-height:1.02; }
 .home .hero-lede { margin-top:14px; font-size:20px; line-height:1.5; color:#fff; }
 .home .home-hero .hero-actions { margin-top:22px; }
