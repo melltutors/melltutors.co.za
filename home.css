@@ -152,7 +152,10 @@
 /* Approved homepage composition: image-led hero, module index and continuous review band. */
 @media(min-width:761px) {
  .home .site-header { height:76px; border-bottom:1px solid #ffffff66; }
- .home .header-inner { min-height:76px; }
+ .home .header-inner { width:calc(100% - 108px); max-width:none; min-height:76px; display:grid; grid-template-columns:1fr auto 1fr; }
+ .home .header-inner>.brand { justify-self:start; }
+ .home .header-inner>.nav-contact { justify-self:end; }
+ .home .hero-inner,.home-subject-grid { width:calc(100% - 108px); max-width:none; }
  .home .site-header:not(.is-scrolled):not(.menu-open) #site-nav { height:76px; gap:0; }
  .home .site-header:not(.is-scrolled):not(.menu-open) #site-nav>a { display:flex; align-items:center; height:100%; padding-inline:19px; font-size:14px; letter-spacing:0; }
  .home .site-header:not(.is-scrolled):not(.menu-open) #site-nav>a[aria-current=page]:after { display:none; }
