@@ -670,3 +670,6 @@
  .offers .reviews-section,.offers .faq-section{padding-top:72px;padding-bottom:72px}
 }
 @media(max-width:360px){.offers .offer-card{padding:34px 24px}}
+
+/* Shared button shape. */
+.button{border-radius:999px}
