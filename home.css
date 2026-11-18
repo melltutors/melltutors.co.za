@@ -263,7 +263,7 @@
 }
 
 @media(min-width:761px) {
- .home #method { min-height:660px; padding:38px 0; background-position:right 92%; }
+ .home #method { min-height:580px; padding:38px 0; background-position:right 88%; }
  .home #method .method-grid>div,
  .home #method .method-steps { width:58%; max-width:660px; }
  .home #method h2 { font-size:56px; }
