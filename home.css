@@ -244,7 +244,7 @@
 .home #method .method-steps p { color:#edf1eb; }
 @media(max-width:760px) {
  .home #method {
-  padding:212px 0 calc(100vw * .95);
+  padding:332px 0 calc(100vw * .95);
   min-height:0;
   background-size:auto calc(100vw * 2.2);
   background-position:right bottom;
