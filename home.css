@@ -232,7 +232,7 @@
  inset:0;
  z-index:0;
  pointer-events:none;
- background:linear-gradient(90deg,rgba(9,29,26,.96) 0%,rgba(9,29,26,.85) 38%,rgba(9,29,26,.49) 51%,transparent 57%);
+ background:linear-gradient(90deg,rgba(9,29,26,.94) 0%,rgba(9,29,26,.82) 38%,rgba(9,29,26,.46) 51%,transparent 57%);
 }
 .home #method .method-grid { display:block; position:relative; z-index:1; }
 .home #method .method-grid>div,
@@ -250,7 +250,7 @@
   background-position:right bottom;
  }
  .home #method::before {
-  background:linear-gradient(180deg,#233e3a 0%,rgba(13,37,32,.86) 35%,rgba(13,37,32,.54) 49%,transparent 60%);
+  background:linear-gradient(180deg,#233e3a 0%,rgba(13,37,32,.83) 35%,rgba(13,37,32,.51) 49%,transparent 60%);
  }
  .home #method .method-grid>div,
  .home #method .method-steps { width:100%; max-width:none; }
@@ -275,7 +275,7 @@
 }
 
 
-.home #method .method-about-link { display:inline-flex; align-items:center; gap:9px; margin-top:4px; margin-left:36px; color:rgba(212,224,216,.3); font-family:var(--label); font-size:12px; line-height:1.6; text-decoration:none; }
+.home #method .method-about-link { display:inline-flex; align-items:center; gap:9px; margin-top:4px; margin-left:36px; color:rgba(212,224,216,.24); font-family:var(--label); font-size:12px; line-height:1.6; text-decoration:none; }
 .home #method .method-about-link:hover { color:#edf1eb; }
 .home #method .method-about-link:focus-visible { outline:2px solid currentColor; outline-offset:5px; }
 
