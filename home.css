@@ -244,10 +244,10 @@
 .home #method .method-steps p { color:#edf1eb; }
 @media(max-width:760px) {
  .home #method {
-  padding:72px 0 calc(100vw * .59);
+  padding:72px 0 calc(100vw * .95);
   min-height:0;
   background-size:auto calc(100vw * 2.2);
-  background-position:right calc(100% + 36vw);
+  background-position:right bottom;
  }
  .home #method::before {
   background:linear-gradient(180deg,#233e3a 0%,rgba(13,37,32,.83) 35%,rgba(13,37,32,.51) 49%,transparent 60%);
