@@ -216,3 +216,47 @@
  .home .hero-lede { margin-top:14px; font-size:14px; }
  .home .home-hero .hero-actions { margin-top:16px; }
 }
+
+/* Teaching photograph with room for the method on each screen. */
+.home #method {
+ position:relative;
+ isolation:isolate;
+ overflow:hidden;
+ min-height:820px;
+ padding:64px 0;
+ background:#233e3a url("images/how-we-teach-vera-mel.webp") right bottom / cover no-repeat;
+}
+.home #method::before {
+ content:"";
+ position:absolute;
+ inset:0;
+ z-index:-1;
+ background:linear-gradient(90deg,rgba(10,31,28,.48),rgba(10,31,28,.25) 35%,transparent 66%);
+}
+.home #method .method-grid { display:block; }
+.home #method .method-grid>div,
+.home #method .method-steps { width:43%; max-width:480px; }
+.home #method .method-intro { max-width:none; margin-top:20px; }
+.home #method .method-steps { margin-top:30px; }
+.home #method .method-steps li { grid-template-columns:24px 1fr; gap:12px; padding:20px 0; }
+.home #method .method-steps h3 { font-size:29px; }
+.home #method .method-steps p { color:#edf1eb; }
+@media(max-width:760px) {
+ .home #method {
+  padding:44px 0 calc(100vw * 1.03);
+  min-height:0;
+  background-size:auto calc(100vw * 2.2);
+  background-position:right bottom;
+ }
+ .home #method::before {
+  background:linear-gradient(180deg,#233e3a 0%,rgba(22,48,43,.38) 35%,rgba(22,48,43,.16) 60%,transparent 77%);
+ }
+ .home #method .method-grid>div,
+ .home #method .method-steps { width:100%; max-width:none; }
+ .home #method h2 { font-size:42px; }
+ .home #method .method-intro { font-size:13px; line-height:1.75; }
+ .home #method .method-steps { margin-top:24px; }
+ .home #method .method-steps li { padding:16px 0; }
+ .home #method .method-steps h3 { font-size:25px; }
+ .home #method .method-steps p { font-size:12px; line-height:1.75; margin-top:8px; }
+}
