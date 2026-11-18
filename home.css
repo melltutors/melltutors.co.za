@@ -244,7 +244,8 @@
 .home #method .method-steps p { color:#edf1eb; }
 @media(max-width:760px) {
  .home #method {
-  padding:332px 0 calc(100vw * .95);
+  --method-text-shift:clamp(40px,calc(100vw - 300px),90px);
+  padding:calc(332px + var(--method-text-shift)) 0 calc(100vw * .95 - var(--method-text-shift));
   min-height:0;
   background-size:auto calc(100vw * 2.2);
   background-position:right bottom;
