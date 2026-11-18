@@ -275,6 +275,8 @@
 }
 
 
-.home #method .method-about-link { display:inline-flex; align-items:center; gap:9px; margin-top:4px; color:#d4e0d8; font-family:var(--label); font-size:12px; line-height:1.6; text-decoration:underline; text-underline-offset:4px; text-decoration-color:#d4e0d866; }
-.home #method .method-about-link:hover { color:#fff; text-decoration-color:currentColor; }
+.home #method .method-about-link { display:inline-flex; align-items:center; gap:9px; margin-top:4px; margin-left:36px; color:rgba(212,224,216,.65); font-family:var(--label); font-size:12px; line-height:1.6; text-decoration:none; }
+.home #method .method-about-link:hover { color:#edf1eb; }
 .home #method .method-about-link:focus-visible { outline:2px solid currentColor; outline-offset:5px; }
+
+.home #method .method-about-label { text-decoration:underline; text-underline-offset:4px; text-decoration-color:currentColor; }
