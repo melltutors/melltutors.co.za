@@ -1,0 +1,63 @@
+/* Teaching photograph with room for the method on each screen. */
+#method.teaching-method {
+ position:relative;
+ isolation:isolate;
+ overflow:hidden;
+ min-height:820px;
+ padding:64px 0;
+ background:#233e3a url("images/how-we-teach-vera-mel.webp") right bottom / cover no-repeat;
+}
+#method.teaching-method::before {
+ content:"";
+ position:absolute;
+ inset:0;
+ z-index:0;
+ pointer-events:none;
+ background:linear-gradient(90deg,rgba(9,29,26,.94) 0%,rgba(9,29,26,.82) 38%,rgba(9,29,26,.46) 51%,transparent 57%);
+}
+#method.teaching-method .method-grid { display:block; position:relative; z-index:1; }
+#method.teaching-method .method-grid>div,
+#method.teaching-method .method-steps { width:43%; max-width:480px; }
+#method.teaching-method .method-intro { max-width:none; margin-top:20px; }
+#method.teaching-method .method-steps { margin-top:30px; }
+#method.teaching-method .method-steps li { grid-template-columns:24px 1fr; gap:12px; padding:20px 0; }
+#method.teaching-method .method-steps h3 { font-size:29px; }
+#method.teaching-method .method-steps p { color:#edf1eb; }
+@media(max-width:760px) {
+ #method.teaching-method {
+  padding:56px 0 calc(100vw * .95 - clamp(40px,calc(100vw - 300px),90px) + 12px);
+  min-height:0;
+  background-size:auto calc(100vw * 2.2);
+  background-position:right bottom;
+ }
+ #method.teaching-method::before {
+  background:linear-gradient(180deg,#233e3a 0%,rgba(13,37,32,.83) 35%,rgba(13,37,32,.51) 49%,transparent 60%);
+ }
+ #method.teaching-method .method-grid>div,
+ #method.teaching-method .method-steps { width:100%; max-width:none; }
+ #method.teaching-method h2 { font-size:46px; }
+ #method.teaching-method .method-intro { font-size:13px; line-height:1.75; }
+ #method.teaching-method .method-steps { margin-top:32px; }
+ #method.teaching-method .method-steps li { padding:16px 0; }
+ #method.teaching-method .method-steps h3 { font-size:25px; }
+ #method.teaching-method .method-steps p { font-size:12px; line-height:1.75; margin-top:8px; }
+}
+
+@media(min-width:761px) {
+ #method.teaching-method { min-height:550px; padding:54px 0 28px; background-position:right 84%; }
+ #method.teaching-method .method-grid>div,
+ #method.teaching-method .method-steps { width:58%; max-width:660px; }
+ #method.teaching-method h2 { font-size:62px; }
+ #method.teaching-method .method-intro { font-size:15px; line-height:1.7; margin-top:16px; }
+ #method.teaching-method .method-steps { margin-top:34px; }
+ #method.teaching-method .method-steps li { padding:16px 0; }
+ #method.teaching-method .method-steps h3 { font-size:31px; }
+ #method.teaching-method .method-steps p { font-size:14px; line-height:1.65; margin-top:8px; }
+}
+
+
+#method.teaching-method .method-about-link { display:inline-flex; align-items:center; gap:9px; margin-top:4px; margin-left:36px; color:rgba(212,224,216,.24); font-family:var(--label); font-size:12px; line-height:1.6; text-decoration:none; }
+#method.teaching-method .method-about-link:hover { color:#edf1eb; }
+#method.teaching-method .method-about-link:focus-visible { outline:2px solid currentColor; outline-offset:5px; }
+
+#method.teaching-method .method-about-label { text-decoration:underline; text-underline-offset:4px; text-decoration-color:currentColor; }
