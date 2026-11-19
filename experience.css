@@ -36,7 +36,7 @@
 .xp-hero {
  position: relative;
  isolation: isolate;
- height: clamp(390px, 35vw, 660px);
+ height: clamp(480px, 46.5vw, 830px);
  overflow: hidden;
  color: #fffbf3;
  background: #241c19;
@@ -49,7 +49,7 @@
 .xp-hero-photo img {
  height: 100%;
  object-fit: cover;
- object-position: 50% 10%;
+ object-position: 50% 17%;
 }
 .xp-hero::before {
  z-index: 1;
@@ -62,7 +62,7 @@
  z-index: 2;
  top: calc(var(--site-header-height) + (100% - var(--site-header-height) - 3.63em) * .43);
  left: 33.8%;
- font-size: clamp(57px, 6.25vw, 121px);
+ font-size: clamp(64px, 8.2vw, 145px);
  font-style: normal;
  line-height: .88;
  letter-spacing: -.05em;
@@ -109,7 +109,6 @@
 .xp-community h2 { font-size: clamp(38px, 4.05vw, 60px); }
 .xp-community-copy > p,
 .xp-section-intro > p,
-.xp-reviews-intro > p,
 .xp-playbook-copy > p,
 .xp-name,
 .xp-bio-copy p {
@@ -153,10 +152,9 @@
  text-shadow: 0 1px 8px #15100f;
 }
 .xp-reviews { padding-block: 6px; }
-.xp-reviews-intro h3 { font-size: clamp(37px, 4.3vw, 61px); }
-.xp-reviews-intro p { margin: 12px 0 25px; }
+.xp-reviews h3 { font-size: clamp(37px, 4.3vw, 61px); margin-bottom: clamp(20px, 2.8vw, 40px); }
 .xp-quote {
- padding-block: clamp(15px, 2vw, 29px);
+ padding-block: clamp(20px, 2.6vw, 38px);
  border-top: 1px solid #a2b9ad;
 }
 .xp-quote blockquote {
@@ -181,7 +179,7 @@
 .xp-section-intro > p { max-width: 49ch; }
 .xp-method-photos {
  display: grid;
- align-items: end;
+ align-items: center;
  grid-template-columns: 1.66fr 1fr;
  gap: 15px clamp(18px, 3.3vw, 48px);
 }
@@ -344,7 +342,10 @@
  .xp-belong-grid,
  .xp-community,
  .xp-mission { gap: clamp(28px, 4.5vw, 52px); }
- .xp-reviews-intro p { margin-bottom: 16px; }
+}
+
+@media (min-width: 701px) and (max-width: 900px) {
+ .xp-hero { height: clamp(410px, 54vw, 480px); }
 }
 
 @media (max-width: 700px) {

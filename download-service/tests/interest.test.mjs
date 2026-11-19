@@ -38,3 +38,26 @@ test('programme migration retains existing enquiry details with an empty program
  db.prepare("INSERT INTO interest_leads(id,name,email,phone,year,modules,times,first_campaign,latest_campaign,contact_consent,privacy_version,created_at,updated_at) VALUES('legacy','Existing enquiry','existing@example.com','+27000000000','First year','[]','[]','direct','direct',1,'interest-2027-v1',1,1)").run();
  db.exec(readFileSync(new URL('../migrations/0003_programme_interest.sql',import.meta.url),'utf8'));const row=db.prepare('SELECT * FROM interest_leads').get();assert.equal(row.name,'Existing enquiry');assert.equal(row.programme,'');assert.equal(row.email,'existing@example.com');assert.equal(row.request_count,1);
 });
+
+test('a 2027 Physics application records the subject and details for review',async()=>{
+ const e=env();
+ const application={moduleCodes:'PHYS1038A/1',studyMode:'Part-time',support:'Electric fields\nand circuits'};
+ const res=await send(e,{programme:'apex',modules:['Physics Major 1'],notes:'After 4 pm',application});
+ assert.equal(res.status,200);
+ assert.match((await res.json()).message,/Application received/);
+ const row=e.DB.raw.prepare('SELECT modules,notes,privacy_version FROM interest_leads').get();
+ assert.deepEqual(JSON.parse(row.modules),['Physics Major 1']);
+ assert.equal(row.notes,'Module codes: PHYS1038A/1\nStudy mode: Part-time\nSupport requested: Electric fields and circuits\nTimetable notes: After 4 pm');
+ assert.equal(row.privacy_version,'application-2027-v1');
+ const csv=await worker.fetch(new Request(base+'/api/admin/interest-2027.csv',{headers:{Authorization:'Bearer test-admin'}}),e);
+ assert.match(await csv.text(),/Physics Major 1[^\n]+Module codes: PHYS1038A\/1/);
+});
+
+test('new applications reject retired programmes and incomplete application details',async()=>{
+ const e=env();
+ const application={moduleCodes:'MATH1048A',studyMode:'Full-time',support:'Integration'};
+ for(const change of [{programme:'prime'},{programme:'focus'},{application:null},{application:{...application,support:''}},{application:{...application,studyMode:'Evening'}}]){
+  assert.equal((await send(e,{application,...change})).status,400);
+ }
+ assert.equal(count(e),0);
+});
