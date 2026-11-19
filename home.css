@@ -312,11 +312,19 @@
   gap: clamp(24px, 3vw, 48px);
  }
  .home .site-footer .footer-grid > :nth-child(n + 2) {
-  padding-left: clamp(40px, 5.8vw, 90px);
+  padding-left: clamp(58px, 8vw, 124px);
  }
  .home .site-footer .footer-bottom {
   margin-right: var(--footer-gutter);
   padding-right: max(0px, calc(var(--falcon-width) + 12px - 2.4vw - var(--footer-gutter)));
+ }
+}
+@media (min-width: 901px) and (max-width: 1023px) {
+ .home .site-footer .footer-grid > :nth-child(n + 2) { padding-left: 60px; }
+}
+@media (min-width: 1200px) {
+ .home .site-footer .footer-bottom {
+  padding-right: max(0px, calc(var(--falcon-width) + 2px - 2.4vw - var(--footer-gutter)));
  }
 }
 .home .site-footer a { color: inherit; }
