@@ -24,20 +24,25 @@
   fromHash();addEventListener('hashchange',fromHash);
  }
  document.querySelectorAll('.review-carousel').forEach(carousel=>{
-  const viewport=carousel.querySelector('.review-viewport'),track=carousel.querySelector('.reviews-track'),cards=[...track.children],hoverArea=carousel.closest('.reviews-section')||carousel;
+  const viewport=carousel.querySelector('.review-viewport'),track=carousel.querySelector('.reviews-track'),cards=[...track.children];
   if(cards.length<2)return;
   const motion=carousel.querySelector('.motion-toggle'),status=carousel.querySelector('[role="status"]'),reduced=matchMedia('(prefers-reduced-motion:reduce)');
   // Clones provide a seamless visual loop; original cards remain the keyboard/screen-reader content.
   const clone=card=>{const el=card.cloneNode(true);el.dataset.clone='true';el.setAttribute('aria-hidden','true');el.querySelectorAll('a,button').forEach(a=>a.tabIndex=-1);return el;};
   track.prepend(...cards.map(clone));track.append(...cards.map(clone));
-  let cycle=0,step=0,paused=false,focused=false,visible=false,dragging=false,inside=false,direction=1,last=0,frame=0,measureFrame=0,carry=0;
+  let cycle=0,step=0,paused=false,focused=false,visible=false,dragging=false,inside=false,direction=1,last=0,frame=0,measureFrame=0,carry=0,speed=0;
   const normalise=()=>{if(cycle){while(viewport.scrollLeft<cycle)viewport.scrollLeft+=cycle;while(viewport.scrollLeft>=2*cycle)viewport.scrollLeft-=cycle;}};
   const measure=()=>{const oldCycle=cycle,phase=oldCycle?((viewport.scrollLeft-oldCycle)%oldCycle+oldCycle)%oldCycle/oldCycle:0;step=cards[1].offsetLeft-cards[0].offsetLeft;cycle=step*cards.length;viewport.scrollLeft=cycle+phase*cycle;carry=0;track.style.transform='';};
-  const running=()=>visible&&!paused&&!focused&&!dragging&&!document.hidden&&!reduced.matches&&(!inside||direction!==0);
+  const active=()=>visible&&!paused&&!focused&&!dragging&&!document.hidden&&!reduced.matches;
+  const targetSpeed=()=>inside?direction*900:72;
+  const running=()=>active()&&(targetSpeed()!==0||Math.abs(speed)>.5);
   const animate=time=>{
-   if(!running()){frame=0;last=0;return;}
+   if(!running()){frame=0;last=0;speed=0;return;}
    const seconds=last?Math.min((time-last)/1000,.05):0;last=time;
-   carry+=(inside?direction*900:72)*seconds;
+   const target=targetSpeed(),ease=1-Math.exp(-seconds/(target===0?.12:.2));
+   speed+=(target-speed)*ease;
+   if(target===0&&Math.abs(speed)<.5)speed=0;
+   carry+=speed*seconds;
    const pixels=Math.trunc(carry);if(pixels){viewport.scrollLeft+=pixels;carry-=pixels;normalise();}
    track.style.transform=`translate3d(${-carry}px,0,0)`;
    frame=requestAnimationFrame(animate);
@@ -47,16 +52,16 @@
    motion.setAttribute('aria-pressed',String(paused||reduced.matches));
    motion.innerHTML=reduced.matches?'Motion off <span aria-hidden="true">Ⅱ</span>':paused?'Play movement <span aria-hidden="true">▷</span>':'Pause movement <span aria-hidden="true">Ⅱ</span>';
    motion.title=reduced.matches?'Your device prefers reduced motion. You can still use the arrows or swipe.':'';
-   if(running()){if(!frame){last=0;frame=requestAnimationFrame(animate);}}else{cancelAnimationFrame(frame);frame=0;last=0;carry=0;track.style.transform='';}
+   if(running()){if(!frame){last=0;frame=requestAnimationFrame(animate);}}else{cancelAnimationFrame(frame);frame=0;last=0;if(!active()){speed=0;carry=0;track.style.transform='';}}
   };
   const move=dir=>{paused=true;viewport.scrollLeft+=dir*step;normalise();if(status){const index=Math.round((viewport.scrollLeft-cycle)/step)%cards.length;status.textContent='Reviews starting with '+cards[index].querySelector('figcaption strong').textContent+'.';}sync();};
   carousel.querySelector('.review-prev').addEventListener('click',()=>move(-1));
   carousel.querySelector('.review-next').addEventListener('click',()=>move(1));
   motion.addEventListener('click',e=>{paused=!paused;if(e.detail>0){motion.blur();focused=false;}sync();});
   const setHover=e=>{if(e.pointerType!=='mouse')return;const r=viewport.getBoundingClientRect(),fraction=(e.clientX-r.left)/r.width,nextDirection=fraction<.22?-1:fraction>.78?1:0;if(inside&&direction===nextDirection)return;inside=true;direction=nextDirection;sync();};
-  hoverArea.addEventListener('pointerenter',setHover);
-  hoverArea.addEventListener('pointermove',setHover);
-  hoverArea.addEventListener('pointerleave',()=>{inside=false;direction=1;sync();});
+  viewport.addEventListener('pointerenter',setHover);
+  viewport.addEventListener('pointermove',setHover);
+  viewport.addEventListener('pointerleave',()=>{inside=false;direction=1;sync();});
   carousel.addEventListener('focusin',()=>{focused=true;sync();});
   carousel.addEventListener('focusout',()=>setTimeout(()=>{focused=carousel.contains(document.activeElement);sync();},0));
   viewport.addEventListener('pointerdown',()=>{dragging=true;sync();});
