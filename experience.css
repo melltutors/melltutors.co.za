@@ -258,9 +258,9 @@
 .xp-photos li { min-width: 0; scroll-snap-align: start; }
 .xp-photos:focus-visible { outline: 2px solid #258879; outline-offset: 5px; }
 .xp-photos img { aspect-ratio: 1.27; object-fit: cover; background: #e4dfd5; }
-.xp-photos img[src$="posters.webp"],
-.xp-photos img[src$="mell-cap.webp"] { object-fit: contain; }
-.xp-photos img[src$="cap-portrait.webp"] { object-position: center 29%; }
+.xp-photos img[src$="mell-tutors-archival-recruitment-posters.webp"],
+.xp-photos img[src$="black-mell-tutors-cap.webp"] { object-fit: contain; }
+.xp-photos img[src$="mell-tutors-cap-worn.webp"] { object-position: center 29%; }
 
 .xp-mission {
  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);

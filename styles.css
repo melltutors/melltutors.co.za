@@ -458,7 +458,7 @@
 .falcon-story:after { content:''; position:absolute; inset:0; z-index:-1; background:linear-gradient(90deg,#112524dd,transparent 80%); }
 .falcon-story .container>div { max-width:44%; }
 .falcon-story p { margin-top:24px; font-size:14px; color:#e0e9e2; }
-.careers-intro { background:linear-gradient(100deg,#faf9f6 5%,#f7f7f1e8 45%,#f7f7f189),url('images/hero_image4.webp') center 58%/cover; padding-block:88px; }
+.careers-intro { background:linear-gradient(100deg,#faf9f6 5%,#f7f7f1e8 45%,#f7f7f189),url('images/university-campus-building-at-sunset.webp') center 58%/cover; padding-block:88px; }
 .careers-heading { display:grid; grid-template-columns:1.3fr .7fr; gap:70px; align-items:center; }
 .careers-heading h1 { font-size:clamp(48px,5vw,70px); }
 .careers-heading p:not(.eyebrow) { margin-top:25px; font-size:15px; }

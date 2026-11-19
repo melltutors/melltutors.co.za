@@ -1,0 +1,173 @@
+{
+  "domain": "https://melltutors.co.za",
+  "brand": "MELL Tutors",
+  "pages": {
+    "index.html": {
+      "label": "Maths and Physics Tutoring",
+      "breadcrumb": "Home",
+      "image": {
+        "file": "images/mell-weekend-engineering-maths-class.webp",
+        "width": 1086,
+        "height": 1448,
+        "alt": "Tutor helping students work through maths in a classroom"
+      },
+      "description": "Premium in-person tutoring for Wits Engineering Mathematics 1 and 2 and Physics Major 1 in Braamfontein. Small-group and individual sessions, plus free Algebra and Calculus playbooks.",
+      "updated": "2026-11-19"
+    },
+    "study-guides.html": {
+      "label": "Playbooks",
+      "image": {
+        "file": "images/mell-math1049a-semester-2-algebra-playbook.webp",
+        "width": 640,
+        "height": 909,
+        "alt": "MATH1049A Algebra playbook"
+      },
+      "description": "Free MATH1048A Block 2 and MATH1049A Semester 2 Algebra and Calculus PDFs. MATH1049A Block 4 hardcopies: R400 each or R600 for both.",
+      "updated": "2026-11-19"
+    },
+    "math1048a.html": {
+      "label": "MATH1048A Free Playbooks",
+      "parent": "study-guides.html",
+      "image": {
+        "file": "images/mell-math1048a-block-2-algebra-playbook.webp",
+        "width": 640,
+        "height": 855,
+        "alt": "MATH1048A Algebra playbook"
+      },
+      "description": "Download free MATH1048A Block 2 Algebra and Calculus PDFs. Enter your email and phone number to get both playbooks.",
+      "updated": "2026-11-19"
+    },
+    "math1049a.html": {
+      "label": "MATH1049A Free Playbooks",
+      "parent": "study-guides.html",
+      "image": {
+        "file": "images/mell-math1049a-semester-2-algebra-playbook.webp",
+        "width": 640,
+        "height": 909,
+        "alt": "MATH1049A Algebra playbook"
+      },
+      "description": "Download free MATH1049A Semester 2 Algebra and Calculus PDFs. Enter your email and phone number to get both playbooks.",
+      "updated": "2026-11-19"
+    },
+    "math1049a-algebra.html": {
+      "label": "MATH1049A Advanced Algebra Playbook",
+      "parent": "study-guides.html",
+      "description": "The MELL MATH1049A Block 4 Algebra hardcopy uses worked solutions and additional practice questions. Order the Algebra Playbook for R400.",
+      "image": {
+        "file": "images/mell-math1049a-block-4-algebra-playbook.webp",
+        "width": 1414,
+        "height": 2000,
+        "alt": "MATH1049A Algebra Block 4 hardcopy"
+      },
+      "updated": "2026-11-19"
+    },
+    "math1049a-calculus.html": {
+      "label": "MATH1049A Advanced Calculus Playbook",
+      "parent": "study-guides.html",
+      "description": "The MELL MATH1049A Block 4 Calculus hardcopy uses worked solutions and additional practice questions. Order the Calculus Playbook for R400.",
+      "image": {
+        "file": "images/mell-math1049a-block-4-calculus-playbook.webp",
+        "width": 1414,
+        "height": 2000,
+        "alt": "MATH1049A Calculus Block 4 hardcopy"
+      },
+      "updated": "2026-11-19"
+    },
+    "math1049a-bundle.html": {
+      "label": "MATH1049A Advanced Playbook Bundle",
+      "parent": "study-guides.html",
+      "description": "Get both MELL MATH1049A Block 4 hardcopies, Algebra and Calculus, for R600. Both Playbooks include worked solutions and additional practice questions.",
+      "image": {
+        "file": "images/mell-math1049a-block-4-algebra-playbook.webp",
+        "width": 1414,
+        "height": 2000,
+        "alt": "MATH1049A Algebra Block 4 hardcopy"
+      },
+      "updated": "2026-11-19"
+    },
+    "offers.html": {
+      "label": "Offers",
+      "image": {
+        "file": "images/experience/mell-engineering-maths-tutoring-class.webp",
+        "width": 1250,
+        "height": 853,
+        "alt": "Students working on maths problems in a classroom."
+      },
+      "description": "Compare MELL Premium group tutoring and MELL Apex personal tutoring for Wits Engineering Mathematics 1 and 2 and Physics Major 1.",
+      "updated": "2026-11-19"
+    },
+    "about.html": {
+      "label": "Experience",
+      "image": {
+        "file": "images/experience/mell-community-on-campus-steps.webp",
+        "width": 1200,
+        "height": 800,
+        "alt": "Four friends laughing together on the campus steps."
+      },
+      "description": "See what it feels like to learn with MELL Tutors, from first-year Engineering Maths sessions and Playbooks to the people you meet along the way.",
+      "updated": "2026-11-19",
+      "excludeImages": [
+        "images/experience/mell-tutors-archival-recruitment-posters.webp"
+      ]
+    },
+    "founder.html": {
+      "label": "Wandile Nhlumayo",
+      "parent": "about.html",
+      "image": {
+        "file": "images/experience/wandile-nhlumayo-on-campus.webp",
+        "width": 880,
+        "height": 1173,
+        "alt": "Wandile Nhlumayo in a dark jacket outside a campus building."
+      },
+      "description": "Meet Wandile Nhlumayo, founder of MELL Tutors, Wits Aeronautical Engineering student and author of the MELL Algebra and Calculus Playbooks.",
+      "updated": "2026-11-19"
+    },
+    "careers.html": {
+      "label": "Careers",
+      "image": {
+        "file": "images/mell-engineering-maths-tutoring-video-thumbnail.webp",
+        "width": 438,
+        "height": 246,
+        "alt": "Wandile Nhlumayo in front of a chalkboard during a MELL Maths tutoring session."
+      },
+      "description": "See how we work and teach at MELL Tutors. Tell us how you’d like to contribute and what you’re proud of.",
+      "updated": "2026-11-19"
+    },
+    "interest.html": {
+      "label": "Apply",
+      "description": "Apply for MELL tutoring in 2027. Tell us your subjects, module codes and timetable preferences for face-to-face tutoring in Braamfontein.",
+      "updated": "2026-11-19"
+    },
+    "maths-tutoring-in-action.html": {
+      "label": "Maths Tutoring in Action",
+      "parent": "about.html",
+      "description": "Watch a short classroom clip of MELL founder Wandile Nhlumayo explaining maths at a chalkboard.",
+      "image": {
+        "file": "images/mell-engineering-maths-tutoring-video-thumbnail.webp",
+        "width": 438,
+        "height": 246,
+        "alt": "Wandile Nhlumayo at a chalkboard during a MELL Maths tutoring session."
+      },
+      "video": {
+        "content": "media/mell-engineering-maths-tutoring-session.mp4",
+        "uploadDate": "2026-11-19T18:04:38+02:00",
+        "durationSeconds": 29
+      },
+      "updated": "2026-11-19"
+    },
+    "privacy.html": {
+      "label": "Privacy Notice",
+      "index": false,
+      "description": "How MELL Tutors collects, uses and protects student, parent and tutor-applicant information. Contact details and your privacy rights."
+    },
+    "login.html": {
+      "label": "Student Login",
+      "index": false
+    },
+    "interest-2027.html": {
+      "label": "Apply",
+      "alias": "interest.html",
+      "index": false
+    }
+  }
+}

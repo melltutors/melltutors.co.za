@@ -1,0 +1,22 @@
+.tutoring-video {
+ width: min(900px, calc(100% - 48px));
+ padding-block: clamp(42px, 6.2vw, 88px);
+}
+.tutoring-video h1 {
+ margin: 16px 0 24px;
+ font-size: clamp(39px, 5.4vw, 76px);
+}
+.tutoring-video video {
+ display: block;
+ width: 100%;
+ height: auto;
+ background: #161a17;
+ border-radius: 12px;
+}
+.tutoring-video figcaption {
+ margin-top: 12px;
+ color: var(--muted);
+ font-size: 14px;
+}
+.tutoring-video > p { max-width: 59ch; margin: 22px 0 15px; }
+.tutoring-video-back { font-size: 13px; }
