@@ -24,7 +24,8 @@
 .community-grid>img { width:100%; height:390px; object-fit:cover; object-position:48% center; border-radius:14px; }
 .community-grid h2 { max-width:14ch; }
 .community-grid p { max-width:42ch; margin-top:26px; font-size:14px; line-height:1.9; color:var(--muted); }
-.home-playbooks { background:#faf9f6; }
+.home-playbooks { background:#faf9f6; padding-block:144px; }
+@media(max-width:760px) { .home-playbooks { padding-block:96px; } }
 .home-playbook-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:28px; }
 .home-playbook { min-width:0; display:flex; flex-direction:column; align-items:center; text-align:center; text-decoration:none; }
 .home-playbook-tag { align-self:center; padding:4px 12px; border-radius:3px; background:#e9e9e2; color:var(--ink); font:500 14px/1.5 var(--label); }
