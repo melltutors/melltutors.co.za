@@ -170,25 +170,25 @@
 .xp-quote figcaption span { color: var(--xp-copy); }
 
 .xp-method { padding-block: var(--xp-space); }
-.xp-section-intro {
+.xp-section-intro,
+.xp-method-photos {
  display: grid;
- grid-template-columns: 1fr minmax(0, .8fr);
+ grid-template-columns: minmax(0, 1.66fr) minmax(0, 1fr);
+ column-gap: clamp(18px, 3.3vw, 48px);
+}
+.xp-section-intro {
  align-items: end;
- gap: 24px clamp(36px, 7.2vw, 105px);
+ row-gap: 24px;
  margin-bottom: clamp(23px, 3.4vw, 48px);
 }
 .xp-section-intro .eyebrow { margin-bottom: 9px; }
 .xp-section-intro .eyebrow + h2 { margin-top: 0; }
 .xp-section-intro > p { max-width: 49ch; }
-.xp-method-photos {
- display: grid;
- align-items: center;
- grid-template-columns: 1.66fr 1fr;
- gap: 15px clamp(18px, 3.3vw, 48px);
-}
+.xp-method-photos { align-items: start; }
 .xp-method-photos img { object-fit: cover; }
 .xp-method-photos figure:first-child img { aspect-ratio: 1.56; object-position: center 69%; }
-.xp-method-photos figure:last-child img { aspect-ratio: 1.28; object-position: center; }
+/* The 1.66:1 columns give both photos the same height with these ratios. */
+.xp-method-photos figure:last-child img { aspect-ratio: .94; object-position: 43% center; }
 .xp-method figcaption,
 .xp-photos figcaption {
  margin-top: 10px;
@@ -357,10 +357,8 @@
   aspect-ratio: auto;
   padding-top: calc(var(--site-header-height) + 62.5vw);
  }
- .xp-hero-photo { top: var(--site-header-height); }
- .xp-hero-photo img { object-position: center 33%; }
  .xp-hero::before {
-  background: linear-gradient(180deg, #191512 0, #191512 17%, #19151200 35%, transparent 78%, #191411a3),
+  background: linear-gradient(180deg, #191512bd, #19151244 22%, transparent 42%, transparent 78%, #191411a3),
    radial-gradient(ellipse 27% 64% at 51% 59%, #2119157a, transparent);
  }
  .xp-hero-title {
@@ -372,6 +370,7 @@
  .xp-community,
  .xp-belong-grid,
  .xp-section-intro,
+ .xp-method-photos,
  .xp-mission,
  .xp-bio { grid-template-columns: minmax(0, 1fr); }
  .xp-community h2 { font-size: clamp(35px, 7vw, 51px); }
@@ -379,7 +378,10 @@
  .xp-mission-poster,
  .xp-bio > img { max-width: 500px; }
  .xp-poster h2 { font-size: clamp(40px, 10.6vw, 69px); }
- .xp-section-intro { gap: 13px; }
+ .xp-section-intro { row-gap: 13px; }
+ .xp-method-photos { row-gap: 20px; }
+ .xp-method-photos figure:last-child { width: 78%; justify-self: end; }
+ .xp-method-photos figure:last-child img { aspect-ratio: 1.5; }
  .xp-playbook { grid-template-columns: minmax(0, 1fr); }
  .xp-mission-copy .eyebrow + h2 { font-size: clamp(83px, 18vw, 116px); }
  .xp-mission-poster > span { font-size: clamp(24px, 5.45vw, 40px); }
@@ -388,9 +390,6 @@
 }
 
 @media (max-width: 420px) {
- .xp-method-photos { grid-template-columns: minmax(0, 1fr); gap: 17px; }
- .xp-method-photos figure:last-child { width: 78%; margin-left: auto; }
- .xp-method-photos figure:last-child img { aspect-ratio: 1.5; }
  .xp-playbook-copy .xp-poll { align-items: start; flex-direction: column; gap: 6px; }
 }
 
