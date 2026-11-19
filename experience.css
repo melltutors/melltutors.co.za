@@ -69,15 +69,10 @@
  line-height: .88;
  letter-spacing: -.05em;
  text-shadow: 0 2px 24px #241c19a6;
- animation: xp-title-in .65s ease-out both;
 }
 .xp-hero-title > * { display: block; }
 .xp-hero-title em { font-weight: inherit; }
 .xp-hero-title strong { font-family: var(--sans); font-size: .93em; font-weight: 700; letter-spacing: -.057em; }
-@keyframes xp-title-in {
- from { opacity: 0; transform: translateY(9px); }
- to { opacity: 1; transform: translateY(0); }
-}
 .xp-hero-signature {
  position: absolute;
  z-index: 2;
@@ -417,7 +412,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
- .xp-hero-title { animation: none; }
  .xp-link svg,
  .xp-founder-link svg { transition: none; }
 }

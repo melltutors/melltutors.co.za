@@ -11,6 +11,40 @@
  new ResizeObserver(()=>document.documentElement.style.setProperty('--header-h',header.offsetHeight+'px')).observe(header);
  matchMedia('(min-width:901px)').addEventListener('change',()=>setMenu(false));
  document.querySelector('#year').textContent=new Date().getFullYear();
+ const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+ if (!reducedMotion.matches && 'IntersectionObserver' in window && Element.prototype.animate) {
+  const pieces = document.querySelectorAll('[data-reveal]');
+  const activeReveals = new Set();
+  const observer = new IntersectionObserver(entries => {
+   let order = 0;
+   for (const { target, isIntersecting } of entries) {
+    if (!isIntersecting) continue;
+    observer.unobserve(target);
+    if (reducedMotion.matches || target.contains(document.activeElement)) continue;
+    const reveal = target.animate(
+     [{ translate: '0 22px', opacity: .25 }, { translate: '0 0', opacity: 1 }],
+     { duration: 440, delay: Math.min(order++ * 45, 135), easing: 'cubic-bezier(.22, 1, .36, 1)', fill: 'backwards' }
+    );
+    const finish = () => reveal.finish();
+    const cleanup = () => {
+     activeReveals.delete(reveal);
+     target.removeEventListener('focusin', finish);
+    };
+    activeReveals.add(reveal);
+    target.addEventListener('focusin', finish, { once: true });
+    reveal.finished.then(cleanup, cleanup);
+   }
+  }, { rootMargin: '0px 0px -16px' });
+  for (const piece of pieces) {
+   if (piece.getBoundingClientRect().top >= innerHeight) observer.observe(piece);
+  }
+  reducedMotion.addEventListener('change', event => {
+   if (event.matches) {
+    observer.disconnect();
+    for (const reveal of activeReveals) reveal.cancel();
+   }
+  });
+ }
  const filters=[...document.querySelectorAll('[data-filter]')];
  if(filters.length){
   const applyFilter=choice=>{

@@ -453,16 +453,6 @@
 .story-grid p:not(.eyebrow) { margin-top:24px; font-size:14px; }
 .story-section p:not(.eyebrow) { color:var(--muted); }
 .story-grid .quiet-list { margin-top:26px; }
-.falcon-story { position:relative; isolation:isolate; min-height:360px; display:flex; align-items:center; background:#102322; color:#fff; overflow:hidden; padding:65px 0; }
-.falcon-story img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:70% center; z-index:-2; }
-.falcon-story:after { content:''; position:absolute; inset:0; z-index:-1; background:linear-gradient(90deg,#112524dd,transparent 80%); }
-.falcon-story .container>div { max-width:44%; }
-.falcon-story p { margin-top:24px; font-size:14px; color:#e0e9e2; }
-.careers-intro { background:linear-gradient(100deg,#faf9f6 5%,#f7f7f1e8 45%,#f7f7f189),url('images/university-campus-building-at-sunset.webp') center 58%/cover; padding-block:88px; }
-.careers-heading { display:grid; grid-template-columns:1.3fr .7fr; gap:70px; align-items:center; }
-.careers-heading h1 { font-size:clamp(48px,5vw,70px); }
-.careers-heading p:not(.eyebrow) { margin-top:25px; font-size:15px; }
-.careers-heading .text-link { margin-top:30px; font-size:14px; }
 .career-facts { background:#ffffffaa; border:1px solid #ffffffeb; border-radius:10px; padding:26px 32px; backdrop-filter:blur(16px); }
 .career-facts p:not(.eyebrow) { font-size:12px; padding:12px 0; margin:0; }
 .career-facts strong { display:block; font-family:var(--serif); font-size:28px; font-weight:400; line-height:1.4; }
@@ -495,7 +485,6 @@
  .products-grid { gap:40px; }
  .upcoming-grid article { padding:26px; }
  .upcoming-grid h3 { font-size:26px; }
- .careers-heading { gap:40px; }
  .footer-grid { gap:32px; }
  .footer-contact>a { font-size:12px; }
 }
@@ -572,16 +561,6 @@
  .founder-copy { margin-top:35px; }
  .founder-portrait { max-width:350px; max-height:420px; }
  .story-grid h2 { font-size:38px; }
- .falcon-story { min-height:420px; padding-block:44px; align-items:start; }
- .falcon-story img { object-position:right center; }
- .falcon-story:after { background:linear-gradient(90deg,#112524eb,#11252490 60%,transparent); }
- .falcon-story .container>div { max-width:65%; }
- .falcon-story h2 { font-size:38px; }
- .falcon-story p { font-size:13px; }
- .careers-intro { padding-block:50px; }
- .careers-heading { grid-template-columns:1fr; gap:35px; }
- .careers-heading h1 { font-size:51px; }
- .careers-heading p:not(.eyebrow) { font-size:14px; }
  .career-facts { padding:20px 25px; display:grid; grid-template-columns:1fr; }
  .career-facts p:not(.eyebrow) { font-size:12px; }
  .career-facts strong { display:inline; font-family:var(--label); font-size:16px; margin-right:6px; }
@@ -615,7 +594,6 @@
  .product-info h3 { font-size:31px; }
  .offer-card { padding:23px; }
  .offer-price { font-size:34px; }
- .falcon-story .container>div { max-width:78%; }
 }
 @media(min-width:761px) and (max-height:660px) {
  .hero-inner { padding-top:clamp(104px,calc(100svh - 430px),170px); padding-bottom:32px; }

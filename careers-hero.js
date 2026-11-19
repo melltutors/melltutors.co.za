@@ -6,14 +6,16 @@
 
  const motion = matchMedia("(prefers-reduced-motion: reduce)");
  let visible = false;
- let wantsPlayback = !motion.matches && !navigator.connection?.saveData;
+ let pageLoaded = document.readyState === "complete";
+ const connection = navigator.connection;
+ let wantsPlayback = !motion.matches && !connection?.saveData && !/^[23]g$/.test(connection?.effectiveType || "");
 
  function updateControl() {
   control.textContent = video.paused ? "Play video" : "Pause video";
  }
 
  function updatePlayback() {
-  if (!visible || !wantsPlayback) {
+  if (!pageLoaded || !visible || !wantsPlayback) {
    video.pause();
    updateControl();
    return;
@@ -38,6 +40,7 @@
   control.hidden = true;
  });
  control.addEventListener("click", () => {
+  pageLoaded = true;
   wantsPlayback = video.paused;
   updatePlayback();
  });
@@ -47,6 +50,11 @@
    updatePlayback();
   }
  });
+
+ addEventListener("load", () => {
+  pageLoaded = true;
+  updatePlayback();
+ }, { once: true });
 
  control.hidden = false;
  if ("IntersectionObserver" in window) {
