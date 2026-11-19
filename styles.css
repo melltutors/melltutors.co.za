@@ -21,13 +21,6 @@
  box-shadow: 0 1px 0 #a6b3a528, 0 8px 30px #17241b08;
 }
 .home main { margin-top: -89px; }
-.home .site-header:not(.is-scrolled):not(.menu-open) { color: white; }
-.home .site-header:not(.is-scrolled):not(.menu-open) .brand img { filter: none; }
-.home .site-header:not(.is-scrolled):not(.menu-open) #site-nav>a { color: white; }
-.home .site-header:not(.is-scrolled):not(.menu-open) #site-nav>a:after { background: white; }
-.home .site-header:not(.is-scrolled):not(.menu-open) .nav-contact { color: white; border-color: #ffffff8c; }
-.home .site-header:not(.is-scrolled):not(.menu-open) .nav-contact:hover { background: #ffffff19; }
-.home .site-header:not(.is-scrolled):not(.menu-open) .menu-toggle { color: white; }
 .header-inner { position: relative; }
 .menu-icon { display: flex; width: 20px; flex-direction: column; gap: 5px; }
 .menu-icon i { display: block; height: 1px; width: 20px; background: currentColor; }

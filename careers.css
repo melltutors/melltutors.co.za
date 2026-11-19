@@ -1,12 +1,5 @@
 /* Green Chalkboard is the maths recruitment campaign; italic serif is MELL-wide. */
 .careers main { margin-top:calc(-1 * var(--header-h)); }
-.careers .site-header:not(.is-scrolled):not(.menu-open) { color:#fff; }
-.careers .site-header:not(.is-scrolled):not(.menu-open) .brand img { filter:none; }
-.careers .site-header:not(.is-scrolled):not(.menu-open) #site-nav>a { color:#fff; }
-.careers .site-header:not(.is-scrolled):not(.menu-open) #site-nav>a:after { background:#fff; }
-.careers .site-header:not(.is-scrolled):not(.menu-open) .nav-contact { color:#fff; border-color:#ffffff8c; }
-.careers .site-header:not(.is-scrolled):not(.menu-open) .nav-contact:hover { background:#ffffff19; }
-.careers .site-header:not(.is-scrolled):not(.menu-open) .menu-toggle { color:#fff; }
 .careers-campaign { position:relative; isolation:isolate; overflow:hidden; background:#20372e; color:#fff; }
 .campaign-hero-photo { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 20%; z-index:-2; }
 .careers-campaign::after { content:''; position:absolute; inset:0; z-index:-1; background:linear-gradient(90deg,#071610a3,transparent 70%),linear-gradient(0deg,#08130fd9,transparent 47%); }

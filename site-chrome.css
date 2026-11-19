@@ -1,0 +1,149 @@
+/* Shared navigation and footer for the public MELL Tutors pages. */
+:root { --site-header-height:70px; }
+
+.site-header {
+ --nav-accent:#09251f;
+ --nav-outline:#09251faa;
+ --nav-divider:#153e3b59;
+ color:var(--ink);
+ background-color:var(--paper);
+ border-bottom-color:#daddd5;
+}
+.site-header .header-inner { min-height:var(--site-header-height); }
+.site-header--over-hero:not(.is-scrolled,.menu-open) {
+ --nav-accent:#b6eee2;
+ --nav-outline:#ffffff8c;
+ --nav-divider:#ffffff66;
+ color:#fff;
+ background-color:transparent;
+ border-bottom-color:transparent;
+}
+.site-header--over-hero:not(.is-scrolled,.menu-open) .brand img { filter:none; }
+.site-header .menu-toggle { color:inherit; }
+.site-header .nav-contact {
+ color:inherit;
+ background:transparent;
+ border-color:var(--nav-outline);
+}
+.site-header .nav-contact:is(:hover,:focus-visible) {
+ color:var(--nav-accent);
+ background:transparent;
+ border-color:currentColor;
+}
+.site-header #site-nav > a:is([aria-current],:hover,:focus-visible) {
+ color:var(--nav-accent);
+}
+@supports (backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px)) {
+ .site-header.is-scrolled:not(.menu-open) {
+  background-color:rgba(250,249,246,.56);
+  border-bottom-color:#ffffff52;
+ }
+}
+@media(max-width:760px) {
+ :root { --site-header-height:67px; }
+}
+@media(min-width:761px) {
+ .site-header { height:var(--site-header-height); }
+ .site-header--over-hero:not(.is-scrolled,.menu-open) { border-bottom-color:#ffffff66; }
+ .site-header .nav-contact {
+  min-height:0;
+  padding:10px 17px;
+  border-radius:999px;
+  font-size:14px;
+  letter-spacing:0;
+ }
+}
+@media(min-width:901px) {
+ .site-header #site-nav { height:var(--site-header-height); gap:0; }
+ .site-header #site-nav > a {
+  display:flex;
+  align-items:center;
+  height:100%;
+  padding-inline:19px;
+  font-size:14px;
+  letter-spacing:0;
+ }
+ .site-header #site-nav > a + a::before {
+  content:"";
+  position:absolute;
+  left:0;
+  top:calc(50% - 12px);
+  height:24px;
+  border-left:1px solid var(--nav-divider);
+ }
+ .site-header #site-nav > a:is([aria-current],:hover,:focus-visible)::after {
+  content:"";
+  position:absolute;
+  inset-inline:19px;
+  bottom:17px;
+  height:1px;
+  background:currentColor;
+ }
+}
+
+/* Footer layout with room for the falcon. */
+.site-footer {
+ --footer-gutter: max(32px, calc((100% - 1140px) / 2));
+ --falcon-width: clamp(155px, 21vw, 330px);
+ position: relative;
+ background: linear-gradient(90deg, #072224, #0a3234);
+ color: #f6f7f1;
+ border-top-color: #0e3739;
+}
+.site-footer > .container {
+ width: auto;
+ margin-inline: var(--footer-gutter) max(var(--footer-gutter), calc(var(--falcon-width) + 32px));
+}
+@media (min-width: 901px) {
+ .site-footer .footer-grid {
+  --footer-column-gap: clamp(24px, 3vw, 48px);
+  --footer-column-width: calc((100% - 2 * var(--footer-column-gap)) / 3);
+  --footer-address-inset: clamp(58px, 8vw, 124px);
+  grid-template-columns:
+   var(--footer-column-width)
+   minmax(max-content, calc(var(--footer-column-width) + var(--footer-address-inset) + 12px))
+   minmax(max-content, 1fr);
+  gap: var(--footer-column-gap);
+ }
+ .site-footer .footer-grid > :nth-child(2) {
+  padding-left: var(--footer-address-inset);
+ }
+ .site-footer .footer-bottom {
+  margin-right: var(--footer-gutter);
+  padding-right: max(0px, calc(var(--falcon-width) + 12px - 2.4vw - var(--footer-gutter)));
+ }
+}
+@media (min-width: 901px) and (max-width: 1023px) {
+ .site-footer .footer-grid { --footer-address-inset: 60px; }
+}
+@media (min-width: 1200px) {
+ .site-footer .footer-bottom {
+  padding-right: max(0px, calc(var(--falcon-width) + 2px - 2.4vw - var(--footer-gutter)));
+ }
+}
+.site-footer a { color: inherit; }
+.site-footer a:hover { color: #b6ddcf; }
+.site-footer address, .site-footer .footer-bottom { color: #c2d7d3; }
+.site-footer .footer-bottom { border-color: #42615e; }
+.site-footer .footer-falcon {
+ position: absolute;
+ right: 0;
+ bottom: 0;
+ display: block;
+ width: var(--falcon-width);
+ height: auto;
+}
+
+@media (max-width: 760px) {
+ .site-footer {
+  --footer-gutter: 20px;
+  --falcon-width: clamp(96px, 29vw, 154px);
+ }
+ .site-footer > .container { margin-inline: var(--footer-gutter); }
+ .site-footer .footer-grid { gap: 30px 25px; }
+ .site-footer .footer-bottom {
+  min-height: calc(var(--falcon-width) * 1.1);
+  padding-right: var(--falcon-width);
+  justify-content: center;
+ }
+}
