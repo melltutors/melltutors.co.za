@@ -198,6 +198,7 @@
 .home-rating a:hover { text-decoration:underline; text-underline-offset:4px; }
 .home-rating a>span { color:#846a2a; }
 .home .reviews-section { padding-top:56px; background:transparent; }
+.home .reviews-track { will-change:transform; }
 .post-reviews-cta { padding:64px 0; background:#faf9f6; border-bottom:1px solid var(--line); }
 .post-reviews-cta>.container { display:flex; align-items:center; justify-content:space-between; gap:64px; }
 .post-reviews-cta h2 { font-size:clamp(38px,3.7vw,52px); }
