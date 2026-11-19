@@ -101,7 +101,7 @@
  --faq-margin-line:max(calc(var(--faq-gutter) - 18px), calc((100% - 1140px) / 2 - 18px));
  --faq-maroon-rule:#7d304a73;
  --faq-teal-rule:#17695e36;
- padding-block:calc(2 * var(--faq-rule-step)) var(--faq-rule-step);
+ padding-block:calc(2 * var(--faq-rule-step));
  background:
   linear-gradient(var(--faq-maroon-rule), var(--faq-maroon-rule))
    left var(--faq-margin-line) top / 1px 100% no-repeat,
@@ -114,8 +114,7 @@
 }
 .home .faq-grid {
  width:min(1140px,calc(100% - 2 * var(--faq-gutter)));
- grid-template-columns:minmax(0,1fr) minmax(0,2fr);
- gap:clamp(20px,3vw,46px);
+ grid-template-columns:minmax(0,.85fr) minmax(320px,1.15fr);
 }
 .home .faq-grid h2 {
  font-size:clamp(62px,10vw,108px);
@@ -151,7 +150,7 @@
   --faq-rule-step:44px;
   --faq-gutter:clamp(22px,6vw,34px);
   --faq-margin-line:max(12px, calc(var(--faq-gutter) - 12px));
-  padding-block:var(--faq-rule-step);
+  padding-block-start:var(--faq-rule-step);
  }
  .home .faq-grid { grid-template-columns:minmax(0,1fr); gap:0; }
  .home .faq-grid h2 { font-size:clamp(56px,12vw,70px); }
