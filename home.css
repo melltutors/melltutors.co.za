@@ -174,7 +174,7 @@
  margin:0;
  font-family:var(--serif);
  font-style:italic;
- text-shadow:0 1px 5px #07110dcc,0 1px 2px #07110d;
+ text-shadow:0 1px 2px #07110d59;
 }
 .home .home-hero .hero-actions { margin-top:22px; }
 .home .home-hero .hero-actions .button { padding:14px 27px; border-radius:999px; background:#faf9f6; color:#16372e; font-size:15px; letter-spacing:0; }
@@ -189,6 +189,9 @@
 .subject-short { display:none; }
 .home-subject-grid .subject-arrow { position:absolute; right:23px; bottom:22px; color:#346657; }
 .home-subjects:after { content:""; display:block; border-bottom:1px solid #c6cec4; }
+@media (min-width: 761px) and (max-width: 1100px) {
+ .home-subject-grid h2 { font-size:clamp(26px, 2.65vw, 31px); }
+}
 .home-reviews-band { background:linear-gradient(130deg,#f5f3ec,#e5eae2 57%,#f3f1e9); }
 .home-rating { min-height:55px; display:grid; place-items:center; }
 .home-rating a { display:inline-flex; align-items:center; gap:8px; color:var(--ink); font-family:var(--label); font-size:13px; text-decoration:none; }
