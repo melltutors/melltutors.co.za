@@ -114,10 +114,10 @@
       "label": "Wandile Nhlumayo",
       "parent": "about.html",
       "image": {
-        "file": "images/experience/wandile-nhlumayo-on-campus.webp",
-        "width": 880,
-        "height": 1173,
-        "alt": "Wandile Nhlumayo in a dark jacket outside a campus building."
+        "file": "images/founder-wandile.webp",
+        "width": 800,
+        "height": 1000,
+        "alt": "Portrait of Wandile Nhlumayo."
       },
       "description": "Meet Wandile Nhlumayo, founder of MELL Tutors, Wits Aeronautical Engineering student and author of the MELL Algebra and Calculus Playbooks.",
       "updated": "2026-11-19"
