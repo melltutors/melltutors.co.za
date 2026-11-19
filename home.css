@@ -39,8 +39,8 @@
 .home-playbook-art img { width:auto; height:auto; max-width:78%; max-height:100%; object-fit:contain; filter:drop-shadow(5px 9px 7px #15251b26); transition:transform .25s ease; }
 .home-playbook-art.is-pair img { width:60%; max-width:130px; max-height:190px; transform:rotate(-7deg); }
 .home-playbook-art.is-pair img+img { margin-left:-27%; transform:rotate(7deg) translateY(7px); }
-.home-playbook-art.is-tutoring { width:220px; height:310px; margin-bottom:6px; padding:0; overflow:hidden; border-radius:3px; }
-.home-playbook-art.is-tutoring img { width:100%; height:100%; max-width:none; max-height:none; object-fit:cover; object-position:center; transform:scale(1.25); filter:none; }
+.home-playbook-art.is-tutoring { width:232px; height:310px; margin-bottom:6px; padding:0; overflow:hidden; border-radius:3px; }
+.home-playbook-art.is-tutoring img { width:100%; height:100%; max-width:none; max-height:none; object-fit:cover; object-position:center; transform:translateY(-14px) scale(1.25); filter:none; }
 .home-playbook>.button { width:100%; margin-top:auto; gap:18px; }
 @media(min-width:761px) { .home-playbook>.button { width:94%; align-self:center; } }
 .home-playbook:focus-visible { border-radius:4px; outline-offset:9px; }
@@ -67,7 +67,7 @@
  .home-playbook-course { font-size:14px; letter-spacing:0; }
  .home-playbook-scope { font-size:13px; }
  .home-playbook-art { height:320px; padding:22px 4px; }
- .home-playbook-art.is-tutoring { width:239px; height:336px; margin-bottom:14px; }
+ .home-playbook-art.is-tutoring { width:252px; height:336px; margin-bottom:14px; }
  .home-playbook-art.is-pair { margin-bottom:12px; }
  .home-playbook-art.is-pair img { width:72%; max-width:240px; max-height:calc(100% - 24px); }
  .home-playbook-art.is-pair img+img { margin-left:-32%; }
@@ -77,7 +77,7 @@
 @media(max-width:360px) {
  .home-playbook-grid { column-gap:18px; }
  .home-playbook-art { height:290px; padding-block:20px; }
- .home-playbook-art.is-tutoring { width:217px; height:306px; }
+ .home-playbook-art.is-tutoring { width:229px; height:306px; }
  .home-playbook-art.is-pair img { max-width:215px; max-height:calc(100% - 22px); }
  .home-playbook h3 { font-size:33px; }
  .home-playbook:not(.tutoring-card) h3 { min-height:95px; }
