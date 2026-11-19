@@ -312,11 +312,11 @@
   gap: clamp(24px, 3vw, 48px);
  }
  .home .site-footer .footer-grid > :nth-child(n + 2) {
-  padding-left: clamp(24px, 3.5vw, 54px);
+  padding-left: clamp(40px, 5.8vw, 90px);
  }
  .home .site-footer .footer-bottom {
   margin-right: var(--footer-gutter);
-  padding-right: max(0px, calc(var(--falcon-width) + 12px - var(--footer-gutter)));
+  padding-right: max(0px, calc(var(--falcon-width) + 12px - 2.4vw - var(--footer-gutter)));
  }
 }
 .home .site-footer a { color: inherit; }
