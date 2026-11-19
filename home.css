@@ -129,6 +129,15 @@
  padding:0 24px 2px 0;
  font:400 clamp(17px,2.3vw,22px)/1.15 var(--serif);
 }
+.home .faq-grid .faqs summary::after {
+ content:"";
+ position:absolute;
+ inset-inline:0 2px;
+ bottom:0;
+ height:1px;
+ background:#000;
+ pointer-events:none;
+}
 .home .faq-grid .faqs summary > span {
  position:absolute;
  right:2px;
