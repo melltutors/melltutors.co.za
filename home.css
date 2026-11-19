@@ -250,16 +250,17 @@
 }
 
 /* Approved homepage composition: image-led hero, module index and continuous review band. */
+.home { --home-header-height:70px; }
+.home .header-inner { min-height:var(--home-header-height); }
 @media(min-width:761px) {
- .home .site-header { height:76px; border-bottom:1px solid #ffffff66; }
- .home .header-inner { min-height:76px; }
- .home .site-header:not(.is-scrolled):not(.menu-open) #site-nav { height:76px; gap:0; }
+ .home .site-header { height:var(--home-header-height); border-bottom:1px solid #ffffff66; }
+ .home .site-header:not(.is-scrolled):not(.menu-open) #site-nav { height:var(--home-header-height); gap:0; }
  .home .site-header:not(.is-scrolled):not(.menu-open) #site-nav>a { display:flex; align-items:center; height:100%; padding-inline:19px; font-size:14px; letter-spacing:0; }
  .home .site-header:not(.is-scrolled):not(.menu-open) #site-nav>a[aria-current=page]:after { display:none; }
- .home .site-header:not(.is-scrolled):not(.menu-open) #site-nav>a+a:before { content:""; position:absolute; left:0; top:25%; height:50%; border-left:1px solid #ffffff66; }
+ .home .site-header:not(.is-scrolled):not(.menu-open) #site-nav>a+a:before { content:""; position:absolute; left:0; top:calc(50% - 15px); height:30px; border-left:1px solid #ffffff66; }
  .home .site-header:not(.is-scrolled):not(.menu-open) .nav-contact { min-height:0; padding:10px 17px; border-radius:999px; font-size:14px; letter-spacing:0; background:transparent; }
 }
-.home main { margin-top:-76px; }
+.home main { margin-top:calc(-1 * var(--home-header-height)); }
 .home .home-hero { min-height:calc(100svh - 175px); }
 .home .hero-inner { position:relative; min-height:calc(100svh - 175px); padding-top:124px; padding-bottom:59px; justify-content:center; }
 .home .home-hero h1 { max-width:760px; font-size:clamp(64px,6.8vw,82px); line-height:1.02; }
@@ -298,7 +299,7 @@
 .home .reviews-section { padding-top:56px; background:transparent; }
 .home .reviews-track { will-change:transform; }
 @media(max-width:760px) {
- .home main { margin-top:-73px; }
+ .home { --home-header-height:67px; }
  .home .home-hero { min-height:calc(100svh - 168px); }
  .home .hero-inner { min-height:calc(100svh - 168px); padding-top:104px; padding-bottom:30px; justify-content:center; }
  .home .home-hero h1 { max-width:10ch; font-size:clamp(48px,12.8vw,66px); }
