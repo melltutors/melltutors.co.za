@@ -35,11 +35,12 @@
 .home-playbook-scope { font-size:14px; line-height:1.6; color:var(--muted); margin-top:10px; }
 .home-playbook-art { width:100%; height:300px; display:flex; justify-content:center; align-items:center; padding:28px 8px; }
 .home-playbook-art img { width:auto; height:auto; max-width:78%; max-height:100%; object-fit:contain; filter:drop-shadow(5px 9px 7px #15251b26); transition:transform .25s ease; }
-.home-playbook-art.is-pair img { width:60%; max-width:160px; max-height:235px; transform:rotate(-7deg); }
+.home-playbook-art.is-pair img { width:60%; max-width:145px; max-height:212px; transform:rotate(-7deg); }
 .home-playbook-art.is-pair img+img { margin-left:-27%; transform:rotate(7deg) translateY(7px); }
 .home-playbook-art.is-tutoring { height:310px; margin-bottom:12px; padding:0; overflow:hidden; border-radius:3px; }
 .home-playbook-art.is-tutoring img { width:100%; height:100%; max-width:none; max-height:none; object-fit:cover; object-position:center 68%; transform:scale(1.55); filter:none; }
 .home-playbook>.button { width:100%; margin-top:auto; gap:18px; }
+@media(min-width:761px) { .home-playbook>.button { width:94%; align-self:center; } }
 .home-playbook:focus-visible { border-radius:4px; outline-offset:9px; }
 @media(hover:hover) and (pointer:fine) {
  .home-playbook:hover .home-playbook-art:not(.is-pair):not(.is-tutoring) img { transform:translateY(-5px); }
@@ -50,7 +51,7 @@
 }
 @media(min-width:761px) and (max-width:1199px) {
  .home-playbook-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:48px 38px; }
- .home-playbook-art.is-pair img { max-width:190px; max-height:250px; }
+ .home-playbook-art.is-pair img { max-width:172px; max-height:225px; }
 }
 @media(max-width:760px) {
  .home-playbook-grid { grid-template-columns:minmax(0,1fr); gap:48px; }
