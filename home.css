@@ -311,9 +311,12 @@
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: clamp(24px, 3vw, 48px);
  }
+ .home .site-footer .footer-grid > :nth-child(n + 2) {
+  padding-left: clamp(24px, 3.5vw, 54px);
+ }
  .home .site-footer .footer-bottom {
   margin-right: var(--footer-gutter);
-  padding-right: max(0px, calc(var(--falcon-width) + 24px - var(--footer-gutter)));
+  padding-right: max(0px, calc(var(--falcon-width) + 12px - var(--footer-gutter)));
  }
 }
 .home .site-footer a { color: inherit; }
