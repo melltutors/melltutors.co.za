@@ -192,7 +192,7 @@
 @media (min-width: 761px) and (max-width: 1100px) {
  .home-subject-grid h2 { font-size:clamp(26px, 2.65vw, 31px); }
 }
-.home-reviews-band { background:linear-gradient(130deg,#f0e8ea,#e0d0d5 55%,#eee6e8); }
+.home-reviews-band { background:linear-gradient(130deg,#e6eeeb,#cfdfda 55%,#e4ece8); }
 .home-rating { min-height:55px; display:grid; place-items:center; }
 .home-rating a { display:inline-flex; align-items:center; gap:8px; color:var(--ink); font-family:var(--label); font-size:13px; text-decoration:none; }
 .home-rating a:hover { text-decoration:underline; text-underline-offset:4px; }
