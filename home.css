@@ -101,7 +101,7 @@
  --faq-margin-line:max(calc(var(--faq-gutter) - 18px), calc((100% - 1140px) / 2 - 18px));
  --faq-maroon-rule:#7d304a73;
  --faq-teal-rule:#17695e36;
- padding-block:calc(2 * var(--faq-rule-step));
+ padding-block:calc(2 * var(--faq-rule-step)) calc(3 * var(--faq-rule-step));
  background:
   linear-gradient(var(--faq-maroon-rule), var(--faq-maroon-rule))
    left var(--faq-margin-line) top / 1px 100% no-repeat,
@@ -393,11 +393,17 @@
 }
 @media (min-width: 901px) {
  .home .site-footer .footer-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(24px, 3vw, 48px);
+  --footer-column-gap: clamp(24px, 3vw, 48px);
+  --footer-column-width: calc((100% - 2 * var(--footer-column-gap)) / 3);
+  --footer-address-inset: clamp(58px, 8vw, 124px);
+  grid-template-columns:
+   var(--footer-column-width)
+   minmax(max-content, calc(var(--footer-column-width) + var(--footer-address-inset) + 12px))
+   minmax(max-content, 1fr);
+  gap: var(--footer-column-gap);
  }
- .home .site-footer .footer-grid > :nth-child(n + 2) {
-  padding-left: clamp(58px, 8vw, 124px);
+ .home .site-footer .footer-grid > :nth-child(2) {
+  padding-left: var(--footer-address-inset);
  }
  .home .site-footer .footer-bottom {
   margin-right: var(--footer-gutter);
@@ -405,7 +411,7 @@
  }
 }
 @media (min-width: 901px) and (max-width: 1023px) {
- .home .site-footer .footer-grid > :nth-child(n + 2) { padding-left: 60px; }
+ .home .site-footer .footer-grid { --footer-address-inset: 60px; }
 }
 @media (min-width: 1200px) {
  .home .site-footer .footer-bottom {
