@@ -15,15 +15,20 @@
  if (!reducedMotion.matches && 'IntersectionObserver' in window && Element.prototype.animate) {
   const pieces = document.querySelectorAll('[data-reveal]');
   const activeReveals = new Set();
+  const wideLayout = matchMedia('(min-width: 761px)');
   const observer = new IntersectionObserver(entries => {
    let order = 0;
    for (const { target, isIntersecting } of entries) {
     if (!isIntersecting) continue;
     observer.unobserve(target);
     if (reducedMotion.matches || target.contains(document.activeElement)) continue;
+    const direction = target.dataset.reveal;
+    let offset = '0 36px';
+    if (wideLayout.matches && direction === 'left') offset = 'max(-36px, -2vw) 0';
+    if (wideLayout.matches && direction === 'right') offset = 'min(36px, 2vw) 0';
     const reveal = target.animate(
-     [{ translate: '0 22px', opacity: .25 }, { translate: '0 0', opacity: 1 }],
-     { duration: 440, delay: Math.min(order++ * 45, 135), easing: 'cubic-bezier(.22, 1, .36, 1)', fill: 'backwards' }
+     [{ translate: offset, opacity: .05 }, { translate: '0 0', opacity: 1 }],
+     { duration: 620, delay: Math.min(order++ * 85, 255), easing: 'cubic-bezier(.22, .65, .32, 1)', fill: 'backwards' }
     );
     const finish = () => reveal.finish();
     const cleanup = () => {
@@ -34,7 +39,7 @@
     target.addEventListener('focusin', finish, { once: true });
     reveal.finished.then(cleanup, cleanup);
    }
-  }, { rootMargin: '0px 0px -16px' });
+  }, { rootMargin: '0px 0px -24px' });
   for (const piece of pieces) {
    if (piece.getBoundingClientRect().top >= innerHeight) observer.observe(piece);
   }
