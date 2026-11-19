@@ -13,41 +13,77 @@
  document.querySelector('#year').textContent=new Date().getFullYear();
  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
  if (!reducedMotion.matches && 'IntersectionObserver' in window && Element.prototype.animate) {
-  const pieces = document.querySelectorAll('[data-reveal]');
-  const activeReveals = new Set();
+  const pending = new Set(Array.from(document.querySelectorAll('[data-reveal]'))
+   .filter(piece => piece.getBoundingClientRect().top >= innerHeight));
+  const activeReveals = new Map();
   const wideLayout = matchMedia('(min-width: 761px)');
-  const observer = new IntersectionObserver(entries => {
+  let observer;
+  let entryDepth;
+
+  function show(piece) {
+   pending.delete(piece);
+   observer.unobserve(piece);
+   piece.classList.remove('reveal-pending');
+  }
+
+  function revealPieces(pieces) {
    let order = 0;
-   for (const { target, isIntersecting } of entries) {
-    if (!isIntersecting) continue;
-    observer.unobserve(target);
-    if (reducedMotion.matches || target.contains(document.activeElement)) continue;
-    const direction = target.dataset.reveal;
+   for (const piece of pieces) {
+    if (!pending.has(piece)) continue;
+    show(piece);
+    if (reducedMotion.matches || piece.contains(document.activeElement)) continue;
+    const direction = piece.dataset.reveal;
     let offset = '0 36px';
     if (wideLayout.matches && direction === 'left') offset = 'max(-36px, -2vw) 0';
     if (wideLayout.matches && direction === 'right') offset = 'min(36px, 2vw) 0';
-    const reveal = target.animate(
+    const reveal = piece.animate(
      [{ translate: offset, opacity: .05 }, { translate: '0 0', opacity: 1 }],
-     { duration: 620, delay: Math.min(order++ * 85, 255), easing: 'cubic-bezier(.22, .65, .32, 1)', fill: 'backwards' }
+     { duration: 940, delay: Math.min(order++ * 110, 330), easing: 'cubic-bezier(.24, .4, .34, 1)', fill: 'backwards' }
     );
-    const finish = () => reveal.finish();
-    const cleanup = () => {
-     activeReveals.delete(reveal);
-     target.removeEventListener('focusin', finish);
-    };
-    activeReveals.add(reveal);
-    target.addEventListener('focusin', finish, { once: true });
+    activeReveals.set(piece, reveal);
+    const cleanup = () => activeReveals.delete(piece);
     reveal.finished.then(cleanup, cleanup);
    }
-  }, { rootMargin: '0px 0px -24px' });
-  for (const piece of pieces) {
-   if (piece.getBoundingClientRect().top >= innerHeight) observer.observe(piece);
   }
+
+  function observePieces() {
+   const depth = Math.min(220, Math.round(innerHeight * .23));
+   if (depth === entryDepth) return;
+   entryDepth = depth;
+   observer?.disconnect();
+   observer = new IntersectionObserver(entries => {
+    revealPieces(entries.filter(entry => entry.isIntersecting).map(entry => entry.target));
+   }, { rootMargin: '0px 0px -' + depth + 'px' });
+   for (const piece of pending) observer.observe(piece);
+  }
+
+  for (const piece of pending) piece.classList.add('reveal-pending');
+  observePieces();
+  addEventListener('resize', observePieces);
+
+  // The last footer pieces may never reach the normal trigger line.
+  const footerEnd = document.querySelector('.footer-bottom');
+  const endObserver = new IntersectionObserver(([entry]) => {
+   if (entry.intersectionRatio < .95) return;
+   revealPieces(Array.from(pending).filter(piece => {
+    const bounds = piece.getBoundingClientRect();
+    return bounds.top < innerHeight && bounds.bottom > 0;
+   }));
+  }, { threshold: .95 });
+  if (footerEnd) endObserver.observe(footerEnd);
+
+  document.addEventListener('focusin', event => {
+   const piece = event.target.closest('[data-reveal]');
+   if (pending.has(piece)) show(piece);
+   activeReveals.get(piece)?.finish();
+  });
   reducedMotion.addEventListener('change', event => {
-   if (event.matches) {
-    observer.disconnect();
-    for (const reveal of activeReveals) reveal.cancel();
-   }
+   if (!event.matches) return;
+   for (const piece of pending) show(piece);
+   observer.disconnect();
+   endObserver.disconnect();
+   removeEventListener('resize', observePieces);
+   for (const reveal of activeReveals.values()) reveal.cancel();
   });
  }
  const filters=[...document.querySelectorAll('[data-filter]')];
