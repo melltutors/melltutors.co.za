@@ -9,24 +9,27 @@
  overflow:hidden;
  padding-block:calc(var(--site-header-height) + 48px) 56px;
  color:#fff;
- background:#20372e;
+ background:#101010;
 }
-.careers-hero-image {
+.careers-hero-image,
+.careers-hero-video {
  position:absolute;
  inset:0;
  width:100%;
  height:100%;
  object-fit:cover;
- object-position:center 43%;
+ object-position:center 47%;
  z-index:-2;
 }
+.careers-hero-video { visibility:hidden; pointer-events:none; }
+.careers-hero-video.has-frame { visibility:visible; }
 .careers-hero::before {
  content:"";
  position:absolute;
  inset:0;
  z-index:-1;
- background:linear-gradient(90deg,#101f1de8 0%,#101f1dab 41%,#101f1d1f 76%),
-  linear-gradient(180deg,#0b1b1980 0%,transparent 36%);
+ background:linear-gradient(90deg,#101010eb 0%,#101010b8 36%,#10101038 69%,transparent 88%),
+  linear-gradient(180deg,#101010a6 0%,transparent 33%);
 }
 .careers-hero h1 {
  font-size:clamp(57px,7.2vw,104px);
@@ -40,6 +43,20 @@
  line-height:1.65;
  color:#f0f2ec;
 }
+.careers-hero-motion {
+ position:absolute;
+ right:max(20px,calc((100% - 1140px) / 2));
+ bottom:14px;
+ min-height:36px;
+ padding:6px 12px;
+ border:1px solid #ffffff6b;
+ border-radius:999px;
+ color:#fff;
+ background:#101010a8;
+ font:500 12px/1.2 var(--label);
+}
+.careers-hero-motion:hover { border-color:#fff; }
+.careers-hero-motion:focus-visible { outline-color:#fff; outline-offset:3px; }
 
 .careers-values { background:#faf9f6; }
 .careers-values-heading {
@@ -170,14 +187,19 @@
  .careers-hero {
   align-items:end;
   min-height:clamp(500px,82svh,680px);
-  padding-block:calc(var(--site-header-height) + 44px) 42px;
+  padding-block:calc(var(--site-header-height) + 44px) 70px;
  }
- .careers-hero-image { object-position:75% 45%; }
+ .careers-hero-image,
+ .careers-hero-video {
+  height:82%;
+  object-position:79% center;
+ }
  .careers-hero::before {
-  background:linear-gradient(180deg,#0b1b1970 0%,transparent 35%,#101f1d57 46%,#101f1de8 78%,#101f1df7 100%);
+  background:linear-gradient(180deg,#101010b3 0%,transparent 29%,transparent 36%,#10101099 62%,#101010 82%);
  }
  .careers-hero h1 { font-size:clamp(39px,10.6vw,69px); }
  .careers-hero p { margin-top:16px; }
+ .careers-hero-motion { min-height:44px; bottom:12px; }
  .careers-values-heading { grid-template-columns:1fr; gap:12px; }
  .careers-opportunities-inner { grid-template-columns:1fr; gap:37px; }
  .careers-area dt { font-size:20px; }
