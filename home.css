@@ -25,27 +25,35 @@
 .community-grid h2 { max-width:14ch; }
 .community-grid p { max-width:42ch; margin-top:26px; font-size:14px; line-height:1.9; color:var(--muted); }
 .home-playbooks { background:#faf9f6; }
-.home-playbook-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:56px; }
+.home-playbook-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:28px; }
 .home-playbook { min-width:0; display:flex; flex-direction:column; align-items:center; text-align:center; text-decoration:none; }
 .home-playbook-tag { align-self:center; padding:4px 12px; border-radius:3px; background:#e9e9e2; color:var(--ink); font:500 14px/1.5 var(--label); }
 .home-playbook-tag.is-free,.home-playbook-tag.is-hardcopy { background:#e21f26; color:#fff; border:0; font-weight:600; }
+.tutoring-card .home-playbook-tag { background:var(--teal); color:#fff; font-weight:600; }
 .home-playbook h3 { font-size:42px; font-style:italic; margin-top:18px; }
+.tutoring-card h3 { font-size:36px; line-height:1.06; }
 .home-playbook-course { display:block; margin-bottom:8px; font:500 16px/1.5 var(--label); letter-spacing:.045em; }
 .home-playbook-scope { font-size:14px; line-height:1.6; color:var(--muted); margin-top:10px; }
 .home-playbook-art { width:100%; height:300px; display:flex; justify-content:center; align-items:center; padding:28px 8px; }
 .home-playbook-art img { width:auto; height:auto; max-width:78%; max-height:100%; object-fit:contain; filter:drop-shadow(5px 9px 7px #15251b26); transition:transform .25s ease; }
 .home-playbook-art.is-pair img { width:60%; max-width:160px; max-height:235px; transform:rotate(-7deg); }
 .home-playbook-art.is-pair img+img { margin-left:-27%; transform:rotate(7deg) translateY(7px); }
+.home-playbook-art.is-tutoring { padding:0; overflow:hidden; border-radius:3px; }
+.home-playbook-art.is-tutoring img { width:100%; height:100%; max-width:none; max-height:none; object-fit:cover; object-position:center 68%; transform:scale(1.55); filter:none; }
 .home-playbook>.button { width:100%; margin-top:auto; gap:18px; }
 .home-playbook:focus-visible { border-radius:4px; outline-offset:9px; }
 @media(hover:hover) and (pointer:fine) {
- .home-playbook:hover .home-playbook-art:not(.is-pair) img { transform:translateY(-5px); }
+ .home-playbook:hover .home-playbook-art:not(.is-pair):not(.is-tutoring) img { transform:translateY(-5px); }
  .home-playbook:hover .home-playbook-art.is-pair img:first-child { transform:translateY(-5px) rotate(-9deg); }
  .home-playbook:hover .home-playbook-art.is-pair img+img { transform:rotate(9deg) translateY(2px); }
  .home-playbook:hover>.primary { background:var(--teal-dark); }
  .home-playbook:hover>.outline { background:#e8ece5; border-color:#7a887d; }
 }
-@media(max-width:900px) {
+@media(min-width:761px) and (max-width:1199px) {
+ .home-playbook-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:48px 38px; }
+ .home-playbook-art.is-pair img { max-width:190px; max-height:250px; }
+}
+@media(max-width:760px) {
  .home-playbook-grid { grid-template-columns:minmax(0,1fr); gap:48px; }
  .home-playbook { max-width:400px; width:100%; justify-self:center; }
  .home-playbook-art.is-pair img+img { margin-left:-22%; }
@@ -74,7 +82,7 @@
 @media(max-width:760px) { .home .upcoming-grid { grid-template-columns:minmax(0,1fr); } }
 @media(prefers-reduced-motion:reduce) {
  .home-playbook-art img { transition:none; }
- .home-playbook:hover .home-playbook-art:not(.is-pair) img { transform:none; }
+ .home-playbook:hover .home-playbook-art:not(.is-pair):not(.is-tutoring) img { transform:none; }
  .home-playbook:hover .home-playbook-art.is-pair img:first-child { transform:rotate(-7deg); }
  .home-playbook:hover .home-playbook-art.is-pair img+img { transform:rotate(7deg) translateY(7px); }
 }
@@ -199,11 +207,6 @@
 .home-rating a>span { color:#846a2a; }
 .home .reviews-section { padding-top:56px; background:transparent; }
 .home .reviews-track { will-change:transform; }
-.post-reviews-cta { padding:64px 0; background:#faf9f6; border-bottom:1px solid var(--line); }
-.post-reviews-cta>.container { display:flex; align-items:center; justify-content:space-between; gap:64px; }
-.post-reviews-cta h2 { font-size:clamp(38px,3.7vw,52px); }
-.post-reviews-cta p { max-width:58ch; margin-top:14px; color:var(--muted); font-size:14px; line-height:1.8; }
-.post-reviews-cta .button { flex-shrink:0; min-height:54px; padding:16px 26px; border-radius:999px; font-size:14px; letter-spacing:.025em; gap:28px; }
 @media(max-width:760px) {
  .home main { margin-top:-73px; }
  .home .home-hero { min-height:calc(100svh - 168px); }
@@ -221,9 +224,6 @@
  .home-subjects:after { display:block; }
  .home-rating { min-height:64px; }
  .home .reviews-section { padding-top:42px; }
- .post-reviews-cta { padding:48px 0; }
- .post-reviews-cta>.container { align-items:flex-start; flex-direction:column; gap:28px; }
- .post-reviews-cta .button { width:100%; max-width:360px; }
 }
 @media(max-width:760px) and (max-height:680px) {
  .home .hero-inner { padding-top:88px; padding-bottom:20px; }
