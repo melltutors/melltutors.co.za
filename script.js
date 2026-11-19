@@ -33,11 +33,11 @@
   let cycle=0,step=0,paused=false,focused=false,visible=false,dragging=false,inside=false,direction=1,last=0,frame=0,measureFrame=0,carry=0;
   const normalise=()=>{if(cycle){while(viewport.scrollLeft<cycle)viewport.scrollLeft+=cycle;while(viewport.scrollLeft>=2*cycle)viewport.scrollLeft-=cycle;}};
   const measure=()=>{const oldCycle=cycle,phase=oldCycle?((viewport.scrollLeft-oldCycle)%oldCycle+oldCycle)%oldCycle/oldCycle:0;step=cards[1].offsetLeft-cards[0].offsetLeft;cycle=step*cards.length;viewport.scrollLeft=cycle+phase*cycle;};
-  const running=()=>visible&&!paused&&!focused&&!dragging&&!document.hidden&&!reduced.matches&&(!inside||direction!==0);
+  const running=()=>visible&&!paused&&!focused&&!dragging&&!document.hidden&&!reduced.matches;
   const animate=time=>{
    if(!running()){frame=0;last=0;return;}
    const seconds=last?Math.min((time-last)/1000,.05):0;last=time;
-   carry+=(inside?direction*225:48)*seconds;
+   carry+=(inside?direction*900:72)*seconds;
    const pixels=Math.trunc(carry);if(pixels){viewport.scrollLeft+=pixels;carry-=pixels;normalise();}
    frame=requestAnimationFrame(animate);
   };
@@ -52,8 +52,8 @@
   carousel.querySelector('.review-prev').addEventListener('click',()=>move(-1));
   carousel.querySelector('.review-next').addEventListener('click',()=>move(1));
   motion.addEventListener('click',e=>{paused=!paused;if(e.detail>0){motion.blur();focused=false;}sync();});
-  viewport.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse'){inside=true;direction=0;sync();}});
-  viewport.addEventListener('pointermove',e=>{if(e.pointerType!=='mouse')return;const r=viewport.getBoundingClientRect(),fraction=(e.clientX-r.left)/r.width;inside=true;direction=fraction<.22?-1:fraction>.78?1:0;sync();});
+  viewport.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse'){inside=true;direction=1;sync();}});
+  viewport.addEventListener('pointermove',e=>{if(e.pointerType!=='mouse')return;const r=viewport.getBoundingClientRect(),fraction=(e.clientX-r.left)/r.width;inside=true;direction=fraction<.22?-1:1;sync();});
   viewport.addEventListener('pointerleave',()=>{inside=false;direction=1;sync();});
   carousel.addEventListener('focusin',()=>{focused=true;sync();});
   carousel.addEventListener('focusout',()=>setTimeout(()=>{focused=carousel.contains(document.activeElement);sync();},0));
