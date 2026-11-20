@@ -13,8 +13,17 @@
  document.querySelector('#year').textContent=new Date().getFullYear();
  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
  if (!reducedMotion.matches && 'IntersectionObserver' in window && Element.prototype.animate) {
-  const pending = new Set(Array.from(document.querySelectorAll('[data-reveal]'))
-   .filter(piece => piece.getBoundingClientRect().top >= innerHeight));
+  const pending = new Set();
+  const opening = [];
+  const landsAtTop = !location.hash && scrollY < 24;
+  for (const piece of document.querySelectorAll('[data-reveal]')) {
+   const { top, bottom } = piece.getBoundingClientRect();
+   if (top >= innerHeight) pending.add(piece);
+   else if (landsAtTop && bottom > 0 && bottom > top && piece.closest('main')) {
+    pending.add(piece);
+    opening.push(piece);
+   }
+  }
   const activeReveals = new Map();
   const wideLayout = matchMedia('(min-width: 761px)');
   let observer;
@@ -59,6 +68,7 @@
 
   for (const piece of pending) piece.classList.add('reveal-pending');
   observePieces();
+  revealPieces(opening);
   addEventListener('resize', observePieces);
 
   // The last footer pieces may never reach the normal trigger line.
