@@ -6,16 +6,16 @@
 
  const motion = matchMedia("(prefers-reduced-motion: reduce)");
  let visible = false;
- let pageLoaded = document.readyState === "complete";
- const connection = navigator.connection;
- let wantsPlayback = !motion.matches && !connection?.saveData && !/^[23]g$/.test(connection?.effectiveType || "");
+ let wantsPlayback = !motion.matches;
+ video.muted = true;
 
  function updateControl() {
   control.textContent = video.paused ? "Play video" : "Pause video";
  }
 
  function updatePlayback() {
-  if (!pageLoaded || !visible || !wantsPlayback) {
+  video.autoplay = visible && wantsPlayback;
+  if (!video.autoplay) {
    video.pause();
    updateControl();
    return;
@@ -25,6 +25,7 @@
   video.play().catch(error => {
    if (error.name !== "AbortError") {
     wantsPlayback = false;
+    video.autoplay = false;
     updateControl();
    }
   });
@@ -34,13 +35,13 @@
   video.classList.add("has-frame");
   updateControl();
  });
+ video.addEventListener("play", updateControl);
  video.addEventListener("pause", updateControl);
  video.addEventListener("error", () => {
   video.classList.remove("has-frame");
   control.hidden = true;
  });
  control.addEventListener("click", () => {
-  pageLoaded = true;
   wantsPlayback = video.paused;
   updatePlayback();
  });
@@ -50,11 +51,6 @@
    updatePlayback();
   }
  });
-
- addEventListener("load", () => {
-  pageLoaded = true;
-  updatePlayback();
- }, { once: true });
 
  control.hidden = false;
  if ("IntersectionObserver" in window) {

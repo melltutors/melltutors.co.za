@@ -21,8 +21,8 @@
  object-position:center 47%;
  z-index:-2;
 }
-.careers-hero-video { visibility:hidden; pointer-events:none; }
-.careers-hero-video.has-frame { visibility:visible; }
+.careers-hero-video { z-index:-3; pointer-events:none; }
+.careers-hero-video.has-frame { z-index:-2; }
 .careers-hero::before {
  content:"";
  position:absolute;
@@ -82,7 +82,7 @@
  flex-direction:column;
  min-width:0;
  overflow:hidden;
- border-radius:4px;
+ border-radius:20px;
  color:#fff;
  background:var(--value-panel);
 }
