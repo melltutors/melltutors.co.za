@@ -401,7 +401,7 @@
  .xp-method-detail > p { margin-bottom: var(--xp-method-image-gap); }
  .xp-method-classroom { grid-row: 4; }
  .xp-method-notebook { grid-row: 5; margin-top: 24px; }
- .xp-playbook { grid-template-columns: minmax(0, 1fr); }
+ .xp-playbook { grid-template-columns: minmax(0, 1fr); margin-top: 72px; }
  .xp-mission { row-gap: clamp(34px, 8vw, 52px); padding-bottom: clamp(68px, 11vw, 92px); }
  .xp-mission-copy .eyebrow + h2 { margin-top: clamp(34px, 9vw, 54px); font-size: clamp(83px, 18vw, 116px); }
  .xp-name { grid-column: 1; }
