@@ -285,7 +285,8 @@
 
 .xp-mission {
  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
- padding-block: var(--xp-space) clamp(42px, 5.6vw, 82px);
+ row-gap: clamp(38px, 4.5vw, 68px);
+ padding-block: var(--xp-space) clamp(72px, 8vw, 116px);
 }
 .xp-mission-poster > span {
  position: absolute;
@@ -296,7 +297,7 @@
 }
 .xp-mission-copy { max-width: 520px; }
 .xp-mission-copy .eyebrow + h2 {
- margin-top: 13px;
+ margin-top: clamp(36px, 4.2vw, 64px);
  font-size: clamp(76px, 10.8vw, 157px);
  font-weight: 700;
  line-height: .83;
@@ -310,11 +311,11 @@
 }
 .xp-mission-copy blockquote {
  border-top: 1px solid #51483c;
- padding-top: 20px;
+ padding-block: clamp(22px, 2.3vw, 34px) clamp(28px, 3.2vw, 44px);
  font: clamp(21px, 2.5vw, 36px)/1.17 var(--serif);
  letter-spacing: -.016em;
 }
-.xp-name { margin-top: 19px; }
+.xp-name { grid-column: 2; max-width: 54ch; }
 
 .xp-founder { border-top: 1px solid #d9d9d0; padding-block: 22px 48px; }
 .xp-founder-link {
@@ -361,8 +362,8 @@
 
 @media (max-width: 1000px) {
  .xp-belong-grid,
- .xp-community,
- .xp-mission { gap: clamp(28px, 4.5vw, 52px); }
+ .xp-community { gap: clamp(28px, 4.5vw, 52px); }
+ .xp-mission { column-gap: clamp(28px, 4.5vw, 52px); }
 }
 
 @media (min-width: 701px) and (max-width: 900px) {
@@ -380,7 +381,7 @@
    radial-gradient(ellipse 27% 64% at 51% 59%, #2119157a, transparent);
  }
  .xp-hero-title {
-  font-size: clamp(32px, 9.55vw, 66px);
+  font-size: clamp(38px, 11.5vw, 68px);
   top: calc(var(--site-header-height) + (100% - var(--site-header-height) - 3.63em) * .40);
  }
  .xp-hero-signature { gap: 9px; font-size: clamp(12px, 2.7vw, 17px); }
@@ -399,9 +400,11 @@
  .xp-method-detail { display: contents; }
  .xp-method-detail > p { margin-bottom: var(--xp-method-image-gap); }
  .xp-method-classroom { grid-row: 4; }
- .xp-method-notebook { grid-row: 5; width: 78%; justify-self: end; margin-top: 20px; }
+ .xp-method-notebook { grid-row: 5; margin-top: 24px; }
  .xp-playbook { grid-template-columns: minmax(0, 1fr); }
- .xp-mission-copy .eyebrow + h2 { font-size: clamp(83px, 18vw, 116px); }
+ .xp-mission { row-gap: clamp(34px, 8vw, 52px); padding-bottom: clamp(68px, 11vw, 92px); }
+ .xp-mission-copy .eyebrow + h2 { margin-top: clamp(34px, 9vw, 54px); font-size: clamp(83px, 18vw, 116px); }
+ .xp-name { grid-column: 1; }
  .xp-mission-poster > span { font-size: clamp(24px, 5.45vw, 40px); }
  .xp-photos { grid-auto-columns: min(75%, 340px); gap: 13px; }
  .xp-closing .xp-wrap { flex-direction: column; align-items: flex-start; }
