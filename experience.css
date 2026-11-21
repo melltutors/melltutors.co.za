@@ -163,6 +163,7 @@
 }
 .xp-quote figcaption { display: flex; flex-wrap: wrap; gap: 0 10px; margin-top: 13px; font-size: 12px; }
 .xp-quote figcaption span { color: var(--xp-copy); }
+.xp-quote figcaption a { color: var(--xp-copy); text-decoration:underline; text-underline-offset:3px; }
 
 .xp-method { padding-block: var(--xp-space); }
 .xp-method-grid {
