@@ -138,3 +138,39 @@
  .catalog-product h3{grid-column:2;grid-row:2;font-size:26px;margin:3px 0}
  .catalog-product .text-link{grid-column:2;grid-row:3;font-size:12px}
 }
+
+/* The printed spread is a page-wide chapter break, followed by open product columns. */
+.playbook-catalogue{background:linear-gradient(130deg,#f5f3ec,#e5eae2 57%,#f3f1e9);overflow-x:clip;padding-bottom:110px}
+.catalog-hardcopies{margin-top:clamp(65px,8vw,115px)}
+.catalog-hardcopies .catalog-scope{margin-bottom:0}
+.catalog-open-spread{width:100vw;max-width:none;margin:38px 0 54px;position:relative;left:50%;transform:translateX(-50%)}
+.catalog-open-spread img{width:100%;height:clamp(420px,43vw,610px);object-fit:cover;object-position:center;border-radius:0}
+.catalog-open-spread figcaption{max-width:1140px;margin:10px auto 0;padding:0 20px}
+.catalog-paid{gap:clamp(24px,3vw,52px)}
+.catalog-product{background:transparent;border:0;border-top:1px solid #929e95;border-radius:0;padding:26px 6px 0}
+.catalog-product .product-tag{background:none;padding:0;border-radius:0;color:var(--teal);font-size:12px}
+.catalog-product .product-art{height:268px;padding:23px 5px}
+.catalog-product .product-art img{max-height:217px}
+.catalog-product h3{margin:4px 0 17px}
+.catalogue-reviews{margin-top:clamp(88px,10vw,145px);padding-top:38px;border-top:1px solid #929e95}
+.catalogue-reviews .section-heading{margin-bottom:35px}
+.catalogue-reviews h2{font:italic clamp(34px,4vw,52px)/1.05 'Times New Roman',serif}
+.catalogue-reviews .static-reviews{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(35px,6vw,100px)}
+.catalogue-reviews .review{background:none;min-height:0}
+.catalogue-reviews .review blockquote{font-size:clamp(22px,2.1vw,28px)}
+@media(max-width:760px){
+ .playbook-catalogue{padding-bottom:75px}
+ .catalog-hardcopies{margin-top:73px}
+ .catalog-open-spread{margin:26px 0 39px}
+ .catalog-open-spread img{height:auto;object-fit:contain}
+ .catalog-open-spread figcaption{padding:0 20px}
+ .catalog-paid{gap:0}
+ .catalog-product{padding:17px 0;border-top:1px solid #929e95}
+ .catalog-product:last-child{border-bottom:1px solid #929e95}
+ .catalog-product .product-art{height:108px;padding:0}
+ .catalog-product .product-art img{max-height:101px}
+ .catalog-product h3{margin:3px 0}
+ .catalogue-reviews{margin-top:82px;padding-top:30px}
+ .catalogue-reviews .static-reviews{grid-template-columns:1fr;gap:38px}
+ .catalogue-reviews .review blockquote{font-size:23px}
+}
