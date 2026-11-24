@@ -134,7 +134,7 @@
 .subject-switch [role=tab][aria-selected=true]{background:var(--teal);color:#fffefa;box-shadow:none}
 .subject-switch [role=tab]:focus-visible{outline-color:var(--teal);outline-offset:2px}
 @media(min-width:761px){
- .offers-intro .offer-card{min-height:min(670px,calc(100svh - 220px))}
+ .offers-intro .offer-card{min-height:min(640px,calc(100svh - 250px))}
  .offer-image-placeholder{height:150px}
  .offer-card-content{padding:22px 26px 24px}
  .offer-subtitle{font-size:12px;line-height:1.55}
