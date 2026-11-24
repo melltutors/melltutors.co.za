@@ -129,7 +129,7 @@
 }
 
 /* MELL's deep-green selector treatment and a roomier desktop card rhythm. */
-.subject-switch{gap:2px;padding:3px;border-color:#c8d2ca;background:#e9eee8;box-shadow:none}
+.subject-switch{gap:2px;padding:3px;border-color:transparent;background:#e9eee8;box-shadow:none}
 .subject-switch [role=tab]{min-width:94px;min-height:29px;padding:6px 12px;font-size:9px}
 .subject-switch [role=tab][aria-selected=true]{background:var(--teal);color:#fffefa;box-shadow:none}
 .subject-switch [role=tab]:focus-visible{outline-color:var(--teal);outline-offset:2px}
