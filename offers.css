@@ -127,3 +127,26 @@
  .offer-bonus{margin-top:8px;padding-top:7px}
  .offer-card-content>.button{margin-top:12px;width:100%;justify-content:center}
 }
+
+/* MELL's deep-green selector treatment and a roomier desktop card rhythm. */
+.subject-switch{gap:2px;padding:3px;border-color:#c8d2ca;background:#e9eee8;box-shadow:none}
+.subject-switch [role=tab]{min-width:94px;min-height:29px;padding:6px 12px;font-size:9px}
+.subject-switch [role=tab][aria-selected=true]{background:var(--teal);color:#fffefa;box-shadow:none}
+.subject-switch [role=tab]:focus-visible{outline-color:var(--teal);outline-offset:2px}
+@media(min-width:761px){
+ .offers-intro .offer-card{min-height:min(670px,calc(100svh - 220px))}
+ .offer-image-placeholder{height:150px}
+ .offer-card-content{padding:22px 26px 24px}
+ .offer-subtitle{font-size:12px;line-height:1.55}
+ .offer-schedule{font-size:10px;line-height:1.5;margin-top:7px}
+ .offer-features{margin-top:14px}
+ .offer-features li{grid-template-columns:16px 1fr;gap:10px;padding:8px 0;font-size:11px;line-height:1.5}
+ .offer-features svg,.offer-bonus>svg{width:16px;height:16px}
+ .offer-card-content .guarantee{margin-top:13px;padding-top:11px}
+ .offer-card-content .guarantee h3{font-size:11px}
+ .offer-card-content .guarantee p{font-size:10px;line-height:1.55;margin-top:4px}
+ .offer-bonus{grid-template-columns:16px 1fr;gap:10px;margin-top:12px;padding-top:10px}
+ .offer-bonus p{font-size:10px;line-height:1.5;gap:2px}
+ .offer-bonus strong{font-size:9px}
+ .offer-card-content>.button{min-height:42px;font-size:11px}
+}
