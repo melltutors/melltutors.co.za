@@ -14,7 +14,8 @@
       if (focus && selected) tab.focus();
     });
     subjectCopy.forEach(copy => {
-      copy.hidden = copy.dataset.subjectContent !== subject;
+      const subjects = copy.dataset.subjectContent.split(',').map(value => value.trim());
+      copy.hidden = !subjects.includes(subject);
     });
     const activeTab = tabs.find(tab => tab.dataset.subjectTab === subject);
     if (panel && activeTab) panel.setAttribute('aria-labelledby', activeTab.id);
