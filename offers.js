@@ -1,4 +1,14 @@
 (() => {
+  const backLink = document.querySelector('[data-offers-back]');
+  if (backLink) {
+    backLink.addEventListener('click', event => {
+      if (window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    });
+  }
+
   const switcher = document.querySelector('[data-subject-switch]');
   if (!switcher) return;
 
