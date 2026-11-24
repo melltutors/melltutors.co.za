@@ -37,7 +37,7 @@
 .offer-subject-list dd span { display: block; font-weight: 600; color: var(--teal-dark); }
 
 @media (min-width: 761px) {
- .offers-intro .premium-card > .button { margin-top: auto; }
+ .offers-intro .premium-card .offer-card-content > .button { margin-top: auto; }
 }
 
 @media (max-width: 700px) {
@@ -45,5 +45,5 @@
  .offer-subject-list { grid-template-columns: minmax(0, 1fr); }
  .offer-subject-list { gap: 18px; }
 }
-.offers-intro .premium-card > .button.primary { background: var(--promo-red); }
-.offers-intro .premium-card > .button.primary:hover { background: var(--promo-red-hover); }
+.offers-intro .premium-card .offer-card-content > .button.primary { background: var(--promo-red); }
+.offers-intro .premium-card .offer-card-content > .button.primary:hover { background: var(--promo-red-hover); }
