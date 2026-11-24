@@ -267,8 +267,8 @@
  text-shadow:0 1px 2px #07110d59;
 }
 .home .home-hero .hero-actions { margin-top:22px; }
-.home .home-hero .hero-actions .button { padding:14px 27px; border-radius:999px; background:#faf9f6; color:#16372e; font-size:15px; letter-spacing:0; }
-.home .home-hero .hero-actions .button:hover { background:#ebece6; }
+.home .home-hero .hero-actions .button { padding:14px 27px; border-radius:999px; background:#b54238; color:#fff; font-size:15px; letter-spacing:0; }
+.home .home-hero .hero-actions .button:hover { background:#98372f; }
 .home-hero .hero-photo { object-position:center 65%; }
 .home-hero:after { background:linear-gradient(90deg,#172421 0%,#172421ef 32%,#17242140 82%); }
 .home-subjects { background:#faf9f6; }
