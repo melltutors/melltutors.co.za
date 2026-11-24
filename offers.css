@@ -59,3 +59,24 @@
  .offers-intro .offers-heading h1{font-size:clamp(34px,8.7vw,46px)}
  .subject-switch [role=tab]{min-width:0;padding-inline:18px}
 }
+/* Keep the price and offer name anchored in the image band. */
+.offer-image-placeholder{height:178px;padding:20px 30px;display:flex;align-items:flex-end}
+.offer-image-copy{width:100%;min-width:0}
+.offer-image-copy h2{font-size:clamp(30px,3vw,37px);font-style:italic;line-height:1.02;margin:0 0 9px}
+.premium-placeholder{background:#71897d}
+.premium-placeholder .offer-image-copy h2,.premium-placeholder .offer-price{color:#fffdf5}
+.apex-placeholder{background:#3a3a30}
+.apex-placeholder .offer-image-copy h2,.apex-placeholder .offer-price{color:#f0dfb5}
+.offer-image-copy .offer-price{font-family:var(--label);font-size:30px;line-height:1.1;font-weight:500;margin:0}
+.offer-image-copy .offer-price span{display:inline;font-size:11px;font-weight:400;margin-left:6px;color:inherit}
+.offer-image-copy .offer-price-row{margin:0;align-items:baseline;gap:8px 18px}
+.offer-image-copy .offer-saving{display:flex;align-items:baseline;gap:7px;font-size:10px;line-height:1.4;margin:0;color:#f3f1e8}
+.offer-image-copy .offer-saving s{color:#e3e5dc}
+@media(max-width:760px){
+ .offer-image-placeholder{height:164px;padding:18px 22px}
+ .offer-image-copy h2{font-size:31px;margin-bottom:7px}
+ .offer-image-copy .offer-price{font-size:26px}
+ .offer-image-copy .offer-price span{font-size:10px;margin-left:4px}
+ .offer-image-copy .offer-saving{font-size:9px;gap:5px}
+ .offer-image-copy .offer-price-row{gap:8px 12px}
+}
