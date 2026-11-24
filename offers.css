@@ -133,9 +133,15 @@
 .subject-switch [role=tab]{min-width:94px;min-height:29px;padding:6px 12px;font-size:9px}
 .subject-switch [role=tab][aria-selected=true]{background:var(--teal);color:#fffefa;box-shadow:none}
 .subject-switch [role=tab]:focus-visible{outline-color:var(--teal);outline-offset:2px}
+.offer-image-placeholder{position:relative;isolation:isolate}
+.offer-image-placeholder::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(0deg,rgba(15,22,19,.78),rgba(15,22,19,.08) 86%);pointer-events:none}
+.offer-card-photo{position:absolute;inset:0;z-index:0;width:100%;height:100%;max-width:none;object-fit:cover}
+.premium-placeholder .offer-card-photo{object-position:50% 54%}
+.apex-placeholder .offer-card-photo{object-position:50% 0%}
+.offer-image-copy{position:relative;z-index:2}
 @media(min-width:761px){
  .offers-intro .offer-card{min-height:min(640px,calc(100svh - 250px))}
- .offer-image-placeholder{height:150px}
+ .offer-image-placeholder{height:190px}
  .offer-card-content{padding:22px 26px 24px}
  .offer-subtitle{font-size:12px;line-height:1.55}
  .offer-schedule{font-size:10px;line-height:1.5;margin-top:7px}
