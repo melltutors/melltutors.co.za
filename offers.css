@@ -133,7 +133,7 @@
 .subject-switch [role=tab]{min-width:94px;min-height:29px;padding:6px 12px;font-size:9px}
 .subject-switch [role=tab][aria-selected=true]{background:var(--teal);color:#fffefa;box-shadow:none}
 .subject-switch [role=tab]:focus-visible{outline-color:var(--teal);outline-offset:2px}
-.offer-image-placeholder{position:relative;isolation:isolate}
+.offer-image-placeholder{position:relative}
 .offer-image-placeholder::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(0deg,rgba(15,22,19,.78),rgba(15,22,19,.08) 86%);pointer-events:none}
 .offer-card-photo{position:absolute;inset:0;z-index:0;width:100%;height:100%;max-width:none;object-fit:cover}
 .premium-placeholder .offer-card-photo{object-position:50% 54%}
@@ -160,9 +160,16 @@
 /* Translucent MELL glass for Premium and a brighter metallic sheen for Apex. */
 .subject-switch{background:transparent}
 .offers-intro .premium-card{background:radial-gradient(ellipse at 12% 0%,rgba(255,255,255,.52),transparent 48%),linear-gradient(135deg,rgba(250,250,244,.92),rgba(225,236,229,.87) 56%,rgba(216,230,222,.92));box-shadow:inset 0 1px 0 #fff,inset 0 0 34px rgba(255,255,255,.16),0 18px 42px -26px #263c3070;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
-.offers-intro .apex-card{background:radial-gradient(ellipse at 78% 0%,rgba(217,193,123,.2),transparent 43%),radial-gradient(ellipse at 16% 100%,rgba(191,170,112,.1),transparent 52%),linear-gradient(125deg,#29281e 0%,#171d17 44%,#323024 100%);box-shadow:inset 0 1px 0 #f9eacb,inset 0 0 0 1px #dfcb9826,0 18px 50px -25px #67512f78,0 0 0 4px #dfcb981b}
+.offers-intro .apex-card{background:linear-gradient(125deg,#29281e 0%,#171d17 44%,#323024 100%);box-shadow:inset 0 1px 0 #f9eacb,inset 0 0 0 1px #dfcb9826,0 18px 50px -25px #67512f78,0 0 0 4px #dfcb981b}
+.offers-intro .apex-card::before{z-index:2;background:radial-gradient(ellipse at 85% -10%,rgba(169,147,87,.26),transparent 55%),linear-gradient(115deg,transparent 22%,#f4e2af08 37%,#fff1c722 43%,transparent 50%)}
+.offers-intro .apex-card>.offer-card-content{z-index:3}
+.offers-intro .apex-placeholder .offer-image-copy{z-index:4}
 .offer-image-placeholder::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none}
 .offer-image-placeholder::after{background:linear-gradient(0deg,rgba(15,22,19,.58),rgba(15,22,19,.03) 86%)}
 .premium-placeholder::before{background:linear-gradient(118deg,rgba(226,239,231,.12),rgba(255,255,255,.2) 24%,transparent 51%,rgba(136,169,156,.16) 100%),radial-gradient(ellipse at 15% 0%,rgba(249,255,250,.18),transparent 58%);box-shadow:inset 0 1px 0 rgba(255,255,255,.48)}
-.apex-placeholder::before{background:linear-gradient(116deg,transparent 19%,rgba(224,208,164,.08) 30%,rgba(255,242,205,.3) 38%,rgba(218,198,145,.1) 46%,transparent 59%),radial-gradient(ellipse at 82% -14%,rgba(218,194,127,.32),transparent 57%),linear-gradient(150deg,rgba(61,58,45,.08),rgba(10,15,12,.19));box-shadow:inset 0 1px 0 rgba(255,241,205,.66)}
+.apex-placeholder::before{background:transparent;box-shadow:inset 0 1px 0 rgba(255,241,205,.42)}
 .offer-image-copy h2,.offer-image-copy .offer-price{text-shadow:0 2px 12px rgba(0,0,0,.34)}
+@media(max-width:760px){
+ .subject-switch{width:min(100%,420px);gap:1px}
+ .subject-switch [role=tab]{flex:1;min-width:0;padding-inline:5px;font-size:9px;white-space:nowrap}
+}

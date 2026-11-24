@@ -3,7 +3,7 @@
   if (!switcher) return;
 
   const tabs = [...switcher.querySelectorAll('[role="tab"]')];
-  const panels = [...document.querySelectorAll('[data-subject-panel]')];
+  const panel = document.querySelector('#premium-subject-schedule');
   const subjectCopy = [...document.querySelectorAll('[data-subject-content]')];
 
   const activate = (subject, focus = false) => {
@@ -13,12 +13,11 @@
       tab.tabIndex = selected ? 0 : -1;
       if (focus && selected) tab.focus();
     });
-    panels.forEach(panel => {
-      panel.hidden = panel.dataset.subjectPanel !== subject;
-    });
     subjectCopy.forEach(copy => {
       copy.hidden = copy.dataset.subjectContent !== subject;
     });
+    const activeTab = tabs.find(tab => tab.dataset.subjectTab === subject);
+    if (panel && activeTab) panel.setAttribute('aria-labelledby', activeTab.id);
   };
 
   tabs.forEach((tab, index) => {
@@ -39,5 +38,5 @@
     });
   });
 
-  activate('mathematics');
+  activate('mathematics-i');
 })();
