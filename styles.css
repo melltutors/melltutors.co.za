@@ -645,3 +645,54 @@
 /* Shared button shape. */
 .button{border-radius:999px}
 :root{--promo-red:#b54238;--promo-red-hover:#98372f}
+
+/* Premium and Apex offer cards */
+.offers-intro .offer-grid{align-items:stretch;gap:28px}
+.offers-intro .offer-card{padding:0;overflow:hidden;align-items:stretch;border-radius:14px}
+.offer-image-placeholder{height:164px;flex:0 0 auto}
+.premium-placeholder{background:#91a99e}
+.apex-placeholder{background:#3a3a30}
+.offers-intro .premium-card{background:linear-gradient(135deg,#f8f8f2ed,#e8eee9ed);border-color:#b4c4b8;box-shadow:inset 0 1px 0 #ffffffd9,0 18px 42px -26px #263c3070;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+.offer-card-content{position:relative;display:flex;flex:1;min-width:0;flex-direction:column;align-items:flex-start;padding:30px 32px 32px}
+.offer-card-content>.eyebrow{font-size:10px;line-height:1.5;letter-spacing:.12em;margin:0}
+.offer-card-content h2{font-size:clamp(32px,3vw,39px);line-height:1.12;margin:12px 0 0}
+.offer-price-row{width:100%;display:flex;align-items:baseline;justify-content:space-between;gap:10px 20px;flex-wrap:wrap;margin-top:20px}
+.offer-card-content .offer-price{font-family:var(--label);font-size:35px;line-height:1.2;font-weight:500;margin:0}
+.offer-card-content .offer-price span{font-size:12px;font-weight:400}
+.offer-card-content .offer-saving{display:flex;align-items:baseline;gap:8px;font-size:11px;margin:0;color:#54645a}
+.offer-card-content .offer-saving s{color:#7c837e}
+.offer-subtitle{font-size:13px;line-height:1.65;margin:17px 0 0;max-width:45ch}
+.offer-schedule{font-family:var(--label);font-size:11px;line-height:1.6;margin:5px 0 0;max-width:48ch}
+.offer-features{list-style:none;display:grid;gap:0;width:100%;padding:0;margin:22px 0 0}
+.offer-features li{display:grid;grid-template-columns:18px 1fr;align-items:start;gap:12px;padding:8px 0;font-size:12px;line-height:1.65}
+.offer-features svg,.offer-bonus>svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.55;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.premium-card .offer-features{color:#234b3f}
+.apex-card .offer-features{color:#f5f0df}
+.apex-card .offer-features svg,.apex-card .offer-bonus>svg{color:#dfcc98}
+.offer-card-content .guarantee{margin-top:18px;padding-top:15px;border-top:1px solid #acb9a67a;width:100%}
+.offer-card-content .guarantee h3{font-family:var(--label);font-size:12px;font-weight:600;line-height:1.55;letter-spacing:0}
+.offer-card-content .guarantee p{font-size:11px;line-height:1.7;margin-top:6px}
+.offer-bonus{display:grid;grid-template-columns:18px 1fr;align-items:start;gap:12px;width:100%;margin-top:15px;padding-top:13px;border-top:1px solid #acb9a67a;color:#254e42}
+.offer-bonus>svg{margin-top:2px}
+.offer-bonus p{display:flex;flex-direction:column;gap:3px;font-size:11px;line-height:1.6;margin:0}
+.offer-bonus strong{font-family:var(--label);font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.offer-card-content>.button{margin-top:auto;min-height:48px;padding-inline:22px}
+.offer-card-content>.guarantee+.button{margin-top:auto}
+.offer-card-content>.offer-bonus+.button{margin-top:22px}
+@media(max-width:760px){
+ .offers-intro .offer-grid{grid-template-columns:1fr;gap:30px}
+ .offers-intro .offer-card{padding:0}
+ .offer-image-placeholder{height:138px}
+ .offer-card-content{padding:24px 22px 25px}
+ .offer-card-content h2{font-size:34px;margin-top:10px}
+ .offer-card-content .offer-price{font-size:31px}
+ .offer-card-content .offer-price span{font-size:11px}
+ .offer-subtitle{font-size:12px;margin-top:14px}
+ .offer-schedule{font-size:10px}
+ .offer-features{margin-top:17px}
+ .offer-features li{font-size:11px;gap:10px;padding:7px 0}
+ .offer-card-content .guarantee{margin-top:14px;padding-top:13px}
+ .offer-card-content .guarantee p{font-size:10px}
+ .offer-bonus{margin-top:13px;padding-top:12px}
+ .offer-card-content>.button{margin-top:22px;width:100%;justify-content:center}
+}
