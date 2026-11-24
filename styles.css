@@ -644,3 +644,4 @@
 
 /* Shared button shape. */
 .button{border-radius:999px}
+:root{--promo-red:#e21f26;--promo-red-hover:#bd161d}

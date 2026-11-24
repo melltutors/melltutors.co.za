@@ -45,3 +45,5 @@
  .offer-subject-list { grid-template-columns: minmax(0, 1fr); }
  .offer-subject-list { gap: 18px; }
 }
+.offers-intro .premium-card > .button.primary { background: var(--promo-red); }
+.offers-intro .premium-card > .button.primary:hover { background: var(--promo-red-hover); }

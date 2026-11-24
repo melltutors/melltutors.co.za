@@ -174,3 +174,5 @@
  .catalogue-reviews .static-reviews{grid-template-columns:1fr;gap:38px}
  .catalogue-reviews .review blockquote{font-size:23px}
 }
+.guides .catalog-feature .button.primary{background:var(--promo-red)}
+.guides .catalog-feature .button.primary:hover{background:var(--promo-red-hover)}

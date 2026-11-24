@@ -419,3 +419,5 @@
  .xp-link svg,
  .xp-founder-link svg { transition: none; }
 }
+.xp-closing .button.primary { background: var(--promo-red); }
+.xp-closing .button.primary:hover { background: var(--promo-red-hover); }
