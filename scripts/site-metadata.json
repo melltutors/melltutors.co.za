@@ -17,13 +17,13 @@
     "study-guides.html": {
       "label": "Playbooks",
       "image": {
-        "file": "images/mell-math1049a-semester-2-algebra-playbook.webp",
+        "file": "images/mell-math1048a-block-2-algebra-playbook.webp",
         "width": 640,
-        "height": 909,
-        "alt": "MATH1049A Algebra playbook"
+        "height": 855,
+        "alt": "MATH1048A Block 2 Algebra playbook"
       },
-      "description": "Free MATH1048A Block 2 and MATH1049A Semester 2 Algebra and Calculus PDFs. MATH1049A Block 4 hardcopies: R400 each or R600 for both.",
-      "updated": "2026-11-19"
+      "description": "Start with free MATH1048A Block 2 Algebra and Calculus PDFs for Semester 1. Explore MATH1049A Semester 2 PDFs and printed Block 4 Playbooks.",
+      "updated": "2026-11-25"
     },
     "math1048a.html": {
       "label": "MATH1048A Free Playbooks",
@@ -88,13 +88,49 @@
     "offers.html": {
       "label": "Offers",
       "image": {
-        "file": "images/experience/mell-engineering-maths-tutoring-class.webp",
-        "width": 1250,
-        "height": 853,
-        "alt": "Students working on maths problems in a classroom."
+        "file": "images/mell-weekend-engineering-maths-class.webp",
+        "width": 1086,
+        "height": 1600,
+        "alt": "MELL tutor helping engineering mathematics students in a classroom"
       },
       "description": "Compare MELL Premium group tutoring and MELL Apex personal tutoring for Wits Engineering Mathematics 1 and 2 and Physics Major 1.",
       "updated": "2026-11-19"
+    },
+    "engineering-mathematics-i.html": {
+      "label": "Engineering Mathematics I Tutoring",
+      "parent": "offers.html",
+      "image": {
+        "file": "images/experience/mell-engineering-maths-tutoring-class.webp",
+        "width": 1250,
+        "height": 853,
+        "alt": "Engineering Mathematics I students working through maths in a classroom"
+      },
+      "description": "In-person Engineering Mathematics I tutoring at Wits. Small Saturday classes or individual support for MATH1048A, MATH1049A, MATH1046A and MATH1047A.",
+      "updated": "2026-11-25"
+    },
+    "engineering-mathematics-ii.html": {
+      "label": "Engineering Mathematics II Tutoring",
+      "parent": "offers.html",
+      "image": {
+        "file": "images/mell-engineering-mathematics-ii-tutoring.jpg",
+        "width": 1672,
+        "height": 941,
+        "alt": "Tutor and students working together on advanced mathematics in a classroom"
+      },
+      "description": "In-person Engineering Mathematics II tutoring at Wits. Small Saturday classes or individual support for full-time and part-time students.",
+      "updated": "2026-11-25"
+    },
+    "physics-major-i.html": {
+      "label": "Physics Major I Tutoring",
+      "parent": "offers.html",
+      "image": {
+        "file": "images/mell-physics-i-tutoring.jpg",
+        "width": 1672,
+        "height": 941,
+        "alt": "Tutor and students working through a Physics mechanics problem in a classroom"
+      },
+      "description": "In-person Physics Major I tutoring at Wits. Small Saturday classes or individual support for PHYS1000A/1, PHYS1033A/1 and PHYS1038A/1.",
+      "updated": "2026-11-25"
     },
     "about.html": {
       "label": "Experience",
