@@ -156,6 +156,9 @@
  color:var(--muted);
 }
 .careers-apply {
+ display:flex;
+ flex-direction:column;
+ align-self:stretch;
  padding:clamp(23px,3.1vw,43px);
  border-top:2px solid #78374c;
  background:#e5eee7;
@@ -175,6 +178,7 @@
  overflow-wrap:anywhere;
 }
 .careers-apply .button { margin-top:22px; }
+.careers-apply-image { width:100%; height:clamp(150px,16vw,215px); margin-top:auto; object-fit:cover; object-position:center 56%; border-radius:10px; }
 
 @media(max-width:900px) {
  .careers-values-grid {
@@ -202,6 +206,7 @@
  .careers-hero-motion { min-height:44px; bottom:12px; }
  .careers-values-heading { grid-template-columns:1fr; gap:12px; }
  .careers-opportunities-inner { grid-template-columns:1fr; gap:37px; }
+ .careers-apply-image { margin-top:28px; }
  .careers-area dt { font-size:20px; }
 }
 @media(max-width:385px) {

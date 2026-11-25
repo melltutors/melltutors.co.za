@@ -638,7 +638,7 @@
  .offers .offer-transition-grid{gap:34px}
  .offers .offer-transition h2{margin-top:24px;line-height:1.15}
  .offers .offer-transition-grid>p{line-height:2}
- .offers .reviews-section,.offers .faq-section{padding-top:72px;padding-bottom:72px}
+ .offers .reviews-section{padding-top:72px;padding-bottom:72px}
 }
 @media(max-width:360px){.offers .offer-card{padding:34px 24px}}
 

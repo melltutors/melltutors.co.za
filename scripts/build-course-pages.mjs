@@ -1,20 +1,21 @@
 import { readFileSync, writeFileSync } from 'node:fs';
 
 const shared = readFileSync('careers.html', 'utf8');
+const offers = readFileSync('offers.html', 'utf8');
+const offerCards = [...offers.matchAll(/<article class="offer-card (?:premium|apex)-card" data-reveal>[\s\S]*?<\/article>/g)].map(match => match[0]);
 const header = shared.match(/<header class="site-header[^>]*>[\s\S]*?<\/header>/)?.[0]
   .replace('href="careers.html" aria-current="page"', 'href="careers.html"')
   .replace('href="offers.html"', 'href="offers.html" aria-current="page"');
 const footer = shared.match(/<footer class="site-footer"[\s\S]*?<\/footer>/)?.[0];
 const method = shared.match(/<section class="section dark-section teaching-method"[\s\S]*?<\/section>/)?.[0];
-if (!header || !footer || !method) throw Error('Shared page components were not found.');
+if (!header || !footer || !method || offerCards.length !== 2) throw Error('Shared page components were not found.');
 
 const courses = [
   {
     file: 'engineering-mathematics-i.html', subject: 'Engineering Mathematics I', short: 'Mathematics I',
     hero: 'images/experience/mell-engineering-maths-tutoring-class.webp', width: 1250, height: 853,
     heroAlt: 'Engineering Mathematics I students working through maths in a classroom',
-    heroPosition: 'center 49%', premiumImage: 'images/mell-weekend-engineering-maths-class.webp',
-    premiumAlt: 'Students working through mathematics with a MELL tutor',
+    heroPosition: 'center 49%',
     codes: [['Full-time', 'MATH1048A · MATH1049A'], ['Part-time', 'MATH1046A · MATH1047A']],
     premiumPrice: 'R880', apexPrice: 'R30,000', hours: '5 hours a week',
     split: '2 Algebra + 3 Calculus', playbooks: true,
@@ -24,8 +25,7 @@ const courses = [
     file: 'engineering-mathematics-ii.html', subject: 'Engineering Mathematics II', short: 'Mathematics II',
     hero: 'images/mell-engineering-mathematics-ii-tutoring.jpg', width: 1672, height: 941,
     heroAlt: 'Tutor and students working together on advanced mathematics in a classroom',
-    heroPosition: 'center 53%', premiumImage: 'images/mell-engineering-mathematics-ii-tutoring.jpg',
-    premiumAlt: 'Engineering Mathematics II tutor checking students’ working',
+    heroPosition: 'center 53%',
     codes: [['Full-time', 'MATH2011A/2 · MATH2014A/2 · MATH2035A/2'], ['Part-time', 'MATH2027A · MATH2023A']],
     premiumPrice: 'R880', apexPrice: 'R30,000', hours: '5 hours a week',
     split: '2 Algebra + 3 Calculus', playbooks: false,
@@ -35,8 +35,7 @@ const courses = [
     file: 'physics-major-i.html', subject: 'Physics Major I', short: 'Physics I',
     hero: 'images/mell-physics-i-tutoring.jpg', width: 1672, height: 941,
     heroAlt: 'Tutor and students working through a Physics mechanics problem in a classroom',
-    heroPosition: 'center 52%', premiumImage: 'images/mell-physics-i-tutoring.jpg',
-    premiumAlt: 'Students working through Physics with a tutor',
+    heroPosition: 'center 52%',
     codes: [['Full-time', 'PHYS1000A/1 · PHYS1033A/1'], ['Part-time', 'PHYS1038A/1']],
     premiumPrice: 'R900', apexPrice: 'R35,000', hours: '4 hours a week',
     split: '', playbooks: false,
@@ -47,7 +46,13 @@ const courses = [
 const arrow = '<svg class="icon-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 18 18 6M6 6h12v12"/></svg>';
 const link = (href, label, className = 'button primary') => `<a class="${className}" href="${href}">${label} ${arrow}</a>`;
 const codeList = course => course.codes.map(([mode, codes]) => `<div><dt>${mode}</dt><dd>${codes}</dd></div>`).join('');
-const bullet = content => `<li><span class="course-check" aria-hidden="true">↗</span>${content}</li>`;
+const courseOfferCards = course => offerCards.map(card => {
+  const physics = course.file === 'physics-major-i.html';
+  return card
+    .replaceAll(' data-subject-content="mathematics-i,mathematics-ii"', physics ? ' hidden' : '')
+    .replaceAll(' data-subject-content="physics-i" hidden', physics ? '' : ' hidden')
+    .replace(' id="premium-subject-schedule" role="tabpanel" aria-labelledby="subject-tab-mathematics-i"', '');
+}).join('');
 
 function playbooks() {
   return `<section class="section course-playbooks" aria-labelledby="course-playbooks-title"><div class="container">
@@ -61,18 +66,12 @@ function playbooks() {
 }
 
 function page(course) {
-  const group = `${course.premiumPrice} <span>per 7-week block</span>`;
-  const individual = `${course.apexPrice} <span>per semester</span>`;
-  const weeks = `7 weeks · ${course.hours}${course.split ? `: ${course.split}` : ''}`;
   return `<!doctype html>
-<html lang="en-ZA"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="index, follow, max-image-preview:large"><meta name="theme-color" content="#faf9f6"><meta name="author" content="MELL Tutors"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=Montserrat:wght@400;500;600;700&display=swap" media="print" onload="this.media=&quot;all&quot;"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=Montserrat:wght@400;500;600;700&display=swap"></noscript><link rel="stylesheet" href="styles.css?v=20261124brickmatch"><link rel="stylesheet" href="site-chrome.css?v=20261120reveal"><link rel="stylesheet" href="teaching-method.css?v=20261119shared"><link rel="stylesheet" href="course-pages.css?v=20261125nav"><script src="script.js?v=20261120opening" defer></script><link rel="icon" type="image/png" sizes="192x192" href="/favicon.png?v=20261116mark"><link rel="shortcut icon" href="/favicon.ico?v=20261116mark"><link rel="apple-touch-icon" href="/favicon.png?v=20261116mark"></head>
+<html lang="en-ZA"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="index, follow, max-image-preview:large"><meta name="theme-color" content="#faf9f6"><meta name="author" content="MELL Tutors"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=Montserrat:wght@400;500;600;700&display=swap" media="print" onload="this.media=&quot;all&quot;"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=Montserrat:wght@400;500;600;700&display=swap"></noscript><link rel="stylesheet" href="styles.css?v=20261124brickmatch"><link rel="stylesheet" href="site-chrome.css?v=20261120reveal"><link rel="stylesheet" href="teaching-method.css?v=20261119shared"><link rel="stylesheet" href="offers.css?v=20261125faq"><link rel="stylesheet" href="course-pages.css?v=20261125offerfit"><script src="script.js?v=20261120opening" defer></script><link rel="icon" type="image/png" sizes="192x192" href="/favicon.png?v=20261116mark"><link rel="shortcut icon" href="/favicon.ico?v=20261116mark"><link rel="apple-touch-icon" href="/favicon.png?v=20261116mark"></head>
 <body class="course-page"><a class="skip" href="#main">Skip to content</a>${header}<main id="main">
   <section class="course-hero" aria-labelledby="course-title"><img src="${course.hero}" width="${course.width}" height="${course.height}" alt="${course.heroAlt}" style="object-position:${course.heroPosition}" fetchpriority="high"><div class="container course-hero-content"><p class="eyebrow" data-reveal>Wits · In-person tutoring</p><h1 id="course-title" data-reveal>${course.subject}.</h1></div></section>
   <section class="course-codes" aria-label="Supported module codes"><div class="container course-codes-inner"><p class="eyebrow">Your modules</p><dl>${codeList(course)}</dl></div></section>
-  <section class="section course-options" aria-labelledby="course-options-title"><div class="container"><div class="course-section-heading"><p class="eyebrow">${course.short}</p><h2 id="course-options-title">Choose your tutoring.</h2></div><div class="course-offer-grid">
-    <article class="course-offer course-offer-premium" data-reveal><img src="${course.premiumImage}" width="${course.file === 'engineering-mathematics-i.html' ? 1086 : course.width}" height="${course.file === 'engineering-mathematics-i.html' ? 1600 : course.height}" alt="${course.premiumAlt}" loading="lazy"><div class="course-offer-copy"><h3>Early Birds.</h3><p class="course-price">${group}</p><p class="course-offer-lead">In-person Saturday group sessions · max 10 students/class</p><p class="course-duration">${weeks}</p><ul>${bullet('Live individual correction and weekly homework checks')}${bullet('Exam-condition practice tests and focused revision')}${bullet('WhatsApp support and occasional academic phone check-ins')}${bullet('Track study hours and compete on the class leaderboard')}${bullet('See attendance, study hours, marks, quiz results and recommendations')}</ul>${course.file.includes('mathematics') ? '<p class="course-extra"><strong>Free extra</strong> Advanced Playbook hardcopy set · Algebra + Calculus</p>' : ''}${link('interest.html?programme=premium', 'Apply for Premium')}</div></article>
-    <article class="course-offer course-offer-apex" data-reveal><img src="images/offers/mell-apex-tutor-guidance.jpg" width="1774" height="887" alt="MELL tutor giving an individual student focused guidance" loading="lazy"><div class="course-offer-copy"><h3>Your own tutor.</h3><p class="course-price">${individual}</p><p class="course-offer-lead">Unlimited 1-on-1, built around your specific gaps. By application.</p><ul>${bullet('Any hour, any day')}${course.playbooks || course.file.includes('mathematics') ? bullet('A playbook rebuilt around your gaps') : ''}${bullet('Weekly diagnostic and correction sessions')}${bullet('Direct WhatsApp support')}${bullet('In-person support on test and exam days')}${bullet('Track study hours and compete on the class leaderboard')}${bullet('See attendance, study hours, marks, quiz results and recommendations')}</ul><p class="course-guarantee"><strong>The Apex guarantee</strong> Distinction or full refund — no conditions attached.</p>${link('interest.html?programme=apex', 'Apply for Apex', 'button apex-button')}</div></article>
-  </div></div></section>
+  <section class="section course-options offers-intro" aria-labelledby="course-options-title"><div class="container"><div class="course-section-heading"><p class="eyebrow">${course.short}</p><h2 id="course-options-title">Choose your tutoring.</h2></div><div class="offer-grid">${courseOfferCards(course)}</div></div></section>
   ${method}
   ${course.playbooks ? playbooks() : ''}
   <section class="section course-experience" aria-labelledby="course-experience-title"><div class="container"><div class="course-section-heading"><p class="eyebrow">The MELL experience</p><h2 id="course-experience-title">From the classroom.</h2></div><div class="course-review-grid"><figure data-reveal><div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div><blockquote>“He also regularly checked our understanding by giving us questions to complete and then going through our work with us.”</blockquote><figcaption><strong>Ntando Mavuso</strong><a href="https://maps.app.goo.gl/zR47zhRhVm75x12h6" target="_blank" rel="noopener noreferrer">Read on Google ↗</a></figcaption></figure><figure data-reveal><div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div><blockquote>“The in person tutorials offered are very supportive and every student is helped according to their own pace and level of knowledge”</blockquote><figcaption><strong>Tharollo Koloti</strong><a href="https://maps.app.goo.gl/HDWEhiASvxih85186" target="_blank" rel="noopener noreferrer">Read on Google ↗</a></figcaption></figure></div></div></section>

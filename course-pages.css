@@ -13,30 +13,15 @@
 .course-codes dl div { min-width:230px; }
 .course-codes dt { font:600 11px var(--label); letter-spacing:.12em; text-transform:uppercase; color:#4e685d; }
 .course-codes dd { margin:7px 0 0; font:500 clamp(15px,1.5vw,18px)/1.4 var(--label); color:#18362e; }
-.course-options { padding-block:clamp(80px,10vw,145px); background:#faf9f6; }
+.course-page .course-options.offers-intro { display:flex; align-items:center; min-height:100svh; padding-block:clamp(32px,5vh,56px); background:#faf9f6; }
+.course-options .container { width:min(1140px,calc(100% - 48px)); }
 .course-section-heading { margin-bottom:clamp(30px,4vw,55px); }
 .course-section-heading .eyebrow { color:#276559; }
 .course-section-heading h2 { margin:11px 0 0; font:italic clamp(48px,6vw,88px)/.98 var(--serif); letter-spacing:-.045em; }
-.course-offer-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:clamp(22px,3vw,44px); align-items:stretch; }
-.course-offer { display:flex; flex-direction:column; overflow:hidden; border-radius:22px; background:linear-gradient(130deg,#eef3eb,#e4ebe5 70%,#f0f3ed); color:#153d34; box-shadow:0 20px 45px #1d3f3220; }
-.course-offer>img { display:block; width:100%; height:clamp(220px,25vw,355px); object-fit:cover; object-position:center; }
-.course-offer-premium>img { object-position:center 48%; }
-.course-offer-apex { background:linear-gradient(135deg,#1b241f,#313022 64%,#29291e); color:#f4eedc; }
-.course-offer-copy { display:flex; flex-direction:column; flex:1; padding:clamp(24px,3vw,44px); }
-.course-offer h3 { font:italic clamp(35px,3.3vw,51px)/1.05 var(--serif); margin:0; }
-.course-price { font:600 clamp(27px,3vw,42px)/1.1 var(--label); margin:15px 0 0; }
-.course-price span { font:500 13px var(--label); }
-.course-offer-lead { max-width:45ch; margin:24px 0 0; font:500 17px/1.5 var(--label); }
-.course-duration { margin:7px 0 0; font:500 13px/1.5 var(--label); }
-.course-offer ul { display:grid; gap:13px; margin:25px 0 30px; padding:0; list-style:none; }
-.course-offer li { display:grid; grid-template-columns:18px 1fr; gap:10px; font:400 14px/1.55 var(--label); }
-.course-check { font-size:18px; line-height:1; }
-.course-extra,.course-guarantee { border-top:1px solid currentColor; margin:0 0 22px; padding-top:18px; font:400 14px/1.5 var(--label); }
-.course-extra strong,.course-guarantee strong { display:block; margin-bottom:4px; text-transform:uppercase; font-size:10px; letter-spacing:.12em; }
-.course-offer .button { align-self:start; margin-top:auto; }
-.course-offer-premium .button.primary { background:var(--promo-red); }
-.course-offer-premium .button.primary:hover { background:var(--promo-red-hover); }
-.course-offer-apex .apex-button { background:linear-gradient(125deg,#bb9c5d,#f1dfaf 55%,#c1a46a); color:#23291f; }
+.course-options .course-section-heading { margin-bottom:clamp(20px,3vh,30px); text-align:center; }
+.course-options .course-section-heading h2 { font-size:clamp(38px,4.5vw,56px); }
+.course-options .offer-grid { gap:20px; }
+.course-options .offer-card { min-height:min(620px,calc(100svh - 205px)); }
 .course-page #method.teaching-method { margin:0; }
 .course-playbooks { padding-block:clamp(85px,10vw,150px); background:#e8eee6; }
 .course-book-feature { display:grid; grid-template-columns:1fr 1fr; align-items:center; gap:clamp(25px,5vw,85px); padding:clamp(25px,5vw,65px); background:#f3f5ef; border-radius:22px; }
@@ -68,11 +53,9 @@
  .course-codes-inner { grid-template-columns:1fr; gap:14px; padding-block:27px; }
  .course-codes dl { gap:16px; }
  .course-codes dl div { min-width:0; width:100%; }
- .course-options { padding-block:70px 85px; }
- .course-offer-grid,.course-book-feature,.course-book-later,.course-review-grid { grid-template-columns:1fr; }
- .course-offer>img { height:250px; }
- .course-offer-copy { padding:26px; }
- .course-offer .button { width:100%; justify-content:space-between; }
+ .course-page .course-options.offers-intro { display:block; min-height:0; padding-block:70px 85px; }
+ .course-options .offer-card { min-height:0; }
+ .course-book-feature,.course-book-later,.course-review-grid { grid-template-columns:1fr; }
  .course-book-pair { min-height:220px; }
  .course-book-feature { padding:28px 22px; }
  .course-book-later { gap:25px; }
