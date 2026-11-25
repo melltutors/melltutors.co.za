@@ -1,0 +1,76 @@
+/* Shared ruled-paper FAQ treatment. */
+.faq-section {
+ --faq-rule-step:48px;
+ --faq-gutter:clamp(34px,7vw,72px);
+ --faq-margin-line:max(calc(var(--faq-gutter) - 18px), calc((100% - 1140px) / 2 - 18px));
+ --faq-maroon-rule:#7d304a73;
+ --faq-teal-rule:#17695e36;
+ padding-block:calc(2 * var(--faq-rule-step)) calc(3 * var(--faq-rule-step));
+ background:
+  linear-gradient(var(--faq-maroon-rule), var(--faq-maroon-rule))
+   left var(--faq-margin-line) top / 1px 100% no-repeat,
+  repeating-linear-gradient(
+   to bottom,
+   transparent 0 calc(var(--faq-rule-step) - 1px),
+   var(--faq-teal-rule) calc(var(--faq-rule-step) - 1px) var(--faq-rule-step)
+  ) center / calc(100% - 16px) 100% no-repeat,
+  #fdfbf7;
+}
+.faq-grid {
+ width:min(1140px,calc(100% - 2 * var(--faq-gutter)));
+ grid-template-columns:minmax(0,.85fr) minmax(320px,1.15fr);
+}
+.faq-grid h2 {
+ font-size:clamp(62px,10vw,108px);
+ line-height:calc(2 * var(--faq-rule-step));
+ letter-spacing:-.045em;
+}
+.faq-grid .faqs details { border:0; }
+.faq-grid .faqs summary {
+ position:relative;
+ min-height:var(--faq-rule-step);
+ align-items:flex-end;
+ padding:0 24px 2px 0;
+ font:400 clamp(17px,2.3vw,22px)/1.15 var(--serif);
+}
+.faq-grid .faqs summary::after {
+ content:"";
+ position:absolute;
+ inset-inline:0 2px;
+ bottom:0;
+ height:1px;
+ background:#000;
+ pointer-events:none;
+}
+.faq-grid .faqs summary > span {
+ position:absolute;
+ right:2px;
+ bottom:9px;
+}
+.faq-grid .faqs details[open] summary,
+.faq-grid .faqs summary:hover { color:var(--teal-dark); }
+.faq-grid .faqs summary:focus-visible { outline-width:2px; outline-offset:0; }
+.faq-grid .faq-answer {
+ /* Keep each answer line on the same ruling as the questions. */
+ position:relative;
+ top:calc(var(--faq-rule-step) / 5);
+ padding:0 clamp(16px,3vw,28px) 0 12px;
+ font-size:14px;
+ line-height:var(--faq-rule-step);
+}
+@media(max-width:619px) {
+ .faq-section {
+  --faq-rule-step:44px;
+  --faq-gutter:clamp(22px,6vw,34px);
+  --faq-margin-line:max(12px, calc(var(--faq-gutter) - 12px));
+  padding-block-start:var(--faq-rule-step);
+ }
+ .faq-grid { grid-template-columns:minmax(0,1fr); gap:0; }
+ .faq-grid h2 { font-size:clamp(56px,12vw,70px); }
+ .faq-grid .faqs summary {
+  padding-inline-end:18px;
+  font-size:clamp(15px,4.25vw,19px);
+ }
+ .faq-grid .faq-answer { font-size:13px; }
+}
+
