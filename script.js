@@ -113,7 +113,7 @@
   if(cards.length<2)return;
   const motion=carousel.querySelector('.motion-toggle'),status=carousel.querySelector('[role="status"]'),reduced=matchMedia('(prefers-reduced-motion:reduce)');
   // Clones provide a seamless visual loop; original cards remain the keyboard/screen-reader content.
-  const clone=card=>{const el=card.cloneNode(true);el.dataset.clone='true';el.setAttribute('aria-hidden','true');el.querySelectorAll('a,button').forEach(a=>a.tabIndex=-1);return el;};
+  const clone=card=>{const el=card.cloneNode(true);el.dataset.clone='true';el.removeAttribute('data-reveal');el.classList.remove('reveal-pending');el.setAttribute('aria-hidden','true');el.querySelectorAll('a,button').forEach(a=>a.tabIndex=-1);return el;};
   track.prepend(...cards.map(clone));track.append(...cards.map(clone));
   let cycle=0,step=0,paused=false,focused=false,visible=false,dragging=false,inside=false,direction=1,last=0,frame=0,measureFrame=0,carry=0,speed=0;
   const normalise=()=>{if(cycle){while(viewport.scrollLeft<cycle)viewport.scrollLeft+=cycle;while(viewport.scrollLeft>=2*cycle)viewport.scrollLeft-=cycle;}};

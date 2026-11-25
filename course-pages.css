@@ -1,5 +1,5 @@
 .course-page { background:#faf9f6; }
-.course-page .site-header { background:#faf9f6; }
+.course-page main { margin-top:calc(-1 * var(--site-header-height)); }
 .course-hero { position:relative; min-height:clamp(540px,66vw,730px); display:flex; align-items:end; isolation:isolate; overflow:hidden; color:#fff; background:#142b26; }
 .course-hero::after { content:""; position:absolute; inset:0; z-index:-1; background:linear-gradient(90deg,rgba(8,25,22,.87),rgba(8,25,22,.49) 46%,transparent 76%),linear-gradient(0deg,rgba(8,25,22,.42),transparent 56%); }
 .course-hero>img { position:absolute; inset:0; z-index:-2; width:100%; height:100%; object-fit:cover; }
