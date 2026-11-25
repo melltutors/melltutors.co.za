@@ -3,7 +3,7 @@
 .course-hero { position:relative; min-height:clamp(540px,66vw,730px); display:flex; align-items:end; isolation:isolate; overflow:hidden; color:#fff; background:#142b26; }
 .course-hero::after { content:""; position:absolute; inset:0; z-index:-1; background:linear-gradient(90deg,rgba(8,25,22,.87),rgba(8,25,22,.49) 46%,transparent 76%),linear-gradient(0deg,rgba(8,25,22,.42),transparent 56%); }
 .course-hero>img { position:absolute; inset:0; z-index:-2; width:100%; height:100%; object-fit:cover; }
-.course-hero-content { width:100%; padding-block:clamp(110px,15vw,190px) clamp(65px,8vw,110px); }
+.course-hero-content { width:min(1180px,calc(100% - 48px)); margin-inline:auto; padding-block:clamp(110px,15vw,190px) clamp(65px,8vw,110px); }
 .course-hero .eyebrow { color:#d7e5da; letter-spacing:.18em; }
 .course-hero h1 { max-width:850px; margin:18px 0 0; font:italic clamp(60px,8.5vw,128px)/.95 var(--serif); letter-spacing:-.045em; text-wrap:balance; }
 .course-codes { background:#e8eee6; border-bottom:1px solid #b8c8bb; }
